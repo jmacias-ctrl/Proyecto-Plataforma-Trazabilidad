@@ -32,13 +32,13 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li class="nav-item">
-              <a class="dropdown-item" aria-current="page" href="view\partials\gestion_equipos_componentes\componentes\create_componente.php">Ingresar equipo</a>
+              <a class="dropdown-item" aria-current="page" href="view\partials\gestion_equipos_componentes\componentes\create_componente.php">Ingresar Componente</a>
             </li>
             <li class="nav-item">
-              <a class="dropdown-item" aria-current="page" href="gestion_equipos_componentes\equipos/modify_equipo_1">Modificar Equipo</a>
+              <a class="dropdown-item" aria-current="page" href="prueba.php?p=gestion_equipos_componentes\equipos/modify_equipo_1">Modificar Componente</a>
             </li>
             <li class="nav-item">
-              <a class="dropdown-item" aria-current="page" href="prueba.php?p=gestion_equipos_componentes\componentes\delete_componente">Eliminar Equipo</a>
+              <a class="dropdown-item" aria-current="page" href="prueba.php?p=gestion_equipos_componentes\componentes\delete_componente">Eliminar Componente</a>
             </li>
           </ul>
         </li>
