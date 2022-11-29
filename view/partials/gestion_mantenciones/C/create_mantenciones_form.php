@@ -1,6 +1,6 @@
-<form action="view/partials/modules/databases/insert/insert_events.php" method="post">
+<form action="prueba.php?p=gestion_mantenciones\C/insert_events.php" method="post">
     <H1>AGREGAR MANTENCION</H1>
-
+    
     <input name="descripcion" type="text" placeholder="DESCRIPCION" autocomplete="off">
     <input name="fecha" type="date" placeholder="FECHA">
 

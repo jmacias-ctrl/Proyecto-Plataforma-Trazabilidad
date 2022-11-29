@@ -1,8 +1,8 @@
 <?php
-require("connect.php");
+require('view\partials\gestion_departamentos_edificios\conexion.php');
 
 $id_recibido= $_GET["id_departamento"];
-$edificio_recibido= $_POST["id_edificio"];
+$edificio_recibido= $_POST["id"];
 $nombre_recibido= $_POST["nombre_departamento"];
 
 $sql_e="SELECT id_edificio FROM edificios WHERE id_edificio='$edificio_recibido';";
@@ -16,6 +16,4 @@ if(mysqli_num_rows($check_e)!=0){
     echo "Error, intente nuevamente";
 }
 
-
-header('location: index.php');
 ?>

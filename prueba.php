@@ -13,7 +13,13 @@ if ($isInAppMode) {
     // require_once "view\partials\modules\sidebar\index.php";
     require "view\partials\modules\sidebar\index.php";
     require "view\partials\modules\page_container\up.php";
-    require_once "view/partials/" . $pagina . '.php';
+    if(isset($_GET['id'])){
+        require_once "view/partials/" . $pagina . '.php?id='.$_GET['id'];
+    }else if(isset($_GET['id_departamento'])){
+        require_once "view/partials/" . $pagina . '.php?id_departamento='.$_GET['id_departamento'];
+    }else{
+        require_once "view/partials/" . $pagina . '.php';
+    }
     require "view\partials\modules\page_container\down.php";
     require_once "view/partials/footer.php";
 } else {

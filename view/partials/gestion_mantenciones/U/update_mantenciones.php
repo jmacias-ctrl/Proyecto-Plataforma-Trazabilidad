@@ -1,4 +1,4 @@
-<form action="view/partials/modules/databases/insert/insert_events.php" method="post">
+<form action="prueba.php?p=gestion_mantenciones\U/insert_events.php" method="post">
     <H1>UPDATE MANTENCION</H1>
 
     <input name="descripcion" type="text" placeholder="id" autocomplete="off">

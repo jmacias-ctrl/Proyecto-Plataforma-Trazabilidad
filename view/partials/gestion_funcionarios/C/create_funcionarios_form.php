@@ -1,4 +1,4 @@
-<form action="view\partials\modules\databases\TIS_testing\funcionarios\C\create_funcionarios.php" method="post">
+<form action="prueba.php?p=gestion_funcionarios\C\create_funcionarios" method="post">
     <H1>AGREGAR FUNCIONARIO</H1>
 
     <input name="rut_funcionario" type="text" placeholder="RUT" autocomplete="off"><br>

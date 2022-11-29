@@ -1,5 +1,5 @@
 <?php
-    require('../conexion.php');
+    require('view\partials\gestion_equipos_componentes\conexion.php');
 
     $rut = $_POST["rut"];
     $nombre = $_POST["nombre"];

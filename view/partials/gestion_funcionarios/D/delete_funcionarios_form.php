@@ -1,4 +1,4 @@
-<form action="view\partials\modules\databases\TIS_testing\funcionarios\D\delete_funcionarios.php" method="post">
+<form action="prueba.php?p=gestion_funcionarios\D\delete_funcionarios" method="post">
     <H1>ELIMINAR FUNCIONARIO</H1>
 
     <input name="rut_funcionario" type="text" placeholder="RUT" autocomplete="off"><br>

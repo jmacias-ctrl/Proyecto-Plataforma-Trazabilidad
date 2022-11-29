@@ -1,5 +1,5 @@
 <?php
-    require('../conexion.php');
+    require('view\partials\gestion_equipos_componentes\conexion.php');
 
     $id = $_GET["rut"];
 

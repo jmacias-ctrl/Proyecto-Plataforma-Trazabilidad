@@ -1,5 +1,5 @@
 <?php
-require("connect.php");
+require('view\partials\gestion_departamentos_edificios\conexion.php');
 
 $id_recibido= $_POST["id_edificio"];
 $nombre_recibido= $_POST["nombre_edificio"];
@@ -20,7 +20,4 @@ if(mysqli_num_rows($check_o)!=0 && mysqli_num_rows($check_c)!=0){
     echo "Error, la organizacion o la comuna no son correctas, intente nuevamente";
     sleep(10);
 }
-
-
-header('location: index.php');
 ?>

@@ -1,6 +1,6 @@
 <?php
 //bd-user-pass-id
-require("connect.php");
+require('view\partials\gestion_equipos_componentes\conexion.php');
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ require("connect.php");
     <body>
         <h1> formulario</h1>
         <br>
-        <form action="insert.php" method="POST">
+        <form action="prueba.php?p=gestion_departamentos_edificios/insert" method="POST">
             <input type="text" name="id_edificio" placeholder= "id edificio"><br>
             <input type="text" name="nombre_edificio" placeholder= "nombre edificio"><br>
             <input type="text" name="tipo_edificio" placeholder= "tipo edificio"><br>
@@ -38,19 +38,19 @@ require("connect.php");
                     $resultado= mysqli_query($conexion, $consulta);
 
                     while($row= mysqli_fetch_assoc($resultado)){
-                        $id_consultado= $row["id_edificio"];
-                        $nombre_consultado= $row["nombre_edificio"];
-                        $tipo_consultado= $row["tipo_edificio"];
-                        $org_consultada= $row["id_organizaciones"];
-                        $comuna_consultada= $row["cod_ine_com"];
+                        $id_consultado= $row["ID_EDIFICIO"];
+                        $nombre_consultado= $row["NOMBRE_EDIFICIO"];
+                        $tipo_consultado= $row["TIPO_EDIFICIO"];
+                        $org_consultada= $row["ID_ORGANIZACIONES"];
+                        $comuna_consultada= $row["COD_INE_COM"];
                         echo "<tr>";
                         echo "<td>" .$id_consultado. "</td>";
                         echo  "<td>" .$nombre_consultado. "</td>";
                         echo  "<td>" .$tipo_consultado. "</td>";
                         echo  "<td>" .$org_consultada. "</td>";
                         echo  "<td>" .$comuna_consultada. "</td>";
-                        echo  "<td> <a href='delete.php?id=".$id_consultado."'>Eliminar </a></td>";
-                        echo  "<td> <a href='edit-tab.php?id=".$id_consultado."'>Editar </a></td>";
+                        echo  "<td> <a href='prueba.php?p=gestion_departamentos_edificios/delete&id=".$id_consultado."'>Eliminar </a></td>";
+                        echo  "<td> <a href='prueba.php?p=gestion_departamentos_edificios/edit-tab&id=".$id_consultado."'>Editar </a></td>";
                         echo "</tr>";
                     }
                     ?>
@@ -58,7 +58,7 @@ require("connect.php");
             </tbody>
         </table>
 
-        <form action="insert2.php" method="POST">
+        <form action="prueba.php?p=gestion_departamentos_edificios/insert2" method="POST">
             <input type="text" name= "id_departamento" placeholder= "id departamento"><br>
             <input type="text" name= "id_edificio" placeholder= "id edificio"><br>
             <input type="text" name= "nombre_departamento" placeholder= "nombre departamento"><br>
@@ -78,15 +78,15 @@ require("connect.php");
                     $resultado= mysqli_query($conexion, $consulta);
 
                     while($row= mysqli_fetch_assoc($resultado)){
-                        $id_consultado= $row["id_departamento"];
-                        $edificio_consultado= $row["id_edificio"];
-                        $nombre_consultado= $row["nombre_departamento"];
+                        $id_consultado= $row["ID_DEPARTAMENTO"];
+                        $edificio_consultado= $row["ID_EDIFICIO"];
+                        $nombre_consultado= $row["NOMBRE_DEPARTAMENTO"];
                         echo "<tr>";
                         echo "<td>" .$id_consultado. "</td>";
                         echo  "<td>" .$edificio_consultado. "</td>";
                         echo  "<td>" .$nombre_consultado. "</td>";
-                        echo  "<td> <a href='delete2.php?id_departamento=".$id_consultado."'>Eliminar </a></td>";
-                        echo  "<td> <a href='edit-tab2.php?id=".$id_consultado."'>Editar </a></td>";
+                        echo  "<td> <a href='prueba.php?p=gestion_departamentos_edificios/delete2&id_departamento=".$id_consultado."'>Eliminar </a></td>";
+                        echo  "<td> <a href='prueba.php?p=gestion_departamentos_edificios/edit-tab2&id=".$id_consultado."'>Editar </a></td>";
                         echo "</tr>";
                     }
                     ?>
@@ -98,14 +98,6 @@ require("connect.php");
         
         $consulta= "SELECT * FROM departamentos";
         $resultado= mysqli_query($conexion, $consulta);
-
-        while($row= mysqli_fetch_assoc($resultado)){
-            $id_consultado= $row["id_departamento"];
-            $edificio_consultado= $row["id_edificio"];
-            $nombre_consultado= $row["nombre_departamento"];
-            echo "<h1>" .$id_consultado. ", " .$edificio_consultado. ", " .$nombre_consultado. "</h1>";
-        }
-        echo "<h1>dentro del body </h1>";
         ?>
     </body>
 </html>

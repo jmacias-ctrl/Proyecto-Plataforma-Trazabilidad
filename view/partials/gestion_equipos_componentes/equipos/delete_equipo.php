@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form action="prueba.php?p=\gestion_equipos_componentes\equipos\post_delete_equipo" method="post">
+    <form action="prueba.php?p=gestion_equipos_componentes\equipos\post_delete_equipo" method="post">
 
         <div class="container-sm">
             <H1 class="mx-auto">ELIMINAR EQUIPO</H1>

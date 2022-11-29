@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form action="prueba.php?p=\gestion_equipos_componentes\equipos\modify_equipo_2" method="post">
+    <form action="prueba.php?p=gestion_equipos_componentes\equipos\modify_equipo_2" method="post">
 
         <div class="container-sm">
             <H1 class="mx-auto">Modificar Equipo</H1>

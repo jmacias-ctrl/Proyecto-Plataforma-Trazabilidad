@@ -1,5 +1,5 @@
 <?php
-require("view\partials\modules\databases\TIS_testing\conexion.php");
+require('view\partials\gestion_equipos_componentes\conexion.php');
 
 ?>
 

@@ -1,4 +1,4 @@
-<form action="view/partials/modules/databases/insert/insert_events.php" method="post">
+<form action="prueba.php?p=gestion_mantenedores\C/insert_events" method="post">
     <H1>AGREGAR MANTENEDOR</H1>
 
     <input name="rut" type="text" placeholder="RUT" autocomplete="off">

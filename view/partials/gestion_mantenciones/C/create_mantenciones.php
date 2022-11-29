@@ -1,5 +1,5 @@
 <?php
-    require('../conexion.php');
+    require('view\partials\gestion_equipos_componentes\conexion.php');
 
     $nombre_mantencion = $_POST["nombre_mantencion"];
     $tipo_mantencion = $_POST["tipo_mantencion"];

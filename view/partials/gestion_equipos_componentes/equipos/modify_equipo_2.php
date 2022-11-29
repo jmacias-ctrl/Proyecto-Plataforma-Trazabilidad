@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form action="prueba.php?p=\gestion_equipos_componentes\equipos\post_modify_equipo" method="post">
+    <form action="prueba.php?p=gestion_equipos_componentes\equipos\post_modify_equipo" method="post">
         <?php
         require('view\partials\gestion_equipos_componentes\conexion.php');
         $query = "SELECT * FROM equipos WHERE id_equipo=" . $_POST["id_equipo"] . ";";
@@ -24,32 +24,32 @@
             <H1 class="mx-auto">Modificar Equipo</H1>
             <div class="input-group mb-3">
                 <span class="input-group-text">ID y Nombre Equipo</span>
-                <input type="number" aria-label="id_equipo" name="id_equipo" class="form-control" value=<?php print $row["id_equipo"];?>>
-                <input type="text" aria-label="nombre_equipo" name="nombre_equipo" class="form-control" value=<?php print $row["nombre_equipo"];?>>
+                <input type="number" aria-label="id_equipo" name="id_equipo" class="form-control" value=<?php print $row["ID_EQUIPO"];?>>
+                <input type="text" aria-label="nombre_equipo" name="nombre_equipo" class="form-control" value=<?php print $row["NOMBRE_EQUIPO"];?>>
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Rut Funcionario</span>
-                <input type="text" class="form-control" aria-label="rut" name="rut" aria-describedby="inputGroup-sizing-default" value=<?php print $row["rut_funcionario"];?>>
+                <input type="text" class="form-control" aria-label="rut" name="rut" aria-describedby="inputGroup-sizing-default" value=<?php print $row["RUT_FUNCIONARIO"];?>>
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Fecha Adquisicion</span>
-                <input type="date" class="form-control" aria-label="fAdquisicion" name="fAdquisicion" aria-describedby="inputGroup-sizing-default" value=<?php print $row["fecha_adquisicion"];?>>
+                <input type="date" class="form-control" aria-label="fAdquisicion" name="fAdquisicion" aria-describedby="inputGroup-sizing-default" value=<?php print $row["FECHA_ADQUISICION"];?>>
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Costo de Adquisicion</span>
-                <input type="number" class="form-control" aria-label="cAdquisicion" name="cAdquisicion" aria-describedby="inputGroup-sizing-default" value=<?php print $row["costo_adquisicion"];?>>
+                <input type="number" class="form-control" aria-label="cAdquisicion" name="cAdquisicion" aria-describedby="inputGroup-sizing-default" value=<?php print $row["COSTO_ADQUISICION"];?>>
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Caracteristicas Adquisicion</span>
-                <input type="text" class="form-control" aria-label="tAdquisicion" name="tAdquisicion" aria-describedby="inputGroup-sizing-default" value=<?php print $row["caracteristicas_adquisicion"];?>>
+                <input type="text" class="form-control" aria-label="tAdquisicion" name="tAdquisicion" aria-describedby="inputGroup-sizing-default" value=<?php print $row["CARACTERISTICAS_ADQUISICION"];?>>
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">Forma Adquisicion</span>
-                <input type="text" class="form-control" aria-label="foAdquisicion" name="foAdquisicion" aria-describedby="inputGroup-sizing-default" value=<?php print $row["forma_adquisicion"];?>>
+                <input type="text" class="form-control" aria-label="foAdquisicion" name="foAdquisicion" aria-describedby="inputGroup-sizing-default" value=<?php print $row["FORMA_ADQUISICION"];?>>
             </div>
             <div class="input-group mb-3">
                 <span class="input-group-text" id="inputGroup-sizing-default">id_departamento</span>
-                <input type="number" class="form-control" aria-label="id_departamento" name="id_departamento" aria-describedby="inputGroup-sizing-default" value=<?php print $row["id_departamento"];?>>
+                <input type="number" class="form-control" aria-label="id_departamento" name="id_departamento" aria-describedby="inputGroup-sizing-default" value=<?php print $row["ID_DEPARTAMENTO"];?>>
             </div>
             <input class="btn btn-outline-dark" type="submit" value="GUARDAR">
         </div>

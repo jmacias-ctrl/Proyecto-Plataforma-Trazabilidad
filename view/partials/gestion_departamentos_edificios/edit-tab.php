@@ -1,5 +1,5 @@
 <?php
-require("connect.php");
+require('view\partials\gestion_departamentos_edificios\conexion.php');
 
 
 ?>
@@ -17,7 +17,7 @@ require("connect.php");
         <br>
         <?php
         $id_consultado= $_GET["id"];
-        echo "<form action='edit.php?id_edificio=".$id_consultado."' method='POST'>";
+        echo "<form action='prueba.php?p=gestion_departamentos_edificios/edit&id_edificio=".$id_consultado."' method='POST'>";
             
             
             $consulta= "SELECT * FROM edificios WHERE id_edificio='".$id_consultado."';";
@@ -25,10 +25,10 @@ require("connect.php");
             $row= mysqli_fetch_assoc($resultado);
             
                 
-                $nombre_consultado= $row["nombre_edificio"];
-                $tipo_consultado= $row["tipo_edificio"];
-                $org_consultada= $row["id_organizaciones"];
-                $comuna_consultada= $row["cod_ine_com"];
+                $nombre_consultado= $row["NOMBRE_EDIFICIO"];
+                $tipo_consultado= $row["TIPO_EDIFICIO"];
+                $org_consultada= $row["ID_ORGANIZACIONES"];
+                $comuna_consultada= $row["COD_INE_COM"];
                 echo "<input type='text' name='nombre_edificio' value='".$nombre_consultado."'><br>";
                 echo "<input type='text' name='tipo_edificio' value='".$tipo_consultado."'><br>";
                 echo "<input type='text' name='id_organizaciones' value='".$org_consultada."'><br>";
@@ -41,7 +41,5 @@ require("connect.php");
             
             
         </form>
-       
-        <footer>hola soy un footer</footer>
     </body>
 </html>
