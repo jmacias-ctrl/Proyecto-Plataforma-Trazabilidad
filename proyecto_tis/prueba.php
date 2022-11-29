@@ -11,8 +11,8 @@ $isInAppMode = false;
 
 if ($isInAppMode) {
     // require_once "view\partials\modules\sidebar\index.php";
-    require "view\partials\modules\sidebar\index.php";
-    require "view\partials\modules\page_container\up.php";
+    require_once "view\partials\modules\sidebar\index.php";
+    require_once "view\partials\modules\page_container\up.php";
     if(isset($_GET['id'])){
         require_once "view/partials/" . $pagina . '.php?id='.$_GET['id'];
     }else if(isset($_GET['id_departamento'])){
@@ -29,4 +29,3 @@ if ($isInAppMode) {
 }
 ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="view/public/js/main.js"></script>
