@@ -8,15 +8,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $costoaAdquisicion = $_POST["cAdquisicion"];
         $caracteristicasAdquisicion = $_POST["tAdquisicion"];
         $formaaAdquisicion = $_POST["foAdquisicion"];
-        $id_departamento = $_POST["id_departamento"];
+        $id_departamento = $_POST["idDepartamento"];
 
-        $query = "INSERT INTO equipos
-        VALUES (DEFAULT,  DEFAULT, '$rut', '$nombre_equipo', '$fechaAdquisicion', '$costoaAdquisicion','$caracteristicasAdquisicion', '$formaaAdquisicion')";
-        $resultado = mysqli_query($conexion, $query);
+        $q1 = "INSERT INTO equipos
+        VALUES (DEFAULT,'$id_departamento', '$rut', '$nombre_equipo', '$fechaAdquisicion', '$costoaAdquisicion','$caracteristicasAdquisicion', '$formaaAdquisicion');";
+        $r1 = mysqli_query($conexion, $q1);
     } else if (isset($_POST['deletedata'])) {
         $id_equipo = $_POST["delete_id"];
-        $query = "DELETE FROM equipos WHERE id_equipo='" . $id_equipo . "';";
-        $resultado = mysqli_query($conexion, $query);
+        $q2 = "DELETE FROM equipos WHERE id_equipo='" . $id_equipo . "';";
+        $r2 = mysqli_query($conexion, $q2);
     } else if (isset($_POST['modificarData'])) {
         $nombre_equipo = $_POST["nombre_equipo"];
         $id_equipo = $_POST["modify_id"];
@@ -27,11 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $formaaAdquisicion = $_POST["foAdquisicion"];
         $id_departamento = $_POST["id_departamento"];
 
-        $query = "UPDATE equipos
+        $q3 = "UPDATE equipos
         SET id_equipo=" . $id_equipo . ", rut_funcionario=" . $rut . ", nombre_equipo='" . $nombre_equipo . "', fecha_adquisicion='" . $fechaAdquisicion . "', 
         costo_adquisicion=" . $costoaAdquisicion . ",caracteristicas_adquisicion='" . $caracteristicasAdquisicion . "', forma_adquisicion='" . $formaaAdquisicion . "', id_departamento=" . $id_departamento . "
         WHERE id_equipo=" . $id_equipo . ";";
-        $resultado = mysqli_query($conexion, $query);
+        $r3 = mysqli_query($conexion, $q3);
     }
 }
 
@@ -44,28 +44,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container-sm d-flex align-items-center border border-primary-2 rounded py-3">
             <div class="container aling-self-center">
                 <div class="row row-cols-auto d-flex align-items-center">
-                    <div class="col-lg-2">
-                        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
+                    <div class="col-8">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#insertarEquipo">
                             Insertar Nuevo Equipo
                         </button>
                     </div>
                     <div class="col">
-                        <h4>Buscar Equipo:</h4>
-                    </div>
-                    <div class="col-lg-2">
-                        <input type="text" class="form-control" aria-label="Busqueda por Parametros">
+                        <h5>Buscar Equipo:</h5>
                     </div>
                     <div class="col">
-                        <h4>Parametro:</h4>
-                    </div>
-                    <div class="col-lg-2">
-                        <select id="inputState" class="form-select">
-                            <option selected>Nombre</option>
-                            <option>ID</option>
-                            <option>Departamento</option>
-                            <option>Fecha de Adquisicion</option>
-                        </select>
+                        <input type="text" class="form-control" aria-label="Busqueda por Parametros">
                     </div>
                 </div>
             </div>
@@ -86,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Nombre Equipo</span>
                                     <input type="text" aria-label="nombre_equipo" name="nombre_equipo"
-                                        class="form-control">
+                                        class="form-control" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Rut Funcionario</span>
@@ -120,9 +109,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Departamento</span>
-                                    <input type="number" class="form-control" aria-label="id_departamento"
-                                        name="id_departamento" aria-describedby="inputGroup-sizing-default" required>
+                                    <select class="form-select" aria-label="Departamento" name="idDepartamento" required>
+                                        <option selected disabled value="">Seleccione un Departamento</option>
+                                        <?php
+                                        $q1 = "SELECT * FROM departamentos;";
+                                        $r1 = mysqli_query($conexion, $q1);
+                                        while ($row = mysqli_fetch_assoc($r1)) {
+                                            $id = $row["ID_DEPARTAMENTO"];
+                                            $nombre = $row["NOMBRE_DEPARTAMENTO"];
+                                        }
+                                        echo '<option value="'.$id.'">'.$nombre.'</option>';
+                                        ?>
+                                    </select>
                                 </div>
+
                             </div>
 
                         </div>
@@ -151,7 +151,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="deletedata" id="deletedata" class="btn btn-danger">Eliminar</button>
+                            <button type="submit" name="deletedata" id="deletedata"
+                                class="btn btn-danger">Eliminar</button>
                         </div>
                     </form>
                 </div>
@@ -228,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h4 class="my-4 ">Listado de Equipos</h4>
             </div>
             <div class="table-responsive caption-top">
-                <table class="table">
+                <table class="table" id="infoEquipo">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -239,7 +240,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <th scope="col">Costo Adquisicion</th>
                             <th scope="col">Forma Adquisicion</th>
                             <th scope="col">Caracteristicas</th>
-                            <th scope="col">Acciones</th>
+                            <th scope="col mx-auto">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -264,11 +265,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             echo '<td>' . $costoAdquisicion . '</td>';
                             echo '<td>' . $formaAdquisicion . '</td>';
                             echo '<td>' . $caracteristicasAdquisicion . '</td>';
-                            echo '<td> <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmacionEliminar" data-bs-whatever="' . $id . '" >Eliminar</button>  
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modificarEquipo" data-bs-whatever="' . $id . '">Modificar</button>
-                            <a class="btn btn-info" href="prueba.php?p=gestion_equipos_componentes/componentes/gestion_componentes&id=' . $id . '" role="button">Componentes</a> </td>';
-
-                            echo '<td> <button type="button" class="btn btn-dark">Generar Codigo QR</button> </td>';
+                            echo '<td> <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmacionEliminar" data-bs-whatever="' . $id . '" ><span class="material-icons">delete</span></button>  
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modificarEquipo" data-bs-whatever="' . $id . '"> <span class="material-icons">edit</span> </button>
+                            <a class="btn btn-outline-info" href="prueba.php?p=gestion_equipos_componentes/componentes/gestion_componentes&id=' . $id . '" role="button"> <span class="material-icons"> computer </span> </a>
+                            <button type="button" class="btn btn-dark"><span class="material-icons"> qr_code </span></button> </td>';
                             echo '</tr>';
                         }
                         ?>
@@ -289,27 +289,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
     <script>
-        var modal = document.getElementById('confirmacionEliminar')
-        modal.addEventListener('show.bs.modal', function (event) {
-            // Button that triggered the modal
-            var button = event.relatedTarget
-            // Extract info from data-bs-* attributes
-            var recipient = button.getAttribute('data-bs-whatever')
-            // Update the modal's content.
-            var modalId = modal.querySelector('.deleteForm')
-            modalId.value = recipient;
+        var modalDelete = document.getElementById('confirmacionEliminar')
+        modalDelete.addEventListener('show.bs.modal', function (event) {
+            var buttonDelete = event.relatedTarget
+            var attributeDelete = buttonDelete.getAttribute('data-bs-whatever')
+            var modal_id_delete = modalDelete.querySelector('.deleteForm')
+            modal_id_delete.value = attributeDelete;
         })
     </script>
     <script>
-        var modal = document.getElementById('modificarEquipo')
-        modal.addEventListener('show.bs.modal', function (event) {
-            // Button that triggered the modal
-            var button = event.relatedTarget
+        var modalModify = document.getElementById('modificarEquipo')
+        modalModify.addEventListener('show.bs.modal', function (event) {
+            var modifyButton = event.relatedTarget
             // Extract info from data-bs-* attributes
-            var recipient = button.getAttribute('data-bs-whatever')
+            var attributeModify = modifyButton.getAttribute('data-bs-whatever')
             // Update the modal's content.
-            var modalId = modal.querySelector('.modifyForm')
-            modalId.value = recipient;
+            var modalId = modalModify.querySelector('.modifyForm')
+            modalId.value = attributeModify;
         })
     </script>
 </body>
