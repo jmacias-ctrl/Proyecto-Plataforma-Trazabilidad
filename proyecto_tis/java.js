@@ -60,14 +60,14 @@ $(document).ready(function(){
 					url: 'inicio.php',
 					data: logform,
 					success:function(data){
-						if(data==''){
+						if(data!=-1){
 							$('#myalert').slideDown();
 							$('#alerttext').text('Sesion iniciada');
 							$('#logtext').text('Iniciar');
 							$('#logform')[0].reset();
 							setTimeout(function(){
-								location.reload();
-							}, 2000);
+								window.location.reload(true);
+							}, 1000);
 						}
 						else{
 							$('#myalert').slideDown();

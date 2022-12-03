@@ -9,12 +9,11 @@
 
 		if ($query->num_rows>0){
 			$row=$query->fetch_array();
-			$_SESSION['usuarios']=$row['id']; 
+			$_SESSION['usuarios']=$row['id'];
+			$_SESSION['id_organizacion']=$row['id_organizacion'];
 		}
 		else{
-			?>
-  				<span>Conexion fallida</span>
-  			<?php 
+			echo -1;
 		}
 	}
 ?>

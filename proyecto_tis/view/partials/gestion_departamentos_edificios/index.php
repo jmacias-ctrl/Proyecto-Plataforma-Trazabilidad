@@ -1,5 +1,4 @@
 <?php
-//bd-user-pass-id
 require('view\partials\gestion_equipos_componentes\conexion.php');
 ?>
 

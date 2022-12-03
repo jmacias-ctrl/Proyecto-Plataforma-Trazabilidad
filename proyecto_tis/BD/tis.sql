@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 01, 2022 at 04:53 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 03-12-2022 a las 07:51:42
+-- Versión del servidor: 10.4.22-MariaDB
+-- Versión de PHP: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tis`
+-- Base de datos: `tis`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `componentes`
+-- Estructura de tabla para la tabla `componentes`
 --
 
 CREATE TABLE `componentes` (
@@ -32,13 +32,21 @@ CREATE TABLE `componentes` (
   `ID_EQUIPO` int(11) DEFAULT NULL,
   `NOMBRE` varchar(30) DEFAULT NULL,
   `MARCA` varchar(30) DEFAULT NULL,
-  `MODELO` varchar(30) DEFAULT NULL
+  `MODELO` varchar(30) DEFAULT NULL,
+  `estado` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `componentes`
+--
+
+INSERT INTO `componentes` (`ID_COMPONENTE`, `ID_EQUIPO`, `NOMBRE`, `MARCA`, `MODELO`, `estado`) VALUES
+(2, 12, 'test', 'amd', 'ryzen 3600', 'en uso');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comunas`
+-- Estructura de tabla para la tabla `comunas`
 --
 
 CREATE TABLE `comunas` (
@@ -48,7 +56,7 @@ CREATE TABLE `comunas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `comunas`
+-- Volcado de datos para la tabla `comunas`
 --
 
 INSERT INTO `comunas` (`COD_INE_COM`, `COD_INE_PROV`, `NOMBRE`) VALUES
@@ -57,7 +65,7 @@ INSERT INTO `comunas` (`COD_INE_COM`, `COD_INE_PROV`, `NOMBRE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `departamentos`
+-- Estructura de tabla para la tabla `departamentos`
 --
 
 CREATE TABLE `departamentos` (
@@ -67,16 +75,16 @@ CREATE TABLE `departamentos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `departamentos`
+-- Volcado de datos para la tabla `departamentos`
 --
 
 INSERT INTO `departamentos` (`ID_DEPARTAMENTO`, `ID_EDIFICIO`, `NOMBRE_DEPARTAMENTO`) VALUES
-(1, 10, 'test');
+(1, 1, 'test');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `discos_internos`
+-- Estructura de tabla para la tabla `discos_internos`
 --
 
 CREATE TABLE `discos_internos` (
@@ -88,7 +96,7 @@ CREATE TABLE `discos_internos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `edificios`
+-- Estructura de tabla para la tabla `edificios`
 --
 
 CREATE TABLE `edificios` (
@@ -101,16 +109,17 @@ CREATE TABLE `edificios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `edificios`
+-- Volcado de datos para la tabla `edificios`
 --
 
 INSERT INTO `edificios` (`ID_EDIFICIO`, `ID`, `COD_INE_COM`, `NOMBRE_EDIFICIO`, `TIPO_EDIFICIO`, `ID_ORGANIZACIONES`) VALUES
-(10, NULL, 8101, 'oficin ', ' oficina', 1);
+(1, NULL, 8101, 'edifcio2 ', ' Oficina', 13),
+(2, NULL, 8101, 'edifcio3 ', ' OFICINA', 13);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `equipos`
+-- Estructura de tabla para la tabla `equipos`
 --
 
 CREATE TABLE `equipos` (
@@ -121,20 +130,23 @@ CREATE TABLE `equipos` (
   `FECHA_ADQUISICION` date DEFAULT NULL,
   `COSTO_ADQUISICION` int(11) DEFAULT NULL,
   `CARACTERISTICAS_ADQUISICION` varchar(200) DEFAULT NULL,
-  `FORMA_ADQUISICION` varchar(200) DEFAULT NULL
+  `FORMA_ADQUISICION` varchar(200) DEFAULT NULL,
+  `estado` varchar(25) NOT NULL,
+  `cantidad_mantenciones` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `equipos`
+-- Volcado de datos para la tabla `equipos`
 --
 
-INSERT INTO `equipos` (`ID_EQUIPO`, `ID_DEPARTAMENTO`, `RUT_FUNCIONARIO`, `NOMBRE_EQUIPO`, `FECHA_ADQUISICION`, `COSTO_ADQUISICION`, `CARACTERISTICAS_ADQUISICION`, `FORMA_ADQUISICION`) VALUES
-(9, 1, 20511753, 'equipo4', '2022-09-20', 100, 'test', 'test');
+INSERT INTO `equipos` (`ID_EQUIPO`, `ID_DEPARTAMENTO`, `RUT_FUNCIONARIO`, `NOMBRE_EQUIPO`, `FECHA_ADQUISICION`, `COSTO_ADQUISICION`, `CARACTERISTICAS_ADQUISICION`, `FORMA_ADQUISICION`, `estado`, `cantidad_mantenciones`) VALUES
+(9, 1, 20511753, 'equipo4', '2022-09-20', 100, 'test', 'test', 'inactivo', 0),
+(12, 1, 20511753, 'test1', '2022-02-09', 2022, 'test', 'test', 'inactivo', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `funcionarios`
+-- Estructura de tabla para la tabla `funcionarios`
 --
 
 CREATE TABLE `funcionarios` (
@@ -144,7 +156,7 @@ CREATE TABLE `funcionarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `funcionarios`
+-- Volcado de datos para la tabla `funcionarios`
 --
 
 INSERT INTO `funcionarios` (`RUT_FUNCIONARIO`, `NOMBRE_FUNCIONARIO`, `TIPO`) VALUES
@@ -153,7 +165,7 @@ INSERT INTO `funcionarios` (`RUT_FUNCIONARIO`, `NOMBRE_FUNCIONARIO`, `TIPO`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mantenciones`
+-- Estructura de tabla para la tabla `mantenciones`
 --
 
 CREATE TABLE `mantenciones` (
@@ -166,7 +178,7 @@ CREATE TABLE `mantenciones` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mantenedores`
+-- Estructura de tabla para la tabla `mantenedores`
 --
 
 CREATE TABLE `mantenedores` (
@@ -177,7 +189,7 @@ CREATE TABLE `mantenedores` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `memorias_ram`
+-- Estructura de tabla para la tabla `memorias_ram`
 --
 
 CREATE TABLE `memorias_ram` (
@@ -190,7 +202,7 @@ CREATE TABLE `memorias_ram` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `organizaciones`
+-- Estructura de tabla para la tabla `organizaciones`
 --
 
 CREATE TABLE `organizaciones` (
@@ -200,16 +212,16 @@ CREATE TABLE `organizaciones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `organizaciones`
+-- Volcado de datos para la tabla `organizaciones`
 --
 
 INSERT INTO `organizaciones` (`ID`, `NOMBRE_ORGANIZACION`, `ID_TIPO`) VALUES
-(1, 'Municipalidad de Concepcion', 10);
+(13, 'Municipalidad de Concepcion', 10);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `placa_base`
+-- Estructura de tabla para la tabla `placa_base`
 --
 
 CREATE TABLE `placa_base` (
@@ -223,7 +235,7 @@ CREATE TABLE `placa_base` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `procesadores`
+-- Estructura de tabla para la tabla `procesadores`
 --
 
 CREATE TABLE `procesadores` (
@@ -234,10 +246,17 @@ CREATE TABLE `procesadores` (
   `HILOS` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `procesadores`
+--
+
+INSERT INTO `procesadores` (`ID_COMPONENTE`, `NUCLEOS`, `SOCKET`, `RELOJ_BASE`, `HILOS`) VALUES
+(2, '10', 'am4', '4', '10');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provincia`
+-- Estructura de tabla para la tabla `provincia`
 --
 
 CREATE TABLE `provincia` (
@@ -247,7 +266,7 @@ CREATE TABLE `provincia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `provincia`
+-- Volcado de datos para la tabla `provincia`
 --
 
 INSERT INTO `provincia` (`COD_INE_PROV`, `COD_INE_REG`, `NOMBRE`) VALUES
@@ -256,7 +275,7 @@ INSERT INTO `provincia` (`COD_INE_PROV`, `COD_INE_REG`, `NOMBRE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `realiza`
+-- Estructura de tabla para la tabla `realiza`
 --
 
 CREATE TABLE `realiza` (
@@ -268,7 +287,7 @@ CREATE TABLE `realiza` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `regiones`
+-- Estructura de tabla para la tabla `regiones`
 --
 
 CREATE TABLE `regiones` (
@@ -277,7 +296,7 @@ CREATE TABLE `regiones` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `regiones`
+-- Volcado de datos para la tabla `regiones`
 --
 
 INSERT INTO `regiones` (`COD_INE_REG`, `NOMBRE`) VALUES
@@ -286,7 +305,7 @@ INSERT INTO `regiones` (`COD_INE_REG`, `NOMBRE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_discos_internos`
+-- Estructura de tabla para la tabla `tipo_discos_internos`
 --
 
 CREATE TABLE `tipo_discos_internos` (
@@ -298,7 +317,7 @@ CREATE TABLE `tipo_discos_internos` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipo_organizacion`
+-- Estructura de tabla para la tabla `tipo_organizacion`
 --
 
 CREATE TABLE `tipo_organizacion` (
@@ -308,7 +327,7 @@ CREATE TABLE `tipo_organizacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `tipo_organizacion`
+-- Volcado de datos para la tabla `tipo_organizacion`
 --
 
 INSERT INTO `tipo_organizacion` (`ID_TIPO`, `NOMBRE`, `DESCRIPCION`) VALUES
@@ -317,7 +336,7 @@ INSERT INTO `tipo_organizacion` (`ID_TIPO`, `NOMBRE`, `DESCRIPCION`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -329,7 +348,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `contrasena`, `id_organizacion`) VALUES
@@ -339,39 +358,39 @@ INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `contrasena`, `id_organizacion
 (9, 'juan', 'juan@gmail.com', 'f5737d25829e95b9c234b7fa06af8736', 12);
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `componentes`
+-- Indices de la tabla `componentes`
 --
 ALTER TABLE `componentes`
   ADD PRIMARY KEY (`ID_COMPONENTE`),
   ADD KEY `FK_COMPUESTO2` (`ID_EQUIPO`);
 
 --
--- Indexes for table `comunas`
+-- Indices de la tabla `comunas`
 --
 ALTER TABLE `comunas`
   ADD PRIMARY KEY (`COD_INE_COM`),
   ADD KEY `FK_COMPONE2` (`COD_INE_PROV`);
 
 --
--- Indexes for table `departamentos`
+-- Indices de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
   ADD PRIMARY KEY (`ID_DEPARTAMENTO`),
   ADD KEY `FK_TIENE2` (`ID_EDIFICIO`);
 
 --
--- Indexes for table `discos_internos`
+-- Indices de la tabla `discos_internos`
 --
 ALTER TABLE `discos_internos`
   ADD PRIMARY KEY (`ID_COMPONENTE`),
   ADD KEY `ID_TIPO_DISCO` (`ID_TIPO_DISCO`);
 
 --
--- Indexes for table `edificios`
+-- Indices de la tabla `edificios`
 --
 ALTER TABLE `edificios`
   ADD PRIMARY KEY (`ID_EDIFICIO`),
@@ -379,7 +398,7 @@ ALTER TABLE `edificios`
   ADD KEY `FK_TIENE` (`ID`);
 
 --
--- Indexes for table `equipos`
+-- Indices de la tabla `equipos`
 --
 ALTER TABLE `equipos`
   ADD PRIMARY KEY (`ID_EQUIPO`),
@@ -387,207 +406,207 @@ ALTER TABLE `equipos`
   ADD KEY `FK_REGISTRA` (`RUT_FUNCIONARIO`);
 
 --
--- Indexes for table `funcionarios`
+-- Indices de la tabla `funcionarios`
 --
 ALTER TABLE `funcionarios`
   ADD PRIMARY KEY (`RUT_FUNCIONARIO`);
 
 --
--- Indexes for table `mantenciones`
+-- Indices de la tabla `mantenciones`
 --
 ALTER TABLE `mantenciones`
   ADD PRIMARY KEY (`ID_MANTENCION`),
   ADD KEY `FK_REGISTRA2` (`ID_EQUIPO`);
 
 --
--- Indexes for table `mantenedores`
+-- Indices de la tabla `mantenedores`
 --
 ALTER TABLE `mantenedores`
   ADD PRIMARY KEY (`RUT`);
 
 --
--- Indexes for table `memorias_ram`
+-- Indices de la tabla `memorias_ram`
 --
 ALTER TABLE `memorias_ram`
   ADD PRIMARY KEY (`ID_COMPONENTE`);
 
 --
--- Indexes for table `organizaciones`
+-- Indices de la tabla `organizaciones`
 --
 ALTER TABLE `organizaciones`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `ID_TIPO` (`ID_TIPO`);
 
 --
--- Indexes for table `placa_base`
+-- Indices de la tabla `placa_base`
 --
 ALTER TABLE `placa_base`
   ADD PRIMARY KEY (`ID_COMPONENTE`);
 
 --
--- Indexes for table `procesadores`
+-- Indices de la tabla `procesadores`
 --
 ALTER TABLE `procesadores`
   ADD PRIMARY KEY (`ID_COMPONENTE`);
 
 --
--- Indexes for table `provincia`
+-- Indices de la tabla `provincia`
 --
 ALTER TABLE `provincia`
   ADD PRIMARY KEY (`COD_INE_PROV`),
   ADD KEY `FK_COMPONE` (`COD_INE_REG`);
 
 --
--- Indexes for table `realiza`
+-- Indices de la tabla `realiza`
 --
 ALTER TABLE `realiza`
   ADD KEY `FK_REALIZA` (`ID_MANTENCION`),
   ADD KEY `FK_REALIZA2` (`RUT`);
 
 --
--- Indexes for table `regiones`
+-- Indices de la tabla `regiones`
 --
 ALTER TABLE `regiones`
   ADD PRIMARY KEY (`COD_INE_REG`);
 
 --
--- Indexes for table `tipo_discos_internos`
+-- Indices de la tabla `tipo_discos_internos`
 --
 ALTER TABLE `tipo_discos_internos`
   ADD PRIMARY KEY (`ID_TIPO_DISCO`);
 
 --
--- Indexes for table `tipo_organizacion`
+-- Indices de la tabla `tipo_organizacion`
 --
 ALTER TABLE `tipo_organizacion`
   ADD PRIMARY KEY (`ID_TIPO`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `componentes`
+-- AUTO_INCREMENT de la tabla `componentes`
 --
 ALTER TABLE `componentes`
+  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `discos_internos`
+--
+ALTER TABLE `discos_internos`
   MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `discos_internos`
---
-ALTER TABLE `discos_internos`
-  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `equipos`
+-- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `ID_EQUIPO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `ID_EQUIPO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `memorias_ram`
+-- AUTO_INCREMENT de la tabla `memorias_ram`
 --
 ALTER TABLE `memorias_ram`
   MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `placa_base`
+-- AUTO_INCREMENT de la tabla `placa_base`
 --
 ALTER TABLE `placa_base`
   MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `procesadores`
+-- AUTO_INCREMENT de la tabla `procesadores`
 --
 ALTER TABLE `procesadores`
-  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `componentes`
+-- Filtros para la tabla `componentes`
 --
 ALTER TABLE `componentes`
   ADD CONSTRAINT `componentes_ibfk_1` FOREIGN KEY (`ID_EQUIPO`) REFERENCES `equipos` (`ID_EQUIPO`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
--- Constraints for table `comunas`
+-- Filtros para la tabla `comunas`
 --
 ALTER TABLE `comunas`
   ADD CONSTRAINT `FK_COMPONE2` FOREIGN KEY (`COD_INE_PROV`) REFERENCES `provincia` (`COD_INE_PROV`);
 
 --
--- Constraints for table `departamentos`
+-- Filtros para la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
   ADD CONSTRAINT `FK_TIENE2` FOREIGN KEY (`ID_EDIFICIO`) REFERENCES `edificios` (`ID_EDIFICIO`);
 
 --
--- Constraints for table `discos_internos`
+-- Filtros para la tabla `discos_internos`
 --
 ALTER TABLE `discos_internos`
   ADD CONSTRAINT `discos_internos_ibfk_1` FOREIGN KEY (`ID_TIPO_DISCO`) REFERENCES `tipo_discos_internos` (`ID_TIPO_DISCO`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `edificios`
+-- Filtros para la tabla `edificios`
 --
 ALTER TABLE `edificios`
   ADD CONSTRAINT `FK_CONTIENE` FOREIGN KEY (`COD_INE_COM`) REFERENCES `comunas` (`COD_INE_COM`),
   ADD CONSTRAINT `FK_TIENE` FOREIGN KEY (`ID`) REFERENCES `organizaciones` (`ID`);
 
 --
--- Constraints for table `equipos`
+-- Filtros para la tabla `equipos`
 --
 ALTER TABLE `equipos`
   ADD CONSTRAINT `FK_CONTIENE3` FOREIGN KEY (`ID_DEPARTAMENTO`) REFERENCES `departamentos` (`ID_DEPARTAMENTO`) ON DELETE CASCADE ON UPDATE SET NULL,
   ADD CONSTRAINT `FK_REGISTRA` FOREIGN KEY (`RUT_FUNCIONARIO`) REFERENCES `funcionarios` (`RUT_FUNCIONARIO`);
 
 --
--- Constraints for table `memorias_ram`
+-- Filtros para la tabla `memorias_ram`
 --
 ALTER TABLE `memorias_ram`
   ADD CONSTRAINT `memorias_ram_ibfk_1` FOREIGN KEY (`ID_COMPONENTE`) REFERENCES `componentes` (`ID_COMPONENTE`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `organizaciones`
+-- Filtros para la tabla `organizaciones`
 --
 ALTER TABLE `organizaciones`
   ADD CONSTRAINT `organizaciones_ibfk_1` FOREIGN KEY (`ID_TIPO`) REFERENCES `tipo_organizacion` (`ID_TIPO`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `placa_base`
+-- Filtros para la tabla `placa_base`
 --
 ALTER TABLE `placa_base`
   ADD CONSTRAINT `placa_base_ibfk_1` FOREIGN KEY (`ID_COMPONENTE`) REFERENCES `componentes` (`ID_COMPONENTE`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `procesadores`
+-- Filtros para la tabla `procesadores`
 --
 ALTER TABLE `procesadores`
   ADD CONSTRAINT `procesadores_ibfk_1` FOREIGN KEY (`ID_COMPONENTE`) REFERENCES `componentes` (`ID_COMPONENTE`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `provincia`
+-- Filtros para la tabla `provincia`
 --
 ALTER TABLE `provincia`
   ADD CONSTRAINT `FK_COMPONE` FOREIGN KEY (`COD_INE_REG`) REFERENCES `regiones` (`COD_INE_REG`);
 
 --
--- Constraints for table `realiza`
+-- Filtros para la tabla `realiza`
 --
 ALTER TABLE `realiza`
   ADD CONSTRAINT `FK_REALIZA` FOREIGN KEY (`ID_MANTENCION`) REFERENCES `mantenciones` (`ID_MANTENCION`),

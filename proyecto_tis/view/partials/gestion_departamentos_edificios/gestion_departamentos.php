@@ -22,18 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <div class="container-sm align-items-center">
-        <h1 class="my-3">Gestión de Edificio</h1>
+        <h1 class="my-3">Gestión de Departamento</h1>
 
         <div class="container-sm d-flex align-items-center border border-primary-2 rounded py-3">
             <div class="container aling-self-center">
                 <div class="row row-cols-auto d-flex align-items-center">
                     <div class="col-8">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertarEquipo">
-                            Insertar Nuevo Edificio
+                            Insertar Nuevo Departamento
                         </button>
                     </div>
                     <div class="col">
-                        <h5>Buscar Edificio:</h5>
+                        <h5>Buscar Departamento:</h5>
                     </div>
                     <div class="col">
                         <input type="text" class="form-control" aria-label="Busqueda por Parametros">
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="insertarEquipoLabel">Ingresar Edificio</h5>
+                        <h5 class="modal-title" id="insertarEquipoLabel">Ingresar Equipo</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="prueba.php?p=gestion_departamentos_edificios\gestion_edificios" method="post">
@@ -55,17 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="container-sm">
                                 <input type="hidden" name="id_organizacion" id="id_organizacion" value=<?php print $_SESSION['id_organizacion'] ?>>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text">Nombre Edificio</span>
-                                    <input type="text" aria-label="nombre_edificio" name="nombre_edificio" class="form-control">
+                                    <span class="input-group-text">Nombre Departamento</span>
+                                    <input type="text" aria-label="nombre_departamento" name="nombre_departamento" class="form-control">
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Tipo Edificio</span>
-                                    <input type="text" class="form-control" aria-label="tipo_edificio" name="tipo_edificio" aria-describedby="inputGroup-sizing-default" required>
-                                </div>
-
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Comuna</span>
-                                    <textarea type="number" class="form-control" aria-label="cod_ine_com" name="cod_ine_com" aria-describedby="inputGroup-sizing-default" required></textarea>
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Edificio</span>
+                                    <input type="text" class="form-control" aria-label="id_edificio" name="id_edificio" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
 
                             </div>
@@ -85,13 +80,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Edificio</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Equipo</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <form action="prueba.php?p=gestion_departamentos_edificios\gestion_edificios" method="post">
                         <div class="modal-body">
                             <input type="hidden" class="deleteForm" name="delete_id" id="delete_id">
-                            ¿Estas seguro que quieres eliminar el Edificio seleccionado?
+                            ¿Estas seguro que quieres eliminar el equipo seleccionado?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -107,28 +102,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modificar Edificio</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Modificar Equipo</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <form action="prueba.php?p=gestion_equipos_componentes\equipos\gestion_equipos" method="post">
                         <div class="modal-body">
                             <input type="hidden" class="modifyForm" name="modify_id" id="modify_id">
                             <div class="container-sm">
+                                <input type="hidden" name="id_organizacion" id="id_organizacion" value=<?php print $_SESSION['id_organizacion'] ?>>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text">Nombre Edificio</span>
-                                    <input type="text" aria-label="nombre_edificio" name="nombre_edificio" class="form-control">
+                                    <span class="input-group-text">Nombre Departamento</span>
+                                    <input type="text" aria-label="nombre_departamento" name="nombre_departamento" class="form-control">
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Tipo Edificio</span>
-                                    <input type="text" class="form-control" aria-label="tipo_edificio" name="tipo_edificio" aria-describedby="inputGroup-sizing-default" required>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Organizacion</span>
-                                    <input type="date" class="form-control" aria-label="id_organizaciones" name="id_organizaciones" aria-describedby="inputGroup-sizing-default" required>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Comuna</span>
-                                    <textarea type="number" class="form-control" aria-label="cod_ine_com" name="cod_ine_com" aria-describedby="inputGroup-sizing-default" required></textarea>
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Edificio</span>
+                                    <input type="text" class="form-control" aria-label="id_edificio" name="id_edificio" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                             </div>
 
@@ -145,33 +133,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- Tabla -->
         <div class="container-xl d-flex flex-column border border-primary rounded">
             <div class="align-self-center">
-                <h4 class="my-4 ">Listado de Edificios</h4>
+                <h4 class="my-4 ">Listado de Equipos</h4>
             </div>
             <div class="table-responsive caption-top">
                 <table class="table" id="infoEquipo">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Organizacion</th>
-                            <th scope="col">Comuna</th>
+                            <th scope="col">Nombre Departamento</th>
+                            <th scope="col">Edficio</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $consulta = "SELECT * FROM edificios";
+                        $consulta = "SELECT departamentos.* FROM departamentos, edificios, organizaciones WHERE departamentos.id_edificio = edificios.id_edificio 
+                        AND edificio.id_organizaciones = organizaciones.id AND organizaciones.id = " . $_SESSION["id_organizacion"] . ";";
                         $resultado = mysqli_query($conexion, $consulta);
                         while ($row = mysqli_fetch_assoc($resultado)) {
-                            $id_consultado = $row["ID_EDIFICIO"];
-                            $nombre_consultado = $row["NOMBRE_EDIFICIO"];
-                            $tipo_consultado = $row["TIPO_EDIFICIO"];
-                            $org_consultada = $row["ID_ORGANIZACIONES"];
-                            $comuna_consultada = $row["COD_INE_COM"];
+                            $id_consultado = $row["ID_DEPARTAMENTO"];
+                            $edificio_consultado = $row["ID_EDIFICIO"];
+                            $nombre_consultado = $row["NOMBRE_DEPARTAMENTO"];
                             echo "<tr>";
                             echo "<td>" . $id_consultado . "</td>";
+                            echo  "<td>" . $edificio_consultado . "</td>";
                             echo  "<td>" . $nombre_consultado . "</td>";
-                            echo  "<td>" . $tipo_consultado . "</td>";
                             $q2 = "SELECT nombre_organizacion FROM organizaciones WHERE id=" . $_SESSION["id_organizacion"] . ";";
                             $r2 = mysqli_query($conexion, $q2);
                             $organizacion = mysqli_fetch_assoc($r2);
