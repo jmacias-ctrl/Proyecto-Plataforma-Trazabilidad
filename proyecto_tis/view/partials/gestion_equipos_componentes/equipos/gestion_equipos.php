@@ -229,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Código QR</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="delqr()"></button>
                     </div>
                     <div class="modal-body">
                         <div id="qrcode" class="createQrCode" style="width:100px; height:100px; margin-top:15px;"></div>
@@ -329,7 +329,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script>
         var modalQR = document.getElementById('generarQR')
         function crearQR(event){
-            console.log(event)
             //var qrButton = event.relatedTarget
             // Extract info from data-bs-* attributes
             var getID = event.getAttribute('data-bs-whatever')
