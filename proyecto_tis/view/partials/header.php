@@ -99,29 +99,19 @@
             Gestion
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="prueba.php?p=gestion_equipos_componentes\equipos\gestion_equipos">Equipos</a></li>
-            <li><a class="dropdown-item" href="#">Componentes</a></li>
+            <li><a class="dropdown-item" href="prueba.php?p=gestion_equipos_componentes\equipos\gestion_equipos">Equipos y Componentes</a></li>
             <li><a class="dropdown-item" href="#">Matenciones</a></li>
             <li><a class="dropdown-item" href="#">Mantenedores</a></li>
-            <li><a class="dropdown-item" href="prueba.php?p=gestion_departamentos_edificios/gestion_edificios">Edificio</a></li>
-            <li><a class="dropdown-item" href="#">Departamento</a></li>
+            <li><a class="dropdown-item" href="prueba.php?p=gestion_departamentos_edificios/gestion_edificios">Edificios y Departamentos</a></li>
           </ul>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Visualizacion
-          </a>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="prueba.php?p=gestion_equipos_componentes\equipos\gestion_equipos">Equipo</a></li>
-            <li><a class="dropdown-item" href="#">Componentes</a></li>
-          </ul>
-        </li>
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Trazabilidad
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="prueba.php?p=gestion_equipos_componentes\equipos\gestion_equipos">Equipo</a></li>
+            <li><a class="dropdown-item" href="prueba.php?p=reportes_equipos\graficos\main">Equipo</a></li>
             <li><a class="dropdown-item" href="prueba.php?p=gestion_equipos_componentes\componentes\trazabilidad_componentes">Componentes</a></li>
           </ul>
         </li>

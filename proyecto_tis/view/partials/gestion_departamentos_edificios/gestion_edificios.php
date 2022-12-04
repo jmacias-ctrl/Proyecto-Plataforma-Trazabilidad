@@ -181,6 +181,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $comuna = mysqli_fetch_assoc($r3);
                             echo  "<td>" . $comuna["nombre"] . "</td>";
                             echo '<td> <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmacionEliminar" data-bs-whatever="' . $id_consultado . '" ><span class="material-icons">delete</span></button>  
+                            <a class="btn btn-outline-info" href="prueba.php?p=gestion_departamentos_edificios\gestion_departamentos&id=' . $id_consultado . '" role="button"><span class="material-symbols-outlined">domain</span> </a>
                             <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modificarEdificio" data-bs-whatever="' . $id_consultado . '"> <span class="material-icons">edit</span> </button>';
                             echo '</tr>';
                         }

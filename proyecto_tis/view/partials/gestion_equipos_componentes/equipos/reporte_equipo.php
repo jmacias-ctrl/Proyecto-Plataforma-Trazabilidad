@@ -9,9 +9,10 @@ require('view\partials\gestion_equipos_componentes\conexion.php');
     <body>
         <br>
         <br>
-        <div class="container-xl d-flex flex-column  rounded my-2">
+        <br>
+        <div class="container-xl d-flex flex-column border border-primary rounded">
             <div class="align-self-center">
-                <h4 class="my-2 ">Reporte del Equipo</h4>
+                <h4 class="my-4 ">Reporte del Equipo</h4>
             </div>
             <ul class="list-group">
                 <?php
@@ -42,7 +43,7 @@ require('view\partials\gestion_equipos_componentes\conexion.php');
                 ?>
             </ul>
             <div class="align-self-center">
-                <h4 class="my-2 ">Componentes del equipo</h4>
+                <h4 class="my-4 ">Componentes del equipo</h4>
             </div>
             <div class="table-responsive caption-top">
                 <table class="table" id="infoComponentes">

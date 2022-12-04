@@ -1,5 +1,5 @@
 <?php
-require('view\partials\gestion_equipos_componentes\conexion.php');
+require('conexion.php');
 if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
 }
@@ -25,8 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $selectComponente = $_POST["selectComponente"];
 
         $query = "INSERT INTO componentes
-        VALUES (DEFAULT,'$id_equipo', '$nComponente', '$mComponente', '$modComponente', en uso)";
+        VALUES (DEFAULT,'$id_equipo', '$nComponente', '$mComponente', '$modComponente', 'en uso')";
         $query2 = null;
+        $getIdQuery = "SELECT componentes.* FROM componentes WHERE nombre = '" . $nComponente . "' AND id_equipo = ".$_SESSION['id_equipo'].";";
+        $resultado = mysqli_query($conexion, $query);
+        $getIdResult = mysqli_query($conexion, $getIdQuery);
+        $getIdRow = mysqli_fetch_assoc($getIdResult);
+        $getId = $getIdRow["ID_COMPONENTE"];
         switch ($selectComponente) {
             case 'form1':
                 break;
@@ -36,8 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $cpuRelojBase = $_POST["cpuRelojBase"];
                 $cpuHilos = $_POST["cpuHilos"];
 
+
                 $query2 = "INSERT INTO procesadores
-                    VALUES (DEFAULT,'$cpuNucleo', '$cpuSocket', '$cpuRelojBase', '$cpuHilos')";
+                    VALUES ($getId,'$cpuNucleo', '$cpuSocket', '$cpuRelojBase', '$cpuHilos')";
                 break;
             case 'form3':
                 $factorFormaPB = $_POST["factorFormaPB"];
@@ -46,23 +52,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $pbCaracteristicas = $_POST["pbCaracteristicas"];
 
                 $query2 = "INSERT INTO memorias_ram
-                    VALUES (DEFAULT,'$factorFormaPB', '$pbSocket', '$soporteMemoria', '$pbCaracteristicas')";
+                    VALUES ( $getId,'$factorFormaPB', '$pbSocket', '$soporteMemoria', '$pbCaracteristicas')";
                 break;
             case 'form4':
                 $ramMemoria = $_POST["ramMemoria"];
                 $ramTecnologia = $_POST["ramTecnologia"];
                 $ramVelocidadFrequencia = $_POST["ramVelocidadFrequencia"];
                 $query2 = "INSERT INTO memorias_ram
-                    VALUES (DEFAULT,'$ramVelocidadFrequencia', '$ramMemoria', '$ramTecnologia')";
+                    VALUES ($getId,'$ramVelocidadFrequencia', '$ramMemoria', '$ramTecnologia')";
                 break;
             case 'form5':
                 $discoCapacidad = $_POST["discoCapacidad"];
                 $idDisco = $_POST["idDisco"];
                 $query2 = "INSERT INTO discos_internos
-                    VALUES (DEFAULT,'$discoCapacidad', '$idDisco')";
+                    VALUES ($getId,'$discoCapacidad', '$idDisco')";
                 break;
         }
-        $resultado = mysqli_query($conexion, $query);
+
         if ($query2 != null) {
             $resultado = mysqli_query($conexion, $query2);
         }
@@ -71,10 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
+<title> Gestion de Componentes </title>
 
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <div class="container-sm align-items-center">
         <h1 class="my-3">Gestión de Componentes</h1>
         <div class="container-sm d-flex align-items-center border border-primary-2 rounded py-3">
@@ -454,22 +459,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
         </div>
-        <script src="java.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-        <script>
-            var modal = document.getElementById('confirmacionEliminar')
-            modal.addEventListener('show.bs.modal', function(event) {
-                // Button that triggered the modal
-                var button = event.relatedTarget
-                // Extract info from data-bs-* attributes
-                var recipient = button.getAttribute('data-bs-whatever')
-                // Update the modal's content.
-                var modalId = modal.querySelector('.deleteForm')
-                modalId.value = recipient;
-            })
-        </script>
+    </div>
+    <script src="java.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script>
+        var modal = document.getElementById('confirmacionEliminar')
+        modal.addEventListener('show.bs.modal', function(event) {
+            // Button that triggered the modal
+            var button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            var recipient = button.getAttribute('data-bs-whatever')
+            // Update the modal's content.
+            var modalId = modal.querySelector('.deleteForm')
+            modalId.value = recipient;
+        })
+    </script>
 </body>
 
 </html>
