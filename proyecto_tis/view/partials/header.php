@@ -86,8 +86,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a href="prueba.php?p=inicio" class="col-md-1 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-      <img style="width:150px" class="img-fluid" src="view/public/images/heritech/ht_logo.png" alt="">
+    <a href="prueba.php?p=inicio" style="width:40px" class="col-md-1 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <img style="width:150px" class="img-fluid" src="view/public/images/heritech/logo/heritech_logo_white.png" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -113,6 +113,7 @@
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
             <li><a class="dropdown-item" href="prueba.php?p=reportes_equipos\graficos\main">Equipo</a></li>
             <li><a class="dropdown-item" href="prueba.php?p=gestion_equipos_componentes\componentes\trazabilidad_componentes">Componentes</a></li>
+            <li><a class="dropdown-item" href="prueba.php?p=visualizar_equipos\1equipo">Visualizar equipos</a></li>
           </ul>
         </li>
         <li class="nav-item">

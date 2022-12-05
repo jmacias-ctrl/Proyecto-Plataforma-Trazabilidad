@@ -9,6 +9,7 @@
 
 		if ($query->num_rows>0){
 			$row=$query->fetch_array();
+			$_SESSION['nombre_usuario']=$row['nombre'];
 			$_SESSION['usuarios']=$row['id'];
 			$_SESSION['id_organizacion']=$row['id_organizacion'];
 		}
