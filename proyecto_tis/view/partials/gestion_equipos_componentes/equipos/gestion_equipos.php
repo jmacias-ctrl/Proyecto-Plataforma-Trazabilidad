@@ -30,12 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $costoaAdquisicion = $_POST["cAdquisicion"];
         $caracteristicasAdquisicion = $_POST["tAdquisicion"];
         $formaaAdquisicion = $_POST["foAdquisicion"];
-        $id_departamento = $_POST["id_departamento"];
+        $id_departamento = $_POST["idDepartamento"];
 
         $q3 = "UPDATE equipos
-        SET id_equipo=" . $id_equipo . ", rut_funcionario=" . $rut . ", nombre_equipo='" . $nombre_equipo . "', fecha_adquisicion='" . $fechaAdquisicion . "', 
-        costo_adquisicion=" . $costoaAdquisicion . ",caracteristicas_adquisicion='" . $caracteristicasAdquisicion . "', forma_adquisicion='" . $formaaAdquisicion . "', id_departamento=" . $id_departamento . "
-        WHERE id_equipo=" . $id_equipo . ";";
+        SET id_equipo=" . $id_equipo . ", rut_funcionario=" . $rut . ", nombre_equipo='" . $nombre_equipo . "', fecha_adquisicion='" . $fechaAdquisicion . "', costo_adquisicion=" . $costoaAdquisicion . ",caracteristicas_adquisicion='" . $caracteristicasAdquisicion . "', 
+        forma_adquisicion='" . $formaaAdquisicion . "', id_departamento=" . $id_departamento . " WHERE id_equipo=" . $id_equipo . ";";
         $r3 = mysqli_query($conexion, $q3);
     }
 }
@@ -117,8 +116,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         while ($row = mysqli_fetch_assoc($r1)) {
                                             $id = $row["ID_DEPARTAMENTO"];
                                             $nombre = $row["NOMBRE_DEPARTAMENTO"];
+                                            echo '<option value="' . $id . '">' . $nombre . '</option>';
                                         }
-                                        echo '<option value="' . $id . '">' . $nombre . '</option>';
+                                        
                                         ?>
                                     </select>
                                 </div>
@@ -323,7 +323,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             var modalData5 = modalModify.querySelector('.foAdquisicion')
             var modalData6 = modalModify.querySelector('.tAdquisicion')
             
-            modalId.value = attributeDelete;
+            modalId.value = attributeModify;
         })
     </script>
     <script>

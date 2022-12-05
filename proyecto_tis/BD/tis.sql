@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2022 a las 02:55:46
+-- Tiempo de generación: 05-12-2022 a las 05:40:09
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.1
 
@@ -42,7 +42,10 @@ CREATE TABLE `componentes` (
 --
 
 INSERT INTO `componentes` (`ID_COMPONENTE`, `ID_EQUIPO`, `NOMBRE`, `MARCA`, `MODELO`, `estado`, `tipo`) VALUES
-(9, 9, 'Amd', 'amd', 'Ryzen 3600', 'en uso', 'procesador');
+(9, 9, 'Amd', 'amd', 'Ryzen 3600', 'en uso', 'procesador'),
+(11, 12, 'amd', 'amd', 'ryzen 5600', 'en uso', 'procesador'),
+(12, 9, 'Kingston', 'Kingston', '213452atsd', 'en uso', 'disco interno'),
+(13, 9, 'Tarjeta sonido XD', 'marcopolo', '01392481390247', 'en uso', 'otros');
 
 -- --------------------------------------------------------
 
@@ -81,7 +84,8 @@ CREATE TABLE `departamentos` (
 
 INSERT INTO `departamentos` (`ID_DEPARTAMENTO`, `ID_EDIFICIO`, `NOMBRE_DEPARTAMENTO`) VALUES
 (1, 1, 'test'),
-(2, 1, 'Sala Computacion');
+(2, 1, 'Sala Computacion'),
+(3, 1, 'Sala de Computo');
 
 -- --------------------------------------------------------
 
@@ -94,6 +98,13 @@ CREATE TABLE `discos_internos` (
   `CAPACIDAD` varchar(30) DEFAULT NULL,
   `ID_TIPO_DISCO` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `discos_internos`
+--
+
+INSERT INTO `discos_internos` (`ID_COMPONENTE`, `CAPACIDAD`, `ID_TIPO_DISCO`) VALUES
+(12, '120', '1');
 
 -- --------------------------------------------------------
 
@@ -142,9 +153,8 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`ID_EQUIPO`, `ID_DEPARTAMENTO`, `RUT_FUNCIONARIO`, `NOMBRE_EQUIPO`, `FECHA_ADQUISICION`, `COSTO_ADQUISICION`, `CARACTERISTICAS_ADQUISICION`, `FORMA_ADQUISICION`, `estado`, `cantidad_mantenciones`) VALUES
-(9, 1, 20511753, 'equipo4', '2022-09-20', 100, 'test', 'test', 'inactivo', 0),
-(12, 1, 20511753, 'test1', '2022-02-09', 2022, 'test', 'test', 'inactivo', 0),
-(13, 2, 20511753, 'Equipo 1', '2022-10-08', 120000, 'test', 'test', 'inactivo', 0);
+(9, 2, 20511753, 'equipo 2', '2022-02-09', 120000, 'test', 'test', 'inactivo', 0),
+(12, 1, 20511753, 'test1', '2022-02-09', 2022, 'test', 'test', 'inactivo', 0);
 
 -- --------------------------------------------------------
 
@@ -163,6 +173,7 @@ CREATE TABLE `funcionarios` (
 --
 
 INSERT INTO `funcionarios` (`RUT_FUNCIONARIO`, `NOMBRE_FUNCIONARIO`, `TIPO`) VALUES
+(18583232, 'Alejandro Test', 'Analista'),
 (20511753, 'Jose', 'tipo_1');
 
 -- --------------------------------------------------------
@@ -188,6 +199,14 @@ CREATE TABLE `mantenedores` (
   `RUT` varchar(12) NOT NULL,
   `NOMBRE` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `mantenedores`
+--
+
+INSERT INTO `mantenedores` (`RUT`, `NOMBRE`) VALUES
+('20323213', 'Armando Casas'),
+('204143493', 'Kevin Campos');
 
 -- --------------------------------------------------------
 
@@ -254,7 +273,8 @@ CREATE TABLE `procesadores` (
 --
 
 INSERT INTO `procesadores` (`ID_COMPONENTE`, `NUCLEOS`, `SOCKET`, `RELOJ_BASE`, `HILOS`) VALUES
-(9, '40', 'AM4', '10', '450');
+(9, '40', 'AM4', '10', '450'),
+(11, '20', 'am4', '11', '30');
 
 -- --------------------------------------------------------
 
@@ -505,25 +525,31 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `componentes`
 --
 ALTER TABLE `componentes`
-  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `ID_DEPARTAMENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_DEPARTAMENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `discos_internos`
 --
 ALTER TABLE `discos_internos`
-  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
   MODIFY `ID_EQUIPO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `mantenciones`
+--
+ALTER TABLE `mantenciones`
+  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `memorias_ram`
@@ -541,7 +567,7 @@ ALTER TABLE `placa_base`
 -- AUTO_INCREMENT de la tabla `procesadores`
 --
 ALTER TABLE `procesadores`
-  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -625,8 +651,8 @@ ALTER TABLE `provincia`
 -- Filtros para la tabla `realiza`
 --
 ALTER TABLE `realiza`
-  ADD CONSTRAINT `FK_REALIZA` FOREIGN KEY (`ID_MANTENCION`) REFERENCES `mantenciones` (`ID_MANTENCION`),
-  ADD CONSTRAINT `FK_REALIZA2` FOREIGN KEY (`RUT`) REFERENCES `mantenedores` (`RUT`);
+  ADD CONSTRAINT `FK_REALIZA2` FOREIGN KEY (`RUT`) REFERENCES `mantenedores` (`RUT`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `realiza_ibfk_1` FOREIGN KEY (`ID_MANTENCION`) REFERENCES `mantenciones` (`ID_MANTENCION`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

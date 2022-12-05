@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $selectComponente = $_POST["selectComponente"];
 
         $query = "INSERT INTO componentes
-        VALUES (DEFAULT,'$id_equipo', '$nComponente', '$mComponente', '$modComponente', 'en uso')";
+        VALUES (DEFAULT,'$id_equipo', '$nComponente', '$mComponente', '$modComponente', 'en uso', '$selectComponente')";
         $query2 = null;
         $getIdQuery = "SELECT componentes.* FROM componentes WHERE nombre = '" . $nComponente . "' AND id_equipo = ".$_SESSION['id_equipo'].";";
         $resultado = mysqli_query($conexion, $query);
@@ -427,10 +427,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th scope="col">Ver</th>
                                     <th scope="col">ID</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Marca</th>
                                     <th scope="col">Modelo</th>
+                                    <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -443,6 +445,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     $marca = $row["MARCA"];
                                     $modelo = $row["MODELO"];
                                     echo '<tr>';
+                                    echo '<td><a class="btn btn-outline-info" href="prueba.php?p=gestion_equipos_componentes/componentes/reporte_componente&id=' . $id . '&id_equipo='.$id_equipo.'" role="button"><span class="material-symbols-outlined">info</span> </a></td>';
                                     echo '<td>' . $id . '</td>';
                                     echo '<td>' . $nombre . '</td>';
                                     echo '<td>' . $marca . '</td>';
