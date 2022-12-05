@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-12-2022 a las 07:51:42
+-- Tiempo de generación: 05-12-2022 a las 02:55:46
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.1
 
@@ -33,15 +33,16 @@ CREATE TABLE `componentes` (
   `NOMBRE` varchar(30) DEFAULT NULL,
   `MARCA` varchar(30) DEFAULT NULL,
   `MODELO` varchar(30) DEFAULT NULL,
-  `estado` varchar(25) NOT NULL
+  `estado` varchar(25) NOT NULL,
+  `tipo` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `componentes`
 --
 
-INSERT INTO `componentes` (`ID_COMPONENTE`, `ID_EQUIPO`, `NOMBRE`, `MARCA`, `MODELO`, `estado`) VALUES
-(2, 12, 'test', 'amd', 'ryzen 3600', 'en uso');
+INSERT INTO `componentes` (`ID_COMPONENTE`, `ID_EQUIPO`, `NOMBRE`, `MARCA`, `MODELO`, `estado`, `tipo`) VALUES
+(9, 9, 'Amd', 'amd', 'Ryzen 3600', 'en uso', 'procesador');
 
 -- --------------------------------------------------------
 
@@ -79,7 +80,8 @@ CREATE TABLE `departamentos` (
 --
 
 INSERT INTO `departamentos` (`ID_DEPARTAMENTO`, `ID_EDIFICIO`, `NOMBRE_DEPARTAMENTO`) VALUES
-(1, 1, 'test');
+(1, 1, 'test'),
+(2, 1, 'Sala Computacion');
 
 -- --------------------------------------------------------
 
@@ -141,7 +143,8 @@ CREATE TABLE `equipos` (
 
 INSERT INTO `equipos` (`ID_EQUIPO`, `ID_DEPARTAMENTO`, `RUT_FUNCIONARIO`, `NOMBRE_EQUIPO`, `FECHA_ADQUISICION`, `COSTO_ADQUISICION`, `CARACTERISTICAS_ADQUISICION`, `FORMA_ADQUISICION`, `estado`, `cantidad_mantenciones`) VALUES
 (9, 1, 20511753, 'equipo4', '2022-09-20', 100, 'test', 'test', 'inactivo', 0),
-(12, 1, 20511753, 'test1', '2022-02-09', 2022, 'test', 'test', 'inactivo', 0);
+(12, 1, 20511753, 'test1', '2022-02-09', 2022, 'test', 'test', 'inactivo', 0),
+(13, 2, 20511753, 'Equipo 1', '2022-10-08', 120000, 'test', 'test', 'inactivo', 0);
 
 -- --------------------------------------------------------
 
@@ -251,7 +254,7 @@ CREATE TABLE `procesadores` (
 --
 
 INSERT INTO `procesadores` (`ID_COMPONENTE`, `NUCLEOS`, `SOCKET`, `RELOJ_BASE`, `HILOS`) VALUES
-(2, '10', 'am4', '4', '10');
+(9, '40', 'AM4', '10', '450');
 
 -- --------------------------------------------------------
 
@@ -313,6 +316,13 @@ CREATE TABLE `tipo_discos_internos` (
   `NOMBRE_TIPO` varchar(30) DEFAULT NULL,
   `DESCRIPCION` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `tipo_discos_internos`
+--
+
+INSERT INTO `tipo_discos_internos` (`ID_TIPO_DISCO`, `NOMBRE_TIPO`, `DESCRIPCION`) VALUES
+('1', 'SSD', 'Un SSD es un soporte de almacenamiento que, a diferencia de los discos duros, utiliza memoria no volátil (Flash) para mantener y acceder a los datos.');
 
 -- --------------------------------------------------------
 
@@ -495,7 +505,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `componentes`
 --
 ALTER TABLE `componentes`
-  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `departamentos`
+--
+ALTER TABLE `departamentos`
+  MODIFY `ID_DEPARTAMENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `discos_internos`
@@ -507,7 +523,7 @@ ALTER TABLE `discos_internos`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `ID_EQUIPO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID_EQUIPO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `memorias_ram`
@@ -525,7 +541,7 @@ ALTER TABLE `placa_base`
 -- AUTO_INCREMENT de la tabla `procesadores`
 --
 ALTER TABLE `procesadores`
-  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -572,8 +588,8 @@ ALTER TABLE `edificios`
 -- Filtros para la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  ADD CONSTRAINT `FK_CONTIENE3` FOREIGN KEY (`ID_DEPARTAMENTO`) REFERENCES `departamentos` (`ID_DEPARTAMENTO`) ON DELETE CASCADE ON UPDATE SET NULL,
-  ADD CONSTRAINT `FK_REGISTRA` FOREIGN KEY (`RUT_FUNCIONARIO`) REFERENCES `funcionarios` (`RUT_FUNCIONARIO`);
+  ADD CONSTRAINT `FK_REGISTRA` FOREIGN KEY (`RUT_FUNCIONARIO`) REFERENCES `funcionarios` (`RUT_FUNCIONARIO`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `equipos_ibfk_1` FOREIGN KEY (`ID_DEPARTAMENTO`) REFERENCES `departamentos` (`ID_DEPARTAMENTO`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `memorias_ram`
