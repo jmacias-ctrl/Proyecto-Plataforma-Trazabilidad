@@ -11,7 +11,6 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-    const ctx = document.getElementById('myChart');
     const ctx2 = document.getElementById('myChart_2');
 
     let data2 = {
@@ -43,7 +42,7 @@
     new Chart(ctx2, config2)
 
     //NEW
-
+    const ctx = document.getElementById('myChart');
     let data = {
         labels: [
             'Funcionando',
@@ -69,8 +68,7 @@
         type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
         data: data,
     };
-
+    
     new Chart(ctx, config);
-
 </script>
 

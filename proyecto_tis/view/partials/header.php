@@ -86,13 +86,13 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a href="prueba.php?p=inicio" style="width:40px" class="col-md-1 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+    <a href="prueba.php?p=inicio" style="width:40px" class="col-md-1 d-flex align-items-center justify-content-center mb-3 mb-md-0 mx-3 me-md-auto link-dark text-decoration-none">
       <img style="width:150px" class="img-fluid" src="view/public/images/heritech/logo/heritech_logo_white.png" alt="">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+    <div class="collapse navbar-collapse mx-5" id="navbarNavDarkDropdown" style="color:white">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">

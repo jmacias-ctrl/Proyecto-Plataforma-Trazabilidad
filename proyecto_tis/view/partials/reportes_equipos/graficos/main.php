@@ -9,7 +9,7 @@ GROUP BY nombre_departamento, nombre_edificio;";
 
 $q3 = "SELECT count(id_equipo) as cantidad_equipos FROM equipos LEFT JOIN departamentos using(id_departamento) JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones = organizaciones.id)
             WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . "
-            AND equipos.estado='en funcionamiento';";
+            AND equipos.estado='funcionando';";
 
 $q4 = "SELECT count(id_equipo) as cantidad_equipos FROM equipos LEFT JOIN departamentos using(id_departamento) JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones = organizaciones.id)
             WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . "
@@ -27,6 +27,8 @@ $q7 = "SELECT organizaciones.id, sum(COSTO_ADQUISICION) as cantidad_monto FROM e
 WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . "
 GROUP BY organizaciones.id;";
 
+$q8 = "SELECT count(id_equipo) as cantidad_equipos FROM equipos LEFT JOIN departamentos using(id_departamento) JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones = organizaciones.id)
+            WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . ";";
 
 $r1 = mysqli_query($conexion, $q1);
 $r2 = mysqli_query($conexion, $q2);
@@ -127,6 +129,24 @@ $row7 = mysqli_fetch_assoc($r7);
                     } ?>
                 </tbody>
             </table>
+        </div>
+        <h5 class="mt-3">>Antiguedad de los Equipos en dias</h5>
+        <div class=" graph_container col-4 d-inline align-self-center">
+            <?php
+            //Estado del equipo
+            $funcionando = $row3["cantidad_equipos"];
+            $mantencion = $row5["cantidad_equipos"];
+            $inactivos = $row4["cantidad_equipos"];
+
+            //Cantidad de revisiones
+            //array -> 0 cantRevisiones, cantEquipos
+            $_SESSION['tipo_grafico'] = 2;
+            $_SESSION['funcionando'] = $funcionando;
+            $_SESSION['mantencion'] = $mantencion;
+            $_SESSION['inactivos'] = $inactivos;
+
+            require_once "view/partials/reportes_equipos/graficos/chart2.php";
+            ?>
         </div>
     </div>
 
