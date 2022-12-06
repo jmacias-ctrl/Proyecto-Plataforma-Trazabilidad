@@ -9,15 +9,15 @@ GROUP BY nombre_departamento, nombre_edificio;";
 
 $q3 = "SELECT count(id_equipo) as cantidad_equipos FROM equipos LEFT JOIN departamentos using(id_departamento) JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones = organizaciones.id)
             WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . "
-            AND equipos.estado='funcionando';";
+            AND equipos.estado='Funcionando';";
 
 $q4 = "SELECT count(id_equipo) as cantidad_equipos FROM equipos LEFT JOIN departamentos using(id_departamento) JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones = organizaciones.id)
             WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . "
-            AND equipos.estado='inactivo';";
+            AND equipos.estado='Inactivo';";
 
 $q5 = "SELECT count(id_equipo) as cantidad_equipos FROM equipos LEFT JOIN departamentos using(id_departamento) JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones = organizaciones.id)
             WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . "
-            AND equipos.estado='en mantencion';";
+            AND equipos.estado='En mantencion';";
 
 $q6 = "SELECT nombre_edificio, count(id_equipo) as cantidad_equipos, sum(COSTO_ADQUISICION) as cantidad_monto FROM equipos LEFT JOIN departamentos using(id_departamento) LEFT JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones = organizaciones.id)
 WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . "
@@ -28,7 +28,17 @@ WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . "
 GROUP BY organizaciones.id;";
 
 $q8 = "SELECT count(id_equipo) as cantidad_equipos FROM equipos LEFT JOIN departamentos using(id_departamento) JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones = organizaciones.id)
-            WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . ";";
+            WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . "
+            AND datediff(current_date(), fecha_adquisicion)/365<=1;";
+
+$q9 = "SELECT count(id_equipo) as cantidad_equipos FROM equipos LEFT JOIN departamentos using(id_departamento) JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones = organizaciones.id)
+            WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . "
+            AND datediff(current_date(), fecha_adquisicion)/365>1
+            AND datediff(current_date(), fecha_adquisicion)/365<4;";
+
+$q10 = "SELECT count(id_equipo) as cantidad_equipos FROM equipos LEFT JOIN departamentos using(id_departamento) JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones = organizaciones.id)
+            WHERE organizaciones.id=" . $_SESSION["id_organizacion"] . "
+            AND datediff(current_date(), fecha_adquisicion)/365>=4;";
 
 $r1 = mysqli_query($conexion, $q1);
 $r2 = mysqli_query($conexion, $q2);
@@ -37,12 +47,18 @@ $r4 = mysqli_query($conexion, $q4);
 $r5 = mysqli_query($conexion, $q5);
 $r6 = mysqli_query($conexion, $q6);
 $r7 = mysqli_query($conexion, $q7);
+$r8 = mysqli_query($conexion, $q8);
+$r9 = mysqli_query($conexion, $q9);
+$r10 = mysqli_query($conexion, $q10);
 
 $row1 = mysqli_fetch_assoc($r1);
 $row3 = mysqli_fetch_assoc($r3);
 $row4 = mysqli_fetch_assoc($r4);
 $row5 = mysqli_fetch_assoc($r5);
 $row7 = mysqli_fetch_assoc($r7);
+$row8 = mysqli_fetch_assoc($r8);
+$row9 = mysqli_fetch_assoc($r9);
+$row10 = mysqli_fetch_assoc($r10);
 ?>
 <div class="d-flex flex-column shadow container-lg border border-primary rounded my-2 justify-content-center">
     <h4 class="align-self-center my-3">Trazabilidad de Equipos</h4>
@@ -50,7 +66,7 @@ $row7 = mysqli_fetch_assoc($r7);
         <h5 class="my-3">>Informacion general de equipos en la organizacion</h5>
         <div class="row">
             <div class="col">
-                <p>Cantidad de Equipos presentes: <?php echo $row1["cantidad_equipos"]; ?> </p>
+                <p>Cantidad de Equipos Presentes: <?php echo $row1["cantidad_equipos"]; ?> </p>
             </div>
             <div class="col">
                 <p>Cantidad de Equipos En Mantencion: <?php echo $row5["cantidad_equipos"]; ?> </p>
@@ -76,13 +92,9 @@ $row7 = mysqli_fetch_assoc($r7);
             $mantencion = $row5["cantidad_equipos"];
             $inactivos = $row4["cantidad_equipos"];
 
-            //Cantidad de revisiones
-            //array -> 0 cantRevisiones, cantEquipos
-
             $_SESSION['funcionando'] = $funcionando;
             $_SESSION['mantencion'] = $mantencion;
             $_SESSION['inactivos'] = $inactivos;
-
             require_once "view/partials/reportes_equipos/graficos/chart.php";
             ?>
         </div>
@@ -133,17 +145,13 @@ $row7 = mysqli_fetch_assoc($r7);
         <h5 class="mt-3">>Antiguedad de los Equipos en dias</h5>
         <div class=" graph_container col-4 d-inline align-self-center">
             <?php
-            //Estado del equipo
-            $funcionando = $row3["cantidad_equipos"];
-            $mantencion = $row5["cantidad_equipos"];
-            $inactivos = $row4["cantidad_equipos"];
+            $anio_menor_1 = $row8["cantidad_equipos"];
+            $anio_mayor_1 = $row9["cantidad_equipos"];
+            $anio_mayor_3 = $row10["cantidad_equipos"];
 
-            //Cantidad de revisiones
-            //array -> 0 cantRevisiones, cantEquipos
-            $_SESSION['tipo_grafico'] = 2;
-            $_SESSION['funcionando'] = $funcionando;
-            $_SESSION['mantencion'] = $mantencion;
-            $_SESSION['inactivos'] = $inactivos;
+            $_SESSION['anio_menor_1'] = $anio_menor_1;
+            $_SESSION['anio_mayor_1'] = $anio_mayor_1;
+            $_SESSION['anio_mayor_3'] = $anio_mayor_3;
 
             require_once "view/partials/reportes_equipos/graficos/chart2.php";
             ?>

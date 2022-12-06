@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-12-2022 a las 05:40:09
+-- Tiempo de generación: 06-12-2022 a las 02:13:25
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.1
 
@@ -153,8 +153,10 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`ID_EQUIPO`, `ID_DEPARTAMENTO`, `RUT_FUNCIONARIO`, `NOMBRE_EQUIPO`, `FECHA_ADQUISICION`, `COSTO_ADQUISICION`, `CARACTERISTICAS_ADQUISICION`, `FORMA_ADQUISICION`, `estado`, `cantidad_mantenciones`) VALUES
-(9, 2, 20511753, 'equipo 2', '2022-02-09', 120000, 'test', 'test', 'inactivo', 0),
-(12, 1, 20511753, 'test1', '2022-02-09', 2022, 'test', 'test', 'inactivo', 0);
+(9, 2, 20511753, 'equipo 2', '2022-02-09', 120000, 'test', 'test', 'Funcionando', 1),
+(12, 1, 20511753, 'test1', '2022-02-09', 2022, 'test', 'test', 'Inactivo', 0),
+(14, 3, 20511753, 'Equipo 4', '2022-09-07', 700000, 'test', 'test', 'Inactivo', 1),
+(15, 3, 20511753, 'Equipo 3', '2022-12-04', 450000, 'Test', 'test', 'Inactivo', 0);
 
 -- --------------------------------------------------------
 
@@ -186,8 +188,25 @@ CREATE TABLE `mantenciones` (
   `ID_MANTENCION` int(11) NOT NULL,
   `ID_EQUIPO` int(11) DEFAULT NULL,
   `NOMBRE_MANTENCION` varchar(30) DEFAULT NULL,
-  `TIPO_MANTENCION` varchar(30) DEFAULT NULL
+  `TIPO_MANTENCION` varchar(30) DEFAULT NULL,
+  `en_marcha` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `mantenciones`
+--
+
+INSERT INTO `mantenciones` (`ID_MANTENCION`, `ID_EQUIPO`, `NOMBRE_MANTENCION`, `TIPO_MANTENCION`, `en_marcha`) VALUES
+(1, 9, 'Formateado de Computador', 'Formateado', 0),
+(7, 14, 'Arreglo de componentes', 'Arreglo', 0);
+
+--
+-- Disparadores `mantenciones`
+--
+DELIMITER $$
+CREATE TRIGGER `add_mantencion_equipo` AFTER INSERT ON `mantenciones` FOR EACH ROW UPDATE equipos SET cantidad_mantenciones = cantidad_mantenciones + 1 WHERE ID_EQUIPO = new.id_equipo
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -302,10 +321,18 @@ INSERT INTO `provincia` (`COD_INE_PROV`, `COD_INE_REG`, `NOMBRE`) VALUES
 --
 
 CREATE TABLE `realiza` (
-  `ID_MANTENCION` int(11) DEFAULT NULL,
+  `ID_MANTENCION` int(11) NOT NULL,
   `RUT` varchar(12) DEFAULT NULL,
   `FECHA_MANTENCION` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `realiza`
+--
+
+INSERT INTO `realiza` (`ID_MANTENCION`, `RUT`, `FECHA_MANTENCION`) VALUES
+(1, '20323213', '2022-10-04'),
+(7, '20323213', '2022-12-05');
 
 -- --------------------------------------------------------
 
@@ -490,6 +517,7 @@ ALTER TABLE `provincia`
 -- Indices de la tabla `realiza`
 --
 ALTER TABLE `realiza`
+  ADD PRIMARY KEY (`ID_MANTENCION`),
   ADD KEY `FK_REALIZA` (`ID_MANTENCION`),
   ADD KEY `FK_REALIZA2` (`RUT`);
 
@@ -543,13 +571,13 @@ ALTER TABLE `discos_internos`
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `ID_EQUIPO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ID_EQUIPO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenciones`
 --
 ALTER TABLE `mantenciones`
-  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `memorias_ram`
@@ -568,6 +596,12 @@ ALTER TABLE `placa_base`
 --
 ALTER TABLE `procesadores`
   MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de la tabla `realiza`
+--
+ALTER TABLE `realiza`
+  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
