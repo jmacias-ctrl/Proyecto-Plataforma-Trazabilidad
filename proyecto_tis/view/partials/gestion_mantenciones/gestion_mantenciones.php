@@ -297,16 +297,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $nombre = $row2["NOMBRE_MANTENCION"];
                             $tipo = $row2["TIPO_MANTENCION"];
 
-                            $q2 = "SELECT realiza.* FROM realiza WHERE id_mantencion=" . $id . ";";
-                            $r2 = mysqli_query($conexion, $q2);
-                            $rr2 = mysqli_fetch_assoc($r2);
+                            $q3 = "SELECT realiza.* FROM realiza WHERE id_mantencion=" . $id . ";";
+                            $r3 = mysqli_query($conexion, $q3);
+                            $rr2 = mysqli_fetch_assoc($r3);
 
                             $rut_mantenedor = $rr2["RUT"];
                             $fecha_mantencion = $rr2["FECHA_MANTENCION"];
 
-                            $q3 = "SELECT mantenedores.* FROM mantenedores WHERE rut=" . $rut_mantenedor . ";";
-                            $r3 = mysqli_query($conexion, $q3);
-                            $rr3 = mysqli_fetch_assoc($r3);
+                            $q4 = "SELECT mantenedores.* FROM mantenedores WHERE rut=" . $rut_mantenedor . ";";
+                            $r4 = mysqli_query($conexion, $q4);
+                            $rr3 = mysqli_fetch_assoc($r4);
 
                             $nombre_mantenedor = $rr3["NOMBRE"];
 
