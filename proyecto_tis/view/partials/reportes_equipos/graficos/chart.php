@@ -17,7 +17,7 @@
         labels: [
             'Funcionando',
             'Mantencion',
-            'inactivos'
+            'Inactivo'
         ],
         datasets: [{
             label: 'Cantidad:',
@@ -40,35 +40,5 @@
     };
 
     new Chart(ctx2, config2)
-
-    //NEW
-    const ctx = document.getElementById('myChart');
-    let data = {
-        labels: [
-            'Funcionando',
-            'En bodega',
-            'Malo'
-        ],
-        datasets: [{
-            label: 'Cantidad:',
-            
-            <?php echo "data: [$funcionando, $mantencion, $inactivos]," ?>
-            //data: [300, 50, 100],
-
-            backgroundColor: [
-                'rgb(255, 99, 132)',
-                'rgb(54, 162, 235)',
-                'rgb(255, 205, 86)'
-            ],
-            hoverOffset: 4
-        }]
-    };
-
-    let config = {
-        type: 'bar', //bar, horizontalBar, pie, line, doughnut, radar, polarArea
-        data: data,
-    };
-    
-    new Chart(ctx, config);
 </script>
 

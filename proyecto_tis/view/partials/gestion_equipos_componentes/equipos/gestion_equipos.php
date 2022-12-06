@@ -1,5 +1,5 @@
 <?php
-require('view\partials\gestion_equipos_componentes\conexion.php');
+require('conexion.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['insertBoton'])) {
         $nombre_equipo = $_POST["nombre_equipo"];
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $q0 = "SELECT nombre_funcionario FROM funcionarios WHERE rut_funcionario ='" . $rut . "';";
         $r0 = mysqli_query($conexion, $q0);
         if (mysqli_num_rows($r0) > 0) {
-            $q1 = "INSERT INTO equipos VALUES (DEFAULT," . $id_departamento . ", " . $rut . ", '" . $nombre_equipo . "', '" . $fechaAdquisicion . "', '" . $costoaAdquisicion . "','" . $caracteristicasAdquisicion . "', '" . $formaaAdquisicion . "', 'inactivo', 0);";
+            $q1 = "INSERT INTO equipos VALUES (DEFAULT," . $id_departamento . ", " . $rut . ", '" . $nombre_equipo . "', '" . $fechaAdquisicion . "', '" . $costoaAdquisicion . "','" . $caracteristicasAdquisicion . "', '" . $formaaAdquisicion . "', 'Inactivo', 0);";
             $r1 = mysqli_query($conexion, $q1);
         } else {
             echo "Error: Rut del funcionario no esta presente en la base de datos.";
@@ -36,6 +36,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         SET id_equipo=" . $id_equipo . ", rut_funcionario=" . $rut . ", nombre_equipo='" . $nombre_equipo . "', fecha_adquisicion='" . $fechaAdquisicion . "', costo_adquisicion=" . $costoaAdquisicion . ",caracteristicas_adquisicion='" . $caracteristicasAdquisicion . "', 
         forma_adquisicion='" . $formaaAdquisicion . "', id_departamento=" . $id_departamento . " WHERE id_equipo=" . $id_equipo . ";";
         $r3 = mysqli_query($conexion, $q3);
+    } else if(isset($_POST["cambioEstado"])){
+        $id_equipo = $_POST["id_cambio"];
+        $estado_nuevo = $_POST["estado_nuevo"];
+        $q1 = "UPDATE equipos
+        SET estado= '" . $estado_nuevo . "' WHERE id_equipo=" . $id_equipo . ";";
+        $r1 = mysqli_query($conexion, $q1);
     }
 }
 
@@ -118,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             $nombre = $row["NOMBRE_DEPARTAMENTO"];
                                             echo '<option value="' . $id . '">' . $nombre . '</option>';
                                         }
-                                        
+
                                         ?>
                                     </select>
                                 </div>
@@ -156,7 +162,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
         </div>
-
         <!-- Modal -->
         <div class="modal fade" id="modificarEquipo" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog">
@@ -240,7 +245,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
         </div>
-
+        <!-- Modal -->
+        <div class="modal fade" id="cambiarEstado" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Cambiar estado del Equipo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+                    <form action="prueba.php?p=gestion_equipos_componentes\equipos\gestion_equipos" method="post">
+                        <div class="modal-body">
+                            <input type="hidden" class="cambioEstadoForm" name="id_cambio" id="id_cambio">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Seleccion el estado</span>
+                                <select class="form-select" name="estado_nuevo" id="estado_nuevo" aria-label="Estados" rquired>
+                                    <option selected disabled value="">Eligir Estado...</option>
+                                    <option value="Funcionando">Funcionando</option>
+                                    <option value="Inactivo">Inactivo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" name="cambioEstado" id="cambioEstado" class="btn btn-success">Cambiar estado</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <!-- Tabla -->
         <div class="container-xl d-flex flex-column border border-primary rounded">
             <div class="align-self-center">
@@ -250,7 +282,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <table class="table" id="infoEquipo">
                     <thead>
                         <tr>
-                            <th scope="col">Ver</th>
+                            <th scope="col">Ver/Cambiar Estado</th>
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Estado</th>
@@ -272,14 +304,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $formaAdquisicion = $row["FORMA_ADQUISICION"];
                             $caracteristicasAdquisicion = $row["CARACTERISTICAS_ADQUISICION"];
                             echo '<tr>';
-                            echo '<td><a class="btn btn-outline-info" href="prueba.php?p=gestion_equipos_componentes/equipos/reporte_equipo&id=' . $id . '" role="button"><span class="material-symbols-outlined">info</span> </a></td>';
+                            echo '<td><a class="btn btn-outline-info" href="prueba.php?p=gestion_equipos_componentes/equipos/reporte_equipo&id=' . $id . '" role="button"><span class="material-symbols-outlined">info</span> </a>
+                            <button type="button" id="changeStatus" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#cambiarEstado" data-bs-whatever="' . $id . '"> <span class="material-symbols-outlined">settings</span> </button></td>';
                             echo '<td>' . $id . '</td>';
                             echo '<td>' . $nombre . '</td>';
                             echo '<td>' . $estado . '</td>';
                             echo '<td> <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmacionEliminar" data-bs-whatever="' . $id . '" ><span class="material-icons">delete</span></button>  
                             <button type="button" id="modify" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modificarEquipo" data-bs-whatever="' . $id . '"> <span class="material-icons">edit</span> </button>
                             <a class="btn btn-outline-info" href="prueba.php?p=gestion_equipos_componentes/componentes/gestion_componentes&id=' . $id . '" role="button"> <span class="material-icons"> computer </span> </a>
-                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#generarQR" data-bs-whatever="'. $id . '" onclick= "crearQR(this)"><span class="material-icons"> qr_code </span></button> </td>';
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#generarQR" data-bs-whatever="' . $id . '" onclick= "crearQR(this)"><span class="material-icons"> qr_code </span></button> </td>';
                             echo '</tr>';
                         }
                         ?>
@@ -296,11 +329,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script type="text/javascript" src="view/partials/jquery.min.js"></script>
     <script type="text/javascript" src="view/partials/qrcode.js"></script>
     <script>
+        var modalCambioEstado = document.getElementById('cambiarEstado');
+
+        modalCambioEstado.addEventListener('show.bs.modal', function(event) {
+            var buttonCambio = event.relatedTarget
+
+            var attributeCambio = buttonCambio.getAttribute('data-bs-whatever')
+            var modal_id_cambioestado = modalCambioEstado.querySelector('.cambioEstadoForm')
+            modal_id_cambioestado.value = attributeCambio;
+        })
+    </script>
+    <script>
         var modalDelete = document.getElementById('confirmacionEliminar')
-        console.log("delete");
+
         modalDelete.addEventListener('show.bs.modal', function(event) {
             var buttonDelete = event.relatedTarget
-            console.log("delete");
+
             var attributeDelete = buttonDelete.getAttribute('data-bs-whatever')
             var modal_id_delete = modalDelete.querySelector('.deleteForm')
             modal_id_delete.value = attributeDelete;
@@ -322,22 +366,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             var modalData4 = modalModify.querySelector('.cAdquisicion')
             var modalData5 = modalModify.querySelector('.foAdquisicion')
             var modalData6 = modalModify.querySelector('.tAdquisicion')
-            
+
             modalId.value = attributeModify;
         })
     </script>
     <script>
         var modalQR = document.getElementById('generarQR')
-        function crearQR(event){
+
+        function crearQR(event) {
             //var qrButton = event.relatedTarget
             // Extract info from data-bs-* attributes
             var getID = event.getAttribute('data-bs-whatever')
             // Update the modal's content.
             var qrcode = new QRCode(document.getElementById("qrcode"), {
-	        width : 100,
-	        height : 100
+                width: 100,
+                height: 100
             });
-            qrcode.makeCode("prueba.php?p=gestion_equipos_componentes/equipos/reporte_equipo&id="+getID+"");
+            qrcode.makeCode("prueba.php?p=gestion_equipos_componentes/equipos/reporte_equipo&id=" + getID + "");
         }
     </script>
 

@@ -1,29 +1,28 @@
 <?php
-    $funcionando = $_SESSION['funcionando'];
-    $mantencion = $_SESSION['mantencion'];
-    $inactivos = $_SESSION['inactivos'];
+$anio_menor_1 = $_SESSION['anio_menor_1'];
+$anio_mayor_1 = $_SESSION['anio_mayor_1'];
+$anio_mayor_3 = $_SESSION['anio_mayor_3'];
 ?>
 
 <div>
-    <canvas id="myChart_2"></canvas>
+    <canvas id="myChart_1"></canvas>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-   const ctx2 = document.getElementById('myChart_2');
+    const ctx = document.getElementById('myChart_1');
 
-    let data2 = {
+    let data = {
         labels: [
-            'Funcionando',
-            'Mantencion',
-            'inactivos'
+            'x<=1 años',
+            '1<x<3 años',
+            'x>=3 años'
         ],
         datasets: [{
-            label: 'Cantidad:',
-            
-            <?php echo "data: [$funcionando, $mantencion, $inactivos]," ?>
-            //data: [300, 50, 100],
+            label: 'Años:',
+
+            <?php echo "data: [$anio_menor_1, $anio_mayor_1, $anio_mayor_3]," ?>
 
             backgroundColor: [
                 'rgb(255, 99, 132)',
@@ -34,11 +33,10 @@
         }]
     };
 
-    let config2 = {
+    let config = {
         type: 'bar',
-        data: data2,
+        data: data,
     };
 
-    new Chart(ctx2, config2)
+    new Chart(ctx, config)
 </script>
-
