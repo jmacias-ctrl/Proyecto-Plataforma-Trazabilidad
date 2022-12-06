@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-12-2022 a las 02:13:25
+-- Tiempo de generación: 06-12-2022 a las 02:44:52
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.1
 
@@ -126,8 +126,7 @@ CREATE TABLE `edificios` (
 --
 
 INSERT INTO `edificios` (`ID_EDIFICIO`, `ID`, `COD_INE_COM`, `NOMBRE_EDIFICIO`, `TIPO_EDIFICIO`, `ID_ORGANIZACIONES`) VALUES
-(1, NULL, 8101, 'edifcio2 ', ' Oficina', 13),
-(2, NULL, 8101, 'edifcio3 ', ' OFICINA', 13);
+(1, NULL, 8101, 'edifcio2 ', ' Oficina', 13);
 
 -- --------------------------------------------------------
 
@@ -153,10 +152,11 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`ID_EQUIPO`, `ID_DEPARTAMENTO`, `RUT_FUNCIONARIO`, `NOMBRE_EQUIPO`, `FECHA_ADQUISICION`, `COSTO_ADQUISICION`, `CARACTERISTICAS_ADQUISICION`, `FORMA_ADQUISICION`, `estado`, `cantidad_mantenciones`) VALUES
-(9, 2, 20511753, 'equipo 2', '2022-02-09', 120000, 'test', 'test', 'Funcionando', 1),
-(12, 1, 20511753, 'test1', '2022-02-09', 2022, 'test', 'test', 'Inactivo', 0),
+(9, 2, 20511753, 'equipo 2', '2022-02-09', 120000, 'test', 'test', 'Inactivo', 1),
+(12, 1, 20511753, 'test1', '2022-02-09', 2022, 'test', 'test', 'Funcionando', 0),
 (14, 3, 20511753, 'Equipo 4', '2022-09-07', 700000, 'test', 'test', 'Inactivo', 1),
-(15, 3, 20511753, 'Equipo 3', '2022-12-04', 450000, 'Test', 'test', 'Inactivo', 0);
+(15, 3, 20511753, 'Equipo 3', '2022-12-04', 450000, 'Test', 'test', 'Inactivo', 0),
+(16, 2, 20511753, 'Equipo 5', '2020-01-08', 420000, 'test', 'test', 'En mantencion', 1);
 
 -- --------------------------------------------------------
 
@@ -198,7 +198,8 @@ CREATE TABLE `mantenciones` (
 
 INSERT INTO `mantenciones` (`ID_MANTENCION`, `ID_EQUIPO`, `NOMBRE_MANTENCION`, `TIPO_MANTENCION`, `en_marcha`) VALUES
 (1, 9, 'Formateado de Computador', 'Formateado', 0),
-(7, 14, 'Arreglo de componentes', 'Arreglo', 0);
+(7, 14, 'Arreglo de componentes', 'Arreglo', 0),
+(8, 16, 'Formateo Full del equipo', 'formateo', 1);
 
 --
 -- Disparadores `mantenciones`
@@ -332,7 +333,8 @@ CREATE TABLE `realiza` (
 
 INSERT INTO `realiza` (`ID_MANTENCION`, `RUT`, `FECHA_MANTENCION`) VALUES
 (1, '20323213', '2022-10-04'),
-(7, '20323213', '2022-12-05');
+(7, '20323213', '2022-12-05'),
+(8, '204143493', '2022-12-05');
 
 -- --------------------------------------------------------
 
@@ -559,7 +561,7 @@ ALTER TABLE `componentes`
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `ID_DEPARTAMENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_DEPARTAMENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `discos_internos`
@@ -568,16 +570,22 @@ ALTER TABLE `discos_internos`
   MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT de la tabla `edificios`
+--
+ALTER TABLE `edificios`
+  MODIFY `ID_EDIFICIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `equipos`
 --
 ALTER TABLE `equipos`
-  MODIFY `ID_EQUIPO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID_EQUIPO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenciones`
 --
 ALTER TABLE `mantenciones`
-  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `memorias_ram`
@@ -601,7 +609,7 @@ ALTER TABLE `procesadores`
 -- AUTO_INCREMENT de la tabla `realiza`
 --
 ALTER TABLE `realiza`
-  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
@@ -629,7 +637,7 @@ ALTER TABLE `comunas`
 -- Filtros para la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  ADD CONSTRAINT `FK_TIENE2` FOREIGN KEY (`ID_EDIFICIO`) REFERENCES `edificios` (`ID_EDIFICIO`);
+  ADD CONSTRAINT `departamentos_ibfk_1` FOREIGN KEY (`ID_EDIFICIO`) REFERENCES `edificios` (`ID_EDIFICIO`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `discos_internos`
