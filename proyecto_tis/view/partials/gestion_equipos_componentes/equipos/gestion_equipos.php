@@ -382,7 +382,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 width: 100,
                 height: 100
             });
-            qrcode.makeCode("prueba.php?p=gestion_equipos_componentes/equipos/reporte_equipo&id=" + getID + "");
+            qrcode.makeCode("localhost/xampp/proyecto_tis/prueba.php?p=gestion_equipos_componentes/equipos/reporte_equipo&id=" + getID + "");
         }
     </script>
 
