@@ -29,10 +29,10 @@ include('conexion.php');
                     <th>Nombre del Edificio</th>
                     <th>Funcionario utilizando el equipo</th>
                     <th>Nombre del equipo</th>
-                    <th>Fecha de adquisicion</th>
-                    <th>Costa de adquisicion</th>
-                    <th>Forma adquisicion</th>
-                    <th>Caracteristicas de adquisicion</th>
+                    <th>Fecha de adquisición</th>
+                    <th>Costa de adquisición</th>
+                    <th>Forma adquisición</th>
+                    <th>Caracteristicas de adquisición</th>
                     <th>Estado del Equipo</th>
                     <th>Cantidad de mantenciones realizadas</th>
                 </tr>
