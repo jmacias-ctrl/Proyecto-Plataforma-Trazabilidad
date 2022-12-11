@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-
+<title> Gestión de Edificios </title>
 <body>
     <div class="container-sm align-items-center">
-        <h1 class="my-3">Gestión de Edificio</h1>
+        <h1 class="my-3">Gestión de Edificios</h1>
 
         <div class="container-sm d-flex align-items-center border border-primary-2 rounded py-3">
             <div class="container aling-self-center">
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <form action="prueba.php?p=gestion_departamentos_edificios\gestion_edificios" method="post">
                         <div class="modal-body">
                             <input type="hidden" class="deleteForm" name="delete_id" id="delete_id">
-                            ¿Estas seguro que quieres eliminar el Edificio seleccionado?
+                            ¿Estás seguro que quieres eliminar el edificio seleccionado?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -123,7 +123,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <input type="text" class="form-control" aria-label="tipo_edificio" name="tipo_edificio" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Organizacion</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Organización</span>
                                     <input type="date" class="form-control" aria-label="id_organizaciones" name="id_organizaciones" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Tipo</th>
-                            <th scope="col">Organizacion</th>
+                            <th scope="col">Organización</th>
                             <th scope="col">Comuna</th>
                         </tr>
                     </thead>

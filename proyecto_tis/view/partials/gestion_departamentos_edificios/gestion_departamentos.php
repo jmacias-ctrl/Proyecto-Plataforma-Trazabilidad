@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-<title> Gestion de Departamentos </title>
+<title> Gestión de Departamentos </title>
 
 <body>
     <div class="container-sm align-items-center">
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <form action="prueba.php?p=gestion_departamentos_edificios\gestion_departamentos" method="post">
                         <div class="modal-body">
                             <input type="hidden" class="deleteForm" name="delete_id" id="delete_id">
-                            ¿Estas seguro que quieres eliminar el equipo seleccionado?
+                            ¿Estás seguro que quieres eliminar el departamento seleccionado?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <tr>
                             <th scope="col">ID</th>
                             <th scope="col">Nombre Departamento</th>
-                            <th scope="col">Organizacion</th>
+                            <th scope="col">Organización</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
