@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-<title> Gestion de Componentes </title>
+<title> Gestión de Componentes </title>
 
 <body>
     <div class="container-sm align-items-center">
@@ -142,14 +142,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <span class="input-group-text" id="inputGroup-sizing-default">Marca</span>
                                             <input type="text" class="form-control" aria-label="mComponente" name="mComponente" aria-describedby="inputGroup-sizing-default" required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca la marca del componente
+                                                Por favor introduzca la marca del componente.
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Modelo</span>
                                             <input type="text" class="form-control" aria-label="modComponente" name="modComponente" aria-describedby="inputGroup-sizing-default" required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca el modelo del componente
+                                                Por favor introduzca el modelo del componente.
                                             </div>
                                         </div>
                                     </div>
@@ -187,18 +187,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <span class="input-group-text" id="inputGroup-sizing-default">Marca</span>
                                             <input type="text" class="form-control" aria-label="mComponente" name="mComponente" aria-describedby="inputGroup-sizing-default" required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca la marca del componente
+                                                Por favor introduzca la marca del componente.
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Modelo</span>
                                             <input type="text" class="form-control" aria-label="modComponente" name="modComponente" aria-describedby="inputGroup-sizing-default" required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca el modelo del componente
+                                                Por favor introduzca el modelo del componente.
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text">Nucleos</span>
+                                            <span class="input-group-text">Núcleos</span>
                                             <input type="number" aria-label="cpuNucleo" name="cpuNucleo" class="form-control">
                                         </div>
                                         <div class="input-group mb-3">
@@ -249,14 +249,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <span class="input-group-text" id="inputGroup-sizing-default">Marca</span>
                                             <input type="text" class="form-control" aria-label="mComponente" name="mComponente" aria-describedby="inputGroup-sizing-default" required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca la marca del componente
+                                                Por favor introduzca la marca del componente.
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Modelo</span>
                                             <input type="text" class="form-control" aria-label="modComponente" name="modComponente" aria-describedby="inputGroup-sizing-default" required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca el modelo del componente
+                                                Por favor introduzca el modelo del componente.
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -272,7 +272,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <input type="text" aria-label="soporteMemoria" name="soporteMemoria" class="form-control">
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text">Caracteristicas</span>
+                                            <span class="input-group-text">Características</span>
                                             <input type="text" class="form-control" aria-label="pbCaracteristicas" name="pbCaracteristicas" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                     </div>
@@ -310,14 +310,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <span class="input-group-text" id="inputGroup-sizing-default">Marca</span>
                                             <input type="text" class="form-control" aria-label="mComponente" name="mComponente" aria-describedby="inputGroup-sizing-default" required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca la marca del componente
+                                                Por favor introduzca la marca del componente.
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Modelo</span>
                                             <input type="text" class="form-control" aria-label="modComponente" name="modComponente" aria-describedby="inputGroup-sizing-default" required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca el modelo del componente
+                                                Por favor introduzca el modelo del componente.
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -326,7 +326,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <span class="input-group-text">GB</span>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text">Tecnologia</span>
+                                            <span class="input-group-text">Tecnología</span>
                                             <input type="text" aria-label="ramTecnologia" name="ramTecnologia" class="form-control">
                                         </div>
                                         <div class="input-group mb-3">
@@ -369,14 +369,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <span class="input-group-text" id="inputGroup-sizing-default">Marca</span>
                                             <input type="text" class="form-control" aria-label="mComponente" name="mComponente" aria-describedby="inputGroup-sizing-default" required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca la marca del componente
+                                                Por favor introduzca la marca del componente.
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text" id="inputGroup-sizing-default">Modelo</span>
                                             <input type="text" class="form-control" aria-label="modComponente" name="modComponente" aria-describedby="inputGroup-sizing-default" required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca el modelo del componente
+                                                Por favor introduzca el modelo del componente.
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -409,7 +409,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <form action="prueba.php?p=gestion_equipos_componentes/componentes/gestion_componentes" method="POST">
                                 <div class="modal-body">
                                     <input type="hidden" class="deleteForm" name="delete_id" id="delete_id">
-                                    ¿Estas seguro que quieres eliminar el componente seleccionado?
+                                    ¿Estás seguro que quieres eliminar el componente seleccionado?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

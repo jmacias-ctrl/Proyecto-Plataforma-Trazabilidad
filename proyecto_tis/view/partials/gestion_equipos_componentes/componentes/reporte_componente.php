@@ -43,7 +43,7 @@ require('conexion.php');
                     echo '<li class="list-group-item">Marca del componente: ' . $marca . '</li>';
                     echo '<li class="list-group-item">Modelo del componente: ' . $modelo . '</li>';
                     echo '<li class="list-group-item">Estado: ' . $estado . '</li>';
-                    echo '<li class="list-group-item">Siendo por utilizado por el equipo id:' . $id_equipo . '</li>';
+                    echo '<li class="list-group-item">Siendo utilizado por el equipo id:' . $id_equipo . '</li>';
                     echo '<li class="list-group-item">Nombre del equipo: ' . $nombre_equipo . '</li>';
                     echo '<li class="list-group-item">Tipo de componente: ' . $tipo . '</li>';
                 }
@@ -54,7 +54,7 @@ require('conexion.php');
         if ($tipo != 'otros') {
         ?>
             <div class="align-self-center">
-                <h4 class="my-4 ">Mas informacion</h4>
+                <h4 class="my-4 ">Más información</h4>
             </div>
             <ul class="list-group">
                 <?php switch ($tipo) {
@@ -68,7 +68,7 @@ require('conexion.php');
                         $cpuHilos = $row_t["HILOS"];
                         echo "<thead>";
                         echo "<tr>";
-                        echo '<li class="list-group-item">Cantidad de nucleos: ' . $cpuNucleo . '</li>';
+                        echo '<li class="list-group-item">Cantidad de núcleos: ' . $cpuNucleo . '</li>';
                         echo '<li class="list-group-item">Cantidad de hilos: ' . $cpuHilos . '</li>';
                         echo '<li class="list-group-item">Socket: ' . $cpuHilos . '</li>';
                         echo '<li class="list-group-item">Reloj Base: ' . $cpuRelojBase . '</li>';
@@ -88,7 +88,7 @@ require('conexion.php');
                         echo '<li class="list-group-item">Factor de Forma: ' . $factorFormaPB . '</li>';
                         echo '<li class="list-group-item">CPU Socket Soportado: ' . $pbSocket . '</li>';
                         echo '<li class="list-group-item">Soporte de Memoria: ' . $soporteMemoria . '</li>';
-                        echo '<li class="list-group-item">Caracteristicas: ' . $pbCaracteristicas . '</li>';
+                        echo '<li class="list-group-item">Características: ' . $pbCaracteristicas . '</li>';
                         echo '</tr>';
                         echo '</thead>';
                         break;
@@ -102,7 +102,7 @@ require('conexion.php');
                         echo "<thead>";
                         echo "<tr>";
                         echo '<li class="list-group-item">Cantidad de memoria: ' . $ramMemoria . '</li>';
-                        echo '<li class="list-group-item">Tecnologia de memoria: ' . $ramTecnologia . '</li>';
+                        echo '<li class="list-group-item">Tecnología de memoria: ' . $ramTecnologia . '</li>';
                         echo '<li class="list-group-item">Velocidad de Frecuencia: ' . $ramVelocidadFrequencia . '</li>';
                         echo '</tr>';
                         echo '</thead>';
