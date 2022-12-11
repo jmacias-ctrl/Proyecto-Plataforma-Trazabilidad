@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <head>
-    <title>Gestion de Mantenciones - Trazabilidad de Equipos</title>
+    <title>Gestión de Mantenciones - Trazabilidad de Equipos</title>
 </head>
 
 <body>
@@ -74,11 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="row row-cols-auto d-flex align-items-center">
                     <div class="col-8">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertarMantenciones">
-                            Insertar Nueva Mantencion
+                            Insertar Nueva Mantención
                         </button>
                     </div>
                     <div class="col">
-                        <h5>Buscar Mantencion:</h5>
+                        <h5>Buscar Mantención:</h5>
                     </div>
                     <div class="col">
                         <input type="text" class="form-control" aria-label="Busqueda por Parametros">
@@ -92,22 +92,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="insertarMantencionesLabel">Ingresar Mantencion</h5>
+                        <h5 class="modal-title" id="insertarMantencionesLabel">Ingresar Mantención</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <form action="prueba.php?p=gestion_mantenciones\gestion_mantenciones" method="post">
                         <div class="modal-body">
                             <div class="container-sm">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text">Nombre Mantencion</span>
+                                    <span class="input-group-text">Nombre Mantención</span>
                                     <input type="text" aria-label="nombre_mantencion" name="nombre_mantencion" class="form-control" required>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Tipo de Mantencion</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Tipo de Mantención</span>
                                     <input type="text" class="form-control" aria-label="tMantencion" name="tMantencion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Fecha de Mantencion</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Fecha de Mantención</span>
                                     <input type="date" class="form-control" aria-label="fMantencion" name="fMantencion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </select>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Equipo a realizar mantencion</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Equipo a realizar mantención</span>
                                     <select class="form-select" aria-label="equipoAMantencion" name="equipoAMantencion" required>
                                         <option selected disabled value="">Seleccione un Equipo</option>
                                         <?php
@@ -159,13 +159,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Mantencion</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Mantención</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <form action="prueba.php?p=gestion_mantenciones\gestion_mantenciones" method="post">
                         <div class="modal-body">
                             <input type="hidden" class="deleteForm" name="delete_id" id="delete_id">
-                            ¿Estas seguro que quieres eliminar la mantencion seleccionado?
+                            ¿Estás seguro que quieres eliminar la mantención seleccionada?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -180,13 +180,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Confirmacion de termino de Mantencion</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Confirmación de término de Mantención</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <form action="prueba.php?p=gestion_mantenciones\gestion_mantenciones" method="post">
                         <div class="modal-body">
                             <input type="hidden" class="terminoForm" name="modify_id" id="modify_id">
-                            ¿Estas seguro que la mantencion fue terminada?
+                            ¿Estás seguro que la mantención fue terminada?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -201,7 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modificar Mantencion</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Modificar Mantención</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
                     <form action="prueba.php?p=gestion_mantenciones\gestion_mantenciones" method="post">
@@ -209,15 +209,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="hidden" class="modifyForm" name="modify_id" id="modify_id">
                             <div class="container-sm">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text">Nombre Mantencion</span>
+                                    <span class="input-group-text">Nombre Mantención</span>
                                     <input type="text" aria-label="nombre_mantencion" name="nombre_mantencion" class="form-control" required>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Tipo de Mantencion</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Tipo de Mantención</span>
                                     <input type="text" class="form-control" aria-label="tMantencion" name="tMantencion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Fecha de Mantencion</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Fecha de Mantención</span>
                                     <input type="date" class="form-control" aria-label="fMantencion" name="fMantencion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
@@ -237,7 +237,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </select>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Equipo a realizar mantencion</span>
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Equipo a realizar mantención</span>
                                     <select class="form-select" aria-label="equipoAMantencion" name="equipoAMantencion" required>
                                         <option selected disabled value="">Seleccione un Equipo</option>
                                         <?php
@@ -268,7 +268,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- Tabla -->
         <div class="container-xl d-flex flex-column border border-primary rounded">
             <div class="align-self-center">
-                <h4 class="my-4 ">Listado de Mantenciones Activos</h4>
+                <h4 class="my-4 ">Listado de Mantenciones Activas</h4>
             </div>
             <div class="table-responsive caption-top">
                 <table class="table mb-5" id="infoEquipo">
@@ -279,8 +279,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <th scope="col">Nombre</th>
                             <th scope="col">ID Equipo</th>
                             <th scope="col">Nombre Equipo</th>
-                            <th scope="col">Tipo de Mantencion</th>
-                            <th scope="col">Fecha de Mantencion</th>
+                            <th scope="col">Tipo de Mantención</th>
+                            <th scope="col">Fecha de Mantención</th>
                             <th scope="col">Nombre Mantenedor a Cargo</th>
                             <th scope="col">Rut Mantenedor a Cargo</th>
                             <th scope="col mx-auto">Acciones</th>
@@ -347,8 +347,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <th scope="col">Nombre</th>
                             <th scope="col">ID Equipo</th>
                             <th scope="col">Nombre Equipo</th>
-                            <th scope="col">Tipo de Mantencion</th>
-                            <th scope="col">Fecha de Mantencion</th>
+                            <th scope="col">Tipo de Mantención</th>
+                            <th scope="col">Fecha de Mantención</th>
                             <th scope="col">Nombre Mantenedor a Cargo</th>
                             <th scope="col">Rut Mantenedor a Cargo</th>
                             <th scope="col mx-auto">Acciones</th>
