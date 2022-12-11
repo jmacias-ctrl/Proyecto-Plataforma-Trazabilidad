@@ -54,10 +54,10 @@ require('view\partials\gestion_equipos_componentes\conexion.php');
                     echo '<li class="list-group-item">Nombre del funcionario: ' . $nombre_funcionario . '</li>';
                     echo '<li class="list-group-item">Nombre del equipo: ' . $nombre_consultado . '</li>';
                     echo '<li class="list-group-item">Perteneciente al departamento de ' . $nombre_departamento . ' del edificio ' . $nombre_edificio . '</li>';
-                    echo '<li class="list-group-item">Fecha de adquisicion: ' . $fecha_consultada . '</li>';
-                    echo '<li class="list-group-item">Costo de adquisicion: $' . $costo_consultado . '</li>';
-                    echo '<li class="list-group-item">Caracteristicas de adquisicion: ' . $caracteristica_consultada . '</li>';
-                    echo '<li class="list-group-item">Forma de adquisicion: ' . $forma_consultada . '</li>';
+                    echo '<li class="list-group-item">Fecha de adquisición: ' . $fecha_consultada . '</li>';
+                    echo '<li class="list-group-item">Costo de adquisición: $' . $costo_consultado . '</li>';
+                    echo '<li class="list-group-item">Caracteristicas de adquisición: ' . $caracteristica_consultada . '</li>';
+                    echo '<li class="list-group-item">Forma de adquisición: ' . $forma_consultada . '</li>';
                     echo '<li class="list-group-item">Estado del equipo: ' . $estado . '</li>';
                     echo '<li class="list-group-item">Antigüedad: ' . $tiempo . ' días </li>';
                 }
@@ -106,11 +106,11 @@ require('view\partials\gestion_equipos_componentes\conexion.php');
             <table class="table" id="infoComponentes">
                 <thead>
                     <tr>
-                        <th scope="col">Id Mantencion</th>
-                        <th scope="col">Nombre mantencion</th>
+                        <th scope="col">Id Mantención</th>
+                        <th scope="col">Nombre Mantención</th>
                         <th scope="col">Rut del Mantenedor</th>
-                        <th scope="col">Tipo mantencion</th>
-                        <th scope="col">Fecha de Mantencion</th>
+                        <th scope="col">Tipo Mantención</th>
+                        <th scope="col">Fecha de Mantención</th>
                     </tr>
                 </thead>
                 <tbody>
