@@ -17,7 +17,7 @@ if (isset($_SESSION['usuarios'])) {
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Inicio de sesion
+                        <h3 class="panel-title">Inicio de sesión
                             <span class="pull-right"> <a style="text-decoration:none; cursor:pointer; color:white;" id="signup">Registrarse</a></span>
                         </h3>
                     </div>
@@ -43,7 +43,7 @@ if (isset($_SESSION['usuarios'])) {
                 <div class="login-panel panel panel-primary">
                     <div class="panel-heading">
                         <h3 class="panel-title"> Registrarse
-                            <span class="pull-right"><a style="text-decoration:none; cursor:pointer; color:white;" id="login">Iniciar Sesion</a></span>
+                            <span class="pull-right"><a style="text-decoration:none; cursor:pointer; color:white;" id="login">Iniciar Sesión</a></span>
                         </h3>
                     </div>
                     <div class="panel-body">
@@ -56,7 +56,7 @@ if (isset($_SESSION['usuarios'])) {
                                     <input class="form-control" placeholder="Nombre" name="snombre" id="snombre" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Id Organizacion" name="id_organizacion" id="id_organizacion" type="text" autofocus>
+                                    <input class="form-control" placeholder="Id Organización" name="id_organizacion" id="id_organizacion" type="text" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Contraseña" name="scontrasena" id="scontrasena" type="password">

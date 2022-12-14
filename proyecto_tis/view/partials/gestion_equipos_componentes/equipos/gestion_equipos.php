@@ -99,27 +99,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Fecha
                                         Adquisición</span>
-                                    <input type="date" class="form-control" aria-label="fAdquisicion"
-                                        name="fAdquisicion" aria-describedby="inputGroup-sizing-default" required>
-                                </div>
+                                    <input type="date" class="form-control" aria-label="fAdquisicion" name="fAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                               </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Costo de
                                         Adquisición</span>
-                                    <textarea type="number" class="form-control" aria-label="cAdquisicion"
-                                        name="cAdquisicion" aria-describedby="inputGroup-sizing-default"
-                                        required></textarea>
+                                    <textarea type="number" class="form-control" aria-label="cAdquisicion" name="cAdquisicion" aria-describedby="inputGroup-sizing-default" required></textarea>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Características
                                         Adquisición</span>
-                                    <input type="text" class="form-control" aria-label="tAdquisicion"
-                                        name="tAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="text" class="form-control" aria-label="tAdquisicion" name="tAdquisicion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Forma
                                         Adquisición</span>
-                                    <input type="text" class="form-control" aria-label="foAdquisicion"
-                                        name="foAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="text" class="form-control" aria-label="foAdquisicion" name="foAdquisicion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Departamento</span>
@@ -199,28 +194,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Fecha
                                         Adquisición</span>
-                                    <input type="date" class="form-control fAdquisicion" aria-label="fAdquisicion"
-                                        name="fAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="date" class="form-control fAdquisicion" aria-label="fAdquisicion" name="fAdquisicion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Costo de
                                         Adquisición</span>
-                                    <textarea type="number" class="form-control cAdquisicion" aria-label="cAdquisicion"
-                                        name="cAdquisicion" aria-describedby="inputGroup-sizing-default"
-                                        required></textarea>
+                                    <textarea type="number" class="form-control cAdquisicion" aria-label="cAdquisicion" name="cAdquisicion" aria-describedby="inputGroup-sizing-default" required></textarea>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text ccAdquisicion"
-                                        id="inputGroup-sizing-default">Características
+                                    <span class="input-group-text ccAdquisicion" id="inputGroup-sizing-default">Características
                                         Adquisición</span>
-                                    <input type="text" class="form-control tAdquisicion" aria-label="tAdquisicion"
-                                        name="tAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="text" class="form-control tAdquisicion" aria-label="tAdquisicion" name="tAdquisicion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Forma
                                         Adquisición</span>
-                                    <input type="text" class="form-control foAdquisicion" aria-label="foAdquisicion"
-                                        name="foAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="text" class="form-control foAdquisicion" aria-label="foAdquisicion" name="foAdquisicion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Departamento</span>
@@ -280,10 +269,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="modal-body">
                             <input type="hidden" class="cambioEstadoForm" name="id_cambio" id="id_cambio">
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Seleccione el
-                                    estado</span>
-                                <select class="form-select" name="estado_nuevo" id="estado_nuevo" aria-label="Estados"
-                                    rquired>
+                                <span class="input-group-text" id="inputGroup-sizing-default">Seleccione el estado</span>
+                                <select class="form-select" name="estado_nuevo" id="estado_nuevo" aria-label="Estados" rquired>
                                     <option selected disabled value="">Elegir Estado...</option>
                                     <option value="Funcionando">Funcionando</option>
                                     <option value="Inactivo">Inactivo</option>

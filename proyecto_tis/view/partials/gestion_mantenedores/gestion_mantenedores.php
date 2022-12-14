@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-<title> Gestion de Mantenedores</title>
+<title> Gestión de Mantenedores</title>
 
 <body>
     <div class="container-sm align-items-center">
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <form action="prueba.php?p=gestion_mantenedores\gestion_mantenedores" method="post">
                         <div class="modal-body">
                             <input type="hidden" class="deleteForm" name="delete_id" id="delete_id">
-                            ¿Estas seguro que quieres eliminar el equipo seleccionado?
+                            ¿Estás seguro que quieres eliminar el mantenedor seleccionado?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
