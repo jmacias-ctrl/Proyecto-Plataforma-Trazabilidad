@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <h5>Buscar Departamento:</h5>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" aria-label="Busqueda por Parametros">
+                        <input type="text" class="form-control" id="inputFilter" aria-label="Busqueda por Parametros">
                     </div>
                 </div>
             </div>
@@ -144,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h4 class="my-4 ">Listado de Departamentos</h4>
             </div>
             <div class="table-responsive caption-top">
-                <table class="table" id="infoEquipo">
+                <table class="table" id="infoGestion">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
@@ -203,6 +203,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             var modalId = modalModify.querySelector('.modifyForm')
             modalId.value = attributeModify;
         })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#inputFilter").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#infoGestion tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
     </script>
 </body>
 

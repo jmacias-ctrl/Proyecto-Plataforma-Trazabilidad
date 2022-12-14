@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         SET id_equipo=" . $id_equipo . ", rut_funcionario=" . $rut . ", nombre_equipo='" . $nombre_equipo . "', fecha_adquisicion='" . $fechaAdquisicion . "', costo_adquisicion=" . $costoaAdquisicion . ",caracteristicas_adquisicion='" . $caracteristicasAdquisicion . "', 
         forma_adquisicion='" . $formaaAdquisicion . "', id_departamento=" . $id_departamento . " WHERE id_equipo=" . $id_equipo . ";";
         $r3 = mysqli_query($conexion, $q3);
-    } else if(isset($_POST["cambioEstado"])){
+    } else if (isset($_POST["cambioEstado"])) {
         $id_equipo = $_POST["id_cambio"];
         $estado_nuevo = $_POST["estado_nuevo"];
         $q1 = "UPDATE equipos
@@ -59,7 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="container aling-self-center">
                 <div class="row row-cols-auto d-flex align-items-center">
                     <div class="col-8">
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertarEquipo">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#insertarEquipo">
                             Insertar Nuevo Equipo
                         </button>
                     </div>
@@ -67,14 +68,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <h5>Buscar Equipo:</h5>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" aria-label="Busqueda por Parametros">
+                        <input type="text" id="inputFilter"class="form-control" aria-label="Busqueda por Parametros">
                     </div>
                 </div>
             </div>
 
             <!-- Modal -->
         </div>
-        <div class="modal fade" name="insertarEquipo" id="insertarEquipo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" name="insertarEquipo" id="insertarEquipo" data-bs-backdrop="static"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -86,35 +88,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="container-sm">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Nombre Equipo</span>
-                                    <input type="text" aria-label="nombre_equipo" name="nombre_equipo" class="form-control" required>
+                                    <input type="text" aria-label="nombre_equipo" name="nombre_equipo"
+                                        class="form-control" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Rut Funcionario</span>
-                                    <input type="text" class="form-control" aria-label="rut" name="rut" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="text" class="form-control" aria-label="rut" name="rut"
+                                        aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Fecha
                                         Adquisición</span>
-                                    <input type="date" class="form-control" aria-label="fAdquisicion" name="fAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="date" class="form-control" aria-label="fAdquisicion"
+                                        name="fAdquisicion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Costo de
                                         Adquisición</span>
-                                    <textarea type="number" class="form-control" aria-label="cAdquisicion" name="cAdquisicion" aria-describedby="inputGroup-sizing-default" required></textarea>
+                                    <textarea type="number" class="form-control" aria-label="cAdquisicion"
+                                        name="cAdquisicion" aria-describedby="inputGroup-sizing-default"
+                                        required></textarea>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Características
                                         Adquisición</span>
-                                    <input type="text" class="form-control" aria-label="tAdquisicion" name="tAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="text" class="form-control" aria-label="tAdquisicion"
+                                        name="tAdquisicion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Forma
                                         Adquisición</span>
-                                    <input type="text" class="form-control" aria-label="foAdquisicion" name="foAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="text" class="form-control" aria-label="foAdquisicion"
+                                        name="foAdquisicion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Departamento</span>
-                                    <select class="form-select" aria-label="Departamento" name="idDepartamento" required>
+                                    <select class="form-select" aria-label="Departamento" name="idDepartamento"
+                                        required>
                                         <option selected disabled value="">Seleccione un Departamento</option>
                                         <?php
                                         $q1 = "SELECT * FROM departamentos;";
@@ -134,7 +144,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary" name="insertBoton" id="insertBoton">Ingresar</button>
+                            <button type="submit" class="btn btn-primary" name="insertBoton"
+                                id="insertBoton">Ingresar</button>
                         </div>
                     </form>
                 </div>
@@ -156,7 +167,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="deletedata" id="deletedata" class="btn btn-danger">Eliminar</button>
+                            <button type="submit" name="deletedata" id="deletedata"
+                                class="btn btn-danger">Eliminar</button>
                         </div>
                     </form>
                 </div>
@@ -176,35 +188,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="container-sm">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Nombre Equipo</span>
-                                    <input type="text" class="nombreEquipo" aria-label="nombre_equipo" name="nombre_equipo" class="form-control" required>
+                                    <input type="text" class="nombreEquipo" aria-label="nombre_equipo"
+                                        name="nombre_equipo" class="form-control" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Rut Funcionario</span>
-                                    <input type="text" class="form-control rutFuncionario" aria-label="rut" name="rut" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="text" class="form-control rutFuncionario" aria-label="rut" name="rut"
+                                        aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Fecha
                                         Adquisición</span>
-                                    <input type="date" class="form-control fAdquisicion" aria-label="fAdquisicion" name="fAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="date" class="form-control fAdquisicion" aria-label="fAdquisicion"
+                                        name="fAdquisicion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Costo de
                                         Adquisición</span>
-                                    <textarea type="number" class="form-control cAdquisicion" aria-label="cAdquisicion" name="cAdquisicion" aria-describedby="inputGroup-sizing-default" required></textarea>
+                                    <textarea type="number" class="form-control cAdquisicion" aria-label="cAdquisicion"
+                                        name="cAdquisicion" aria-describedby="inputGroup-sizing-default"
+                                        required></textarea>
                                 </div>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text ccAdquisicion" id="inputGroup-sizing-default">Características
+                                    <span class="input-group-text ccAdquisicion"
+                                        id="inputGroup-sizing-default">Características
                                         Adquisición</span>
-                                    <input type="text" class="form-control tAdquisicion" aria-label="tAdquisicion" name="tAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="text" class="form-control tAdquisicion" aria-label="tAdquisicion"
+                                        name="tAdquisicion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Forma
                                         Adquisición</span>
-                                    <input type="text" class="form-control foAdquisicion" aria-label="foAdquisicion" name="foAdquisicion" aria-describedby="inputGroup-sizing-default" required>
+                                    <input type="text" class="form-control foAdquisicion" aria-label="foAdquisicion"
+                                        name="foAdquisicion" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Departamento</span>
-                                    <select class="form-select" aria-label="Departamento" name="idDepartamento" required>
+                                    <select class="form-select" aria-label="Departamento" name="idDepartamento"
+                                        required>
                                         <option selected disabled value="">Seleccione un Departamento</option>
                                         <?php
                                         $q1 = "SELECT * FROM departamentos;";
@@ -234,13 +255,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Código QR</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick="delqr()"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onClick="delqr()"></button>
                     </div>
                     <div class="modal-body">
                         <div id="qrcode" class="createQrCode" style="width:130px; height:130px; margin-top:15px;"></div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onClick="delqr()">Cerrar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            onClick="delqr()">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -257,8 +280,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="modal-body">
                             <input type="hidden" class="cambioEstadoForm" name="id_cambio" id="id_cambio">
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Seleccione el estado</span>
-                                <select class="form-select" name="estado_nuevo" id="estado_nuevo" aria-label="Estados" rquired>
+                                <span class="input-group-text" id="inputGroup-sizing-default">Seleccione el
+                                    estado</span>
+                                <select class="form-select" name="estado_nuevo" id="estado_nuevo" aria-label="Estados"
+                                    rquired>
                                     <option selected disabled value="">Elegir Estado...</option>
                                     <option value="Funcionando">Funcionando</option>
                                     <option value="Inactivo">Inactivo</option>
@@ -267,7 +292,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="cambioEstado" id="cambioEstado" class="btn btn-success">Cambiar estado</button>
+                            <button type="submit" name="cambioEstado" id="cambioEstado" class="btn btn-success">Cambiar
+                                estado</button>
                         </div>
                     </form>
                 </div>
@@ -279,7 +305,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h4 class="my-4 ">Listado de Equipos</h4>
             </div>
             <div class="table-responsive caption-top">
-                <table class="table" id="infoEquipo">
+                <table class="table" id="infoGestion">
                     <thead>
                         <tr>
                             <th scope="col">Ver/Cambiar Estado</th>
@@ -323,15 +349,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
     <script src="java.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
     <script type="text/javascript" src="view/partials/jquery.min.js"></script>
     <script type="text/javascript" src="view/partials/qrcode.js"></script>
     <script>
         var modalCambioEstado = document.getElementById('cambiarEstado');
 
-        modalCambioEstado.addEventListener('show.bs.modal', function(event) {
+        modalCambioEstado.addEventListener('show.bs.modal', function (event) {
             var buttonCambio = event.relatedTarget
 
             var attributeCambio = buttonCambio.getAttribute('data-bs-whatever')
@@ -342,7 +374,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script>
         var modalDelete = document.getElementById('confirmacionEliminar')
 
-        modalDelete.addEventListener('show.bs.modal', function(event) {
+        modalDelete.addEventListener('show.bs.modal', function (event) {
             var buttonDelete = event.relatedTarget
 
             var attributeDelete = buttonDelete.getAttribute('data-bs-whatever')
@@ -353,7 +385,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script>
         var modalModify = document.getElementById('modificarEquipo')
         console.log("modify");
-        modalModify.addEventListener('show.bs.modal', function(event) {
+        modalModify.addEventListener('show.bs.modal', function (event) {
             var modifyButton = event.relatedTarget
             console.log("modify");
             // Extract info from data-bs-* attributes
@@ -394,6 +426,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             qr.innerHTML = '';
             qr.pop();
         }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#inputFilter").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#infoGestion tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
     </script>
 </body>
 
