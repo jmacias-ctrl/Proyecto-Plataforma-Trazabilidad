@@ -18,12 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $query = "DELETE FROM componentes WHERE id_componente=" . $idComponente . ";";
         $resultado = mysqli_query($conexion, $query);
-    } else if(isset($_POST["moverdata"])){
+    } else if (isset($_POST["moverdata"])) {
         $idComponente = $_POST["mover_id"];
 
-        $query = "UPDATE componentes SET estado='en bodega', id_equipo=null WHERE id_componente=".$idComponente.";";
+        $query = "UPDATE componentes SET estado='en bodega', id_equipo=null WHERE id_componente=" . $idComponente . ";";
         $resultado = mysqli_query($conexion, $query);
-    } else{
+    } else {
         $nComponente = $_POST["nComponente"];
         $mComponente = $_POST["mComponente"];
         $modComponente = $_POST["modComponente"];
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-<title> Gestión de Componentes </title>
+<title> Gestion de Componentes </title>
 
 <body>
     <div class="container-sm align-items-center">
@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 name="mComponente" aria-describedby="inputGroup-sizing-default"
                                                 required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca la marca del componente.
+                                                Por favor introduzca la marca del componente
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 name="modComponente" aria-describedby="inputGroup-sizing-default"
                                                 required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca el modelo del componente.
+                                                Por favor introduzca el modelo del componente
                                             </div>
                                         </div>
                                     </div>
@@ -226,7 +226,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 name="mComponente" aria-describedby="inputGroup-sizing-default"
                                                 required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca la marca del componente.
+                                                Por favor introduzca la marca del componente
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -235,12 +235,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 name="modComponente" aria-describedby="inputGroup-sizing-default"
                                                 required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca el modelo del componente.
+                                                Por favor introduzca el modelo del componente
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text">Núcleos</span>
-                                            <input type="number" aria-label="cpuNucleo" name="cpuNucleo" class="form-control">
+                                            <span class="input-group-text">Nucleos</span>
+                                            <input type="number" aria-label="cpuNucleo" name="cpuNucleo"
+                                                class="form-control">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">Socket</span>
@@ -302,7 +303,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 name="mComponente" aria-describedby="inputGroup-sizing-default"
                                                 required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca la marca del componente.
+                                                Por favor introduzca la marca del componente
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -311,7 +312,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 name="modComponente" aria-describedby="inputGroup-sizing-default"
                                                 required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca el modelo del componente.
+                                                Por favor introduzca el modelo del componente
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -330,9 +331,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 class="form-control">
                                         </div>
                                         <div class="input-group mb-3">
-
-                                            <span class="input-group-text">Características</span>
-                                            <input type="text" class="form-control" aria-label="pbCaracteristicas" name="pbCaracteristicas" aria-describedby="inputGroup-sizing-default">
+                                            <span class="input-group-text">Caracteristicas</span>
+                                            <input type="text" class="form-control" aria-label="pbCaracteristicas"
+                                                name="pbCaracteristicas" aria-describedby="inputGroup-sizing-default">
                                         </div>
                                     </div>
 
@@ -378,7 +379,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 name="mComponente" aria-describedby="inputGroup-sizing-default"
                                                 required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca la marca del componente.
+                                                Por favor introduzca la marca del componente
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -387,7 +388,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 name="modComponente" aria-describedby="inputGroup-sizing-default"
                                                 required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca el modelo del componente.
+                                                Por favor introduzca el modelo del componente
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -397,8 +398,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <span class="input-group-text">GB</span>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text">Tecnología</span>
-                                            <input type="text" aria-label="ramTecnologia" name="ramTecnologia" class="form-control">
+                                            <span class="input-group-text">Tecnologia</span>
+                                            <input type="text" aria-label="ramTecnologia" name="ramTecnologia"
+                                                class="form-control">
                                         </div>
                                         <div class="input-group mb-3">
                                             <span class="input-group-text">Velocidad Frequencia</span>
@@ -451,7 +453,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 name="mComponente" aria-describedby="inputGroup-sizing-default"
                                                 required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca la marca del componente.
+                                                Por favor introduzca la marca del componente
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -460,7 +462,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 name="modComponente" aria-describedby="inputGroup-sizing-default"
                                                 required>
                                             <div class="invalid-feedback">
-                                                Por favor introduzca el modelo del componente.
+                                                Por favor introduzca el modelo del componente
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -498,7 +500,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 method="POST">
                                 <div class="modal-body">
                                     <input type="hidden" class="deleteForm" name="delete_id" id="delete_id">
-                                    ¿Estás seguro que quieres eliminar el componente seleccionado?
+                                    ¿Estas seguro que quieres eliminar el componente seleccionado?
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
@@ -509,74 +511,63 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                 </div>
-                 <!-- Modal -->
-                 <div class="modal fade" id="moverBodega" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Mover componente a bodega</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Cerrar"></button>
-                            </div>
-                            <form action="prueba.php?p=gestion_equipos_componentes/componentes/gestion_componentes"
-                                method="POST">
-                                <div class="modal-body">
-                                    <input type="hidden" class="moverForm" name="mover_id" id="mover_id">
-                                    ¿Estas seguro que quieres mover el componente seleccionado a bodega?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="submit" name="moverdata" class="btn btn-danger">Mover</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="container-xl d-flex flex-column border border-primary rounded">
                     <div class="align-self-center">
                         <h4 class="my-4 ">Listado de Componentes</h4>
-                    </div>
-                    <div class="table-responsive caption-top">
-                        <table class="table" id="infoGestion">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Ver</th>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Marca</th>
-                                    <th scope="col">Modelo</th>
-                                    <th scope="col">Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $query = "SELECT * FROM componentes WHERE id_equipo =" . $id_equipo . ";";
-                                $resultado = mysqli_query($conexion, $query);
-                                while ($row = mysqli_fetch_assoc($resultado)) {
-                                    $id = $row['ID_COMPONENTE'];
-                                    $nombre = $row["NOMBRE"];
-                                    $marca = $row["MARCA"];
-                                    $modelo = $row["MODELO"];
-                                    echo '<tr>';
-                                    echo '<td><a class="btn btn-outline-info" href="prueba.php?p=gestion_equipos_componentes/componentes/reporte_componente&id=' . $id . '&id_equipo=' . $id_equipo . '" role="button"><span class="material-symbols-outlined">info</span> </a></td>';
-                                    echo '<td>' . $id . '</td>';
-                                    echo '<td>' . $nombre . '</td>';
-                                    echo '<td>' . $marca . '</td>';
-                                    echo '<td>' . $modelo . '</td>';
-                                    echo '<td> <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmacionEliminar" data-bs-whatever="' . $id . '" ><span class="material-icons">delete</span></button></button>
-                                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#moverBodega" data-bs-whatever="' . $id . '" ><span class="material-symbols-outlined"> inventory_2 </span>
-                                    <button type="button" class="btn btn-outline-primary"><span class="material-icons">edit</span> </button> </td>';
-                                    echo '</tr>';
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
+                        <div class="table-responsive caption-top">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Ver</th>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Nombre Componente</th>
+                                        <th scope="col">Id Equipo</th>
+                                        <th scope="col">Nombre Equipo</th>
+                                        <th scope="col">Marca</th>
+                                        <th scope="col">Modelo</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $query = "SELECT * FROM componentes LEFT JOIN equipos using(id_equipo) JOIN departamentos using(id_departamento) JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones=organizaciones.id)  
+                                    WHERE organizaciones.id =" . $_SESSION["id_organizacion"] . ";";
+                                    $resultado = mysqli_query($conexion, $query);
+                                    while ($row = mysqli_fetch_assoc($resultado)) {
+                                        $id = $row['ID_COMPONENTE'];
+                                        $id_equipo = $row['ID_EQUIPO'];
+                                        $nombre = $row["NOMBRE"];
+                                        $marca = $row["MARCA"];
+                                        $modelo = $row["MODELO"];
 
+                                        $q1 = "SELECT nombre_equipo FROM equipos WHERE id_equipo=" . $id_equipo . ";";
+                                        $r1 = mysqli_query($conexion, $q1);
+                                        $row2 = mysqli_fetch_assoc($r1);
+
+                                        echo '<tr>';
+                                        echo '<td><a class="btn btn-outline-info" href="prueba.php?p=gestion_equipos_componentes/componentes/reporte_componente&id=' . $id . '&id_equipo=' . $id_equipo . '" role="button"><span class="material-symbols-outlined">info</span> </a></td>';
+                                        echo '<td>' . $id . '</td>';
+                                        echo '<td>' . $nombre . '</td>';
+                                        echo '<td>' . $id_equipo . '</td>';
+                                        echo '<td>' . $row2['nombre_equipo'] . '</td>';
+                                        echo '<td>' . $marca . '</td>';
+                                        echo '<td>' . $modelo . '</td>';
+                                        echo '<td> <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmacionEliminar" data-bs-whatever="' . $id . '" ><span class="material-icons">delete</span></button></button> </td>';
+                                        echo '<td> <button type="button" class="btn btn-outline-primary"><span class="material-icons">edit</span> </button> </td>';
+                                        echo '</tr>';
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
+
             </div>
         </div>
+    </div>
     </div>
     <script src="java.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
