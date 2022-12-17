@@ -1,7 +1,12 @@
 <?php
 
 //bd-user-pass-id
-require('view\partials\gestion_equipos_componentes\conexion.php');
+    $server = "localhost";
+    $user = "root";
+    $password = "";
+    $database = "tis";
+
+    $conexion = mysqli_connect($server, $user, $password, $database);
 
 ?>
 
