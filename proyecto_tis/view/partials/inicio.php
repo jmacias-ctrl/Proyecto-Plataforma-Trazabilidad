@@ -1,11 +1,11 @@
 <center>
-    <div class="card-group">
+    <div >
         <center>
+            <br>
             <H1>Bienvenido: <?php echo $_SESSION['nombre_usuario'] ?></H1>
-
+            <h3>Este es un resumen de tus equipamientos electronicos</h3>
         </center>
-
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <!-- <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                 <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -30,7 +30,9 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
+        </div> -->
+        <br>
+        <?php require "reportes_equipos\graficos\main.php"?>
     </div>
 </center>
 

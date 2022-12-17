@@ -60,102 +60,209 @@ $row8 = mysqli_fetch_assoc($r8);
 $row9 = mysqli_fetch_assoc($r9);
 $row10 = mysqli_fetch_assoc($r10);
 ?>
-<div class="d-flex flex-column shadow container-lg border border-primary rounded my-2 justify-content-center">
-    <h4 class="align-self-center my-3">Trazabilidad de Equipos</h4>
-    <div class="d-flex flex-column container-lg border border-dark rounded my-2 justify-content-center">
-        <h5 class="my-3">>Informacion general de equipos en la organizacion</h5>
-        <div class="row">
-            <div class="col">
-                <p>Cantidad de Equipos Presentes: <?php echo $row1["cantidad_equipos"]; ?> </p>
-            </div>
-            <div class="col">
-                <p>Cantidad de Equipos En Mantencion: <?php echo $row5["cantidad_equipos"]; ?> </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p>Cantidad de Equipos Funcionando: <?php echo $row3["cantidad_equipos"]; ?> </p>
-            </div>
-            <div class="col">
-                <p>Monto invertido en Equipos: $<?php echo $row7["cantidad_monto"]; ?> </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p>Cantidad de Equipos Inactivos: <?php echo $row4["cantidad_equipos"]; ?> </p>
-            </div>
-        </div>
-        <div class=" graph_container col-4 d-inline align-self-center">
-            <?php
-            //Estado del equipo
-            $funcionando = $row3["cantidad_equipos"];
-            $mantencion = $row5["cantidad_equipos"];
-            $inactivos = $row4["cantidad_equipos"];
 
-            $_SESSION['funcionando'] = $funcionando;
-            $_SESSION['mantencion'] = $mantencion;
-            $_SESSION['inactivos'] = $inactivos;
-            require_once "view/partials/reportes_equipos/graficos/chart.php";
-            ?>
-        </div>
-        <h5 class="mt-3">>Cantidad de equipos y costos totales por departamento</h5>
-        <div class="overflow-auto h-25 d-flex flex-column container-lg border border-dark rounded my-2 justify-content-center">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Departamento</th>
-                        <th scope="col">Edificio</th>
-                        <th scope="col">Cantidad de Equipos</th>
-                        <th scope="col">Monto Inveritdo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row2 = mysqli_fetch_assoc($r2)) {
-                        echo "<tr>
-                                <td>" . $row2["nombre_departamento"] . "</td>
-                                <td>" . $row2["nombre_edificio"] . "</td>
-                                <td>" . $row2["cantidad_equipos"] . "</td>
-                                <td>$" . $row2["cantidad_monto"] . "</td>
-                        </tr>";
-                    } ?>
-                </tbody>
-            </table>
-        </div>
-        <h5 class="mt-3">>Cantidad de equipos y costos totales por edificio</h5>
-        <div class="overflow-auto h-25 d-flex flex-column container-lg border border-dark rounded my-2 justify-content-center">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Edificio</th>
-                        <th scope="col">Cantidad de Equipos</th>
-                        <th scope="col">Monto Inveritdo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($row6 = mysqli_fetch_assoc($r6)) {
-                        echo "<tr>
-                                <td>" . $row6["nombre_edificio"] . "</td>
-                                <td>" . $row6["cantidad_equipos"] . "</td>
-                                <td>$" . $row6["cantidad_monto"] . "</td>
-                        </tr>";
-                    } ?>
-                </tbody>
-            </table>
-        </div>
-        <h5 class="mt-3">>Antiguedad de los Equipos en dias</h5>
-        <div class=" graph_container col-4 d-inline align-self-center">
-            <?php
-            $anio_menor_1 = $row8["cantidad_equipos"];
-            $anio_mayor_1 = $row9["cantidad_equipos"];
-            $anio_mayor_3 = $row10["cantidad_equipos"];
+<div id="lucas">
+    <div class="d-flex flex-column shadow container-lg border border-primary rounded my-2 justify-content-center">
+        <h4 class="align-self-center my-3">Trazabilidad de Equipos</h4>
+        <div class="d-flex flex-column container-lg border border-dark rounded my-2 justify-content-center">
+            <h5 class="my-3">>Informacion general de equipos en la organizacion</h5>
+            <div class="row">
+                <div class="col">
+                    <p>Cantidad de Equipos Presentes: <?php echo $row1["cantidad_equipos"]; ?> </p>
+                </div>
+                <div class="col">
+                    <p>Cantidad de Equipos En Mantencion: <?php echo $row5["cantidad_equipos"]; ?> </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>Cantidad de Equipos Funcionando: <?php echo $row3["cantidad_equipos"]; ?> </p>
+                </div>
+                <div class="col">
+                    <p>Monto invertido en Equipos: $<?php echo $row7["cantidad_monto"]; ?> </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>Cantidad de Equipos Inactivos: <?php echo $row4["cantidad_equipos"]; ?> </p>
+                </div>
+            </div>
+            <div class=" graph_container col-4 d-inline align-self-center">
+                <?php
+                //Estado del equipo
+                $funcionando = $row3["cantidad_equipos"];
+                $mantencion = $row5["cantidad_equipos"];
+                $inactivos = $row4["cantidad_equipos"];
 
-            $_SESSION['anio_menor_1'] = $anio_menor_1;
-            $_SESSION['anio_mayor_1'] = $anio_mayor_1;
-            $_SESSION['anio_mayor_3'] = $anio_mayor_3;
+                $_SESSION['funcionando'] = $funcionando;
+                $_SESSION['mantencion'] = $mantencion;
+                $_SESSION['inactivos'] = $inactivos;
+                require_once "view/partials/reportes_equipos/graficos/chart.php";
+                ?>
+            </div>
+            <h5 class="mt-3">>Cantidad de equipos y costos totales por departamento</h5>
+            <div class="overflow-auto h-25 d-flex flex-column container-lg border border-dark rounded my-2 justify-content-center">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Departamento</th>
+                            <th scope="col">Edificio</th>
+                            <th scope="col">Cantidad de Equipos</th>
+                            <th scope="col">Monto Inveritdo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row2 = mysqli_fetch_assoc($r2)) {
+                            echo "<tr>
+                                    <td>" . $row2["nombre_departamento"] . "</td>
+                                    <td>" . $row2["nombre_edificio"] . "</td>
+                                    <td>" . $row2["cantidad_equipos"] . "</td>
+                                    <td>$" . $row2["cantidad_monto"] . "</td>
+                            </tr>";
+                        } ?>
+                    </tbody>
+                </table>
+            </div>
+            <h5 class="mt-3">>Cantidad de equipos y costos totales por edificio</h5>
+            <div class="overflow-auto h-25 d-flex flex-column container-lg border border-dark rounded my-2 justify-content-center">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Edificio</th>
+                            <th scope="col">Cantidad de Equipos</th>
+                            <th scope="col">Monto Inveritdo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row6 = mysqli_fetch_assoc($r6)) {
+                            echo "<tr>
+                                    <td>" . $row6["nombre_edificio"] . "</td>
+                                    <td>" . $row6["cantidad_equipos"] . "</td>
+                                    <td>$" . $row6["cantidad_monto"] . "</td>
+                            </tr>";
+                        } ?>
+                    </tbody>
+                </table>
+            </div>
+            <h5 class="mt-3">>Antiguedad de los Equipos en dias</h5>
+            <div class=" graph_container col-4 d-inline align-self-center">
+                <?php
+                $anio_menor_1 = $row8["cantidad_equipos"];
+                $anio_mayor_1 = $row9["cantidad_equipos"];
+                $anio_mayor_3 = $row10["cantidad_equipos"];
 
-            require_once "view/partials/reportes_equipos/graficos/chart2.php";
-            ?>
+                $_SESSION['anio_menor_1'] = $anio_menor_1;
+                $_SESSION['anio_mayor_1'] = $anio_mayor_1;
+                $_SESSION['anio_mayor_3'] = $anio_mayor_3;
+
+                require_once "view/partials/reportes_equipos/graficos/chart2.php";
+                ?>
+            </div>
         </div>
+
     </div>
-
 </div>
+
+<center class="p-5">
+    <a class="btn btn-outline-danger" onclick="generarPDF()">Descargar PDF</a>
+
+    <!-- <a href="" class="btn btn-outline-danger" >Enviar Correo</a> -->
+</center>
+
+<?php
+
+// the message
+$msg = "First line of text\nSecond line of text";
+
+// use wordwrap() if lines are longer than 70 characters
+$msg = wordwrap($msg,70);
+
+// send email
+$mail = mail("kenderman.8@gmail.com","KenderWebos",$msg);
+
+if($mail){
+    echo "Correo enviado";
+}else{
+    echo "Correo no enviado";
+}
+
+?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    // function generarPDF() {
+    //     setTimeout(() => {
+    //         var element = document.getElementById('lucas');
+
+    //         var opt = {
+    //             margin: 1,
+    //             filename: 'reporte.pdf',
+    //             image: {
+    //                 type: 'jpeg',
+    //                 quality: 0.98
+    //             },
+    //             html2canvas: {
+    //                 scale: 3
+    //             },
+    //             jsPDF: {
+    //                 unit: 'in',
+    //                 format: 'letter',
+    //                 orientation: 'landscape'
+    //             },
+    //             width: 1920,
+    //             height: 1080
+    //         };
+
+    //         html2pdf(element, opt).set({
+    //             pagebreak: {
+    //                 mode: 'css',
+    //                 before: '#page2el'
+    //             }
+    //         });
+
+    //     }, 1000)
+    // }
+
+    function generarPDF() {
+        var element = document.getElementById('lucas');
+
+        var opt = {
+            margin: 1,
+            filename: 'reporte.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 3,
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'landscape'
+            }
+        };
+
+        html2pdf(element, opt).set({
+            pagebreak: {
+                mode: 'legacy',
+                before: '#lucas'
+
+            }
+        });
+    }
+    // function generarPDF(){
+    //     var element = document.getElementById('lucas');
+    //     var opt = {
+    //     margin:       1,
+    //     filename:     'myfile.pdf',
+    //     image:        { type: 'jpeg', quality: 0.98 },
+    //     html2canvas:  { scale: 2 },
+    //     jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    //     };
+
+    //     // New Promise-based usage:
+    //     html2pdf().set(opt).from(element).save();
+    // }
+</script>

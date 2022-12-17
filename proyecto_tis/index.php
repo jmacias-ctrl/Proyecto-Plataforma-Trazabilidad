@@ -11,16 +11,24 @@ if (isset($_SESSION['usuarios'])) {
 </head>
 <body>
     <div class="container">
-        <div style="height:50px;">
-        </div>
+
+        <div style="height:50px;"></div>
+
+        <center>
+            <img style="width:300px" src="view\public\images\heritech\ht_logo.png" alt="a">
+            <h1>Ingreso sistema gestor de equipos</h1>
+            <hr>
+            <br>
+        </center>
+
         <div class="row" id="loginform">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Inicio de sesión
-                            <span class="pull-right"> <a style="text-decoration:none; cursor:pointer; color:white;" id="signup">Registrarse</a></span>
-                            <span class="pull-center"> <a style="text-decoration:none; cursor:pointer; color:white;" href="qr_reader.php">Leer QR</a></span>
-                        </h3>
+                        <h3 class="panel-title">Inicio de sesión </h3>
+                        <br>
+                        <span class="pull-right"> <a class="btn btn-light" id="signup">Registrarse</a></span>
+                        <span class="pull-center"> <a class="btn btn-light" href="qr_reader.php">Leer QR</a></span>
                     </div>
                     <div class="panel-body">
                         <form role="form" id="logform">
@@ -43,9 +51,10 @@ if (isset($_SESSION['usuarios'])) {
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title"> Registrarse
-                            <span class="pull-right"><a style="text-decoration:none; cursor:pointer; color:white;" id="login">Iniciar Sesión</a></span>
-                        </h3>
+                        <h3 class="panel-title"> Registrarse </h3>
+                        <br>
+                        <span class="pull-center"> <a class="btn btn-light" style="visibility:hidden" href="qr_reader.php">Leer QR</a></span>
+                        <span class="pull-right"><a class="btn btn-light" id="login">Iniciar Sesión</a></span>
                     </div>
                     <div class="panel-body">
                         <form role="form" id="signform">
@@ -69,6 +78,8 @@ if (isset($_SESSION['usuarios'])) {
                 </div>
             </div>
         </div>
+
+        <p class="text-center">© 2022 HT. Todos los derechos reservados</p>
 
         <div id="myalert" style="display:none;">
             <div class="col-md-4 col-md-offset-4">
