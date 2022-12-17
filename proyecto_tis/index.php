@@ -19,6 +19,7 @@ if (isset($_SESSION['usuarios'])) {
                     <div class="panel-heading">
                         <h3 class="panel-title">Inicio de sesión
                             <span class="pull-right"> <a style="text-decoration:none; cursor:pointer; color:white;" id="signup">Registrarse</a></span>
+                            <span class="pull-center"> <a style="text-decoration:none; cursor:pointer; color:white;" href="qr_reader.php">Leer QR</a></span>
                         </h3>
                     </div>
                     <div class="panel-body">
