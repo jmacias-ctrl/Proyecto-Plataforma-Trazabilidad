@@ -247,10 +247,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                             onClick="delqr()"></button>
                     </div>
-                    <div class="modal-body">
-                        <div id="qrcode" class="createQrCode" style="width:130px; height:130px; margin-top:15px;"></div>
+                    <div class="modal-body" id='div1'>
+                        <div id="qrcode" class="createQrCode" style="width:130px; height:130px; margin-top:15px;"></div><br>
+                        <p>Id equipo:</p>
+                        <p>Nombre equipo:</p>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-success" onclick='download();'>Descargar</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             onClick="delqr()">Cerrar</button>
                     </div>
@@ -347,6 +350,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         crossorigin="anonymous"></script>
     <script type="text/javascript" src="view/partials/jquery.min.js"></script>
     <script type="text/javascript" src="view/partials/qrcode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" type="text/javascript"></script>
     <script>
         var modalCambioEstado = document.getElementById('cambiarEstado');
 
@@ -401,7 +405,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 width: 130,
                 height: 130
             });
-            qrcode.makeCode("http://localhost/xampp/Proyecto-Plataforma-Trazabilidad-main/proyecto_tis/prueba.php?p=gestion_equipos_componentes/equipos/reporte_equipo&id=" + getID + "");
+            qrcode.makeCode("localhost/xampp/Proyecto-Plataforma-Trazabilidad-main/proyecto_tis/view/partials/gestion_equipos_componentes/equipos/reporte_equipo_qr.php?id=" + getID + "");
         }
     </script>
 
@@ -413,6 +417,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             qr.innerHTML = '';
             qr.pop();
         }
+    </script>
+    <script type="text/javascript">
+      function download() {
+         html2canvas(document.getElementById("div1")).then(function(canvas) {
+            document.body.appendChild(canvas);
+
+            const image = canvas.toDataURL("image/png", 1.0);
+            const link = document.createElement("a");
+
+            link.download = "my-image.png";
+            link.href = image;
+            link.click();
+      });
+     }
     </script>
     <script>
         $(document).ready(function () {
