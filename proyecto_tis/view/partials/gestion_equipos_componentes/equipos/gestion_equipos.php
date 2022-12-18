@@ -429,6 +429,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             link.download = "my-image.png";
             link.href = image;
             link.click();
+            const context = canvas.getContext('2d');
+            $('canvas').remove();
       });
      }
     </script>
