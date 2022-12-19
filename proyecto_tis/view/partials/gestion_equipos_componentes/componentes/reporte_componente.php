@@ -11,7 +11,12 @@ require('conexion.php');
     <br>
     <br>
     <div class="container-xl d-flex flex-column border border-primary rounded">
-        <div><a class="btn btn-borderline-success" href="prueba.php?p=gestion_equipos_componentes/componentes/gestion_componentes&id=<?php print $_GET["id_equipo"]?>" role="button"><span class="material-icons">arrow_back</span></a></div>
+        <div><a class="btn btn-borderline-success" href=<?php
+                                                        if (isset($_GET['general'])) {
+                                                            print "prueba.php?p=gestion_equipos_componentes/componentes/gestion_componentes_general";
+                                                        } else {
+                                                            print "prueba.php?p=gestion_equipos_componentes/componentes/gestion_componentes&id=" . $_GET["id_equipo"];
+                                                        } ?> role="button"><span class="material-icons">arrow_back</span></a></div>
 
         <div class="align-self-center">
             <h4 class="my-4 ">Reporte del Componente</h4>
@@ -31,20 +36,24 @@ require('conexion.php');
                     $modelo = $row["MODELO"];
                     $estado = $row["estado"];
                     $tipo = $row["tipo"];
+                    if ($estado == 'en uso') {
+                        $sql_e = "SELECT nombre_equipo FROM equipos WHERE id_equipo=" . $id_equipo . ";";
+                        $check_e = mysqli_query($conexion, $sql_e);
+                        $row_e = mysqli_fetch_assoc($check_e);
+                        $nombre_equipo = $row_e["nombre_equipo"];
+                    }
 
-                    $sql_e = "SELECT nombre_equipo FROM equipos WHERE id_equipo=" . $id_equipo . ";";
-                    $check_e = mysqli_query($conexion, $sql_e);
-                    $row_e = mysqli_fetch_assoc($check_e);
-
-                    $nombre_equipo = $row_e["nombre_equipo"];
 
                     echo '<li class="list-group-item">ID componente: ' . $id_componente . '</li>';
                     echo '<li class="list-group-item">Nombre del componente: ' . $nombre . '</li>';
                     echo '<li class="list-group-item">Marca del componente: ' . $marca . '</li>';
                     echo '<li class="list-group-item">Modelo del componente: ' . $modelo . '</li>';
                     echo '<li class="list-group-item">Estado: ' . $estado . '</li>';
-                    echo '<li class="list-group-item">Siendo utilizado por el equipo id:' . $id_equipo . '</li>';
-                    echo '<li class="list-group-item">Nombre del equipo: ' . $nombre_equipo . '</li>';
+                    if ($estado == 'en uso') {
+                        echo '<li class="list-group-item">Siendo utilizado por el equipo id:' . $id_equipo . '</li>';
+                        echo '<li class="list-group-item">Nombre del equipo: ' . $nombre_equipo . '</li>';
+                    }
+
                     echo '<li class="list-group-item">Tipo de componente: ' . $tipo . '</li>';
                 }
             }
@@ -81,7 +90,7 @@ require('conexion.php');
                         $row_t = mysqli_fetch_assoc($check_t);
                         $factorFormaPB = $row_t["FACTOR_DE_FORMA"];
                         $pbSocket = $row_t["CPU_SOCKET"];
-                        $soporteMemoria = $row_tT["SOPORTE_MEMORIA"];
+                        $soporteMemoria = $row_t["SOPORTE_MEMORIA"];
                         $pbCaracteristicas = $row_t["CARACTERISTICAS"];
                         echo "<thead>";
                         echo "<tr>";
@@ -101,7 +110,7 @@ require('conexion.php');
                         $ramVelocidadFrequencia = $row_t["VELOCIDAD_FRECUENCIA"];
                         echo "<thead>";
                         echo "<tr>";
-                        echo '<li class="list-group-item">Cantidad de memoria: ' . $ramMemoria . '</li>';
+                        echo '<li class="list-group-item">Cantidad de memoria: ' . $ramMemoria . ' GB</li>';
                         echo '<li class="list-group-item">Tecnología de memoria: ' . $ramTecnologia . '</li>';
                         echo '<li class="list-group-item">Velocidad de Frecuencia: ' . $ramVelocidadFrequencia . '</li>';
                         echo '</tr>';
@@ -121,7 +130,7 @@ require('conexion.php');
 
                         echo "<thead>";
                         echo "<tr>";
-                        echo '<li class="list-group-item">Capacidad del Disco: ' . $discoCapacidad . '</li>';
+                        echo '<li class="list-group-item">Capacidad del Disco: ' . $discoCapacidad . ' GB</li>';
                         echo '<li class="list-group-item">Tipo de disco: ' . $tipoDisco . '</li>';
                         echo '</tr>';
                         echo '</thead>';

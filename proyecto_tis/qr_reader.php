@@ -22,7 +22,7 @@ if (isset($_SESSION['usuarios'])) {
                     </div>
                     <div class="panel-body">
                         <input type="file" id="file">
-                        <span hidden="hidden" id="content"></span>
+                        <span id="content"></span>
                         <script type="text/javascript" src="qrReader.js"></script>
                     </div>
                 </div>

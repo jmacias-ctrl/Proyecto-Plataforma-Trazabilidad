@@ -15,7 +15,8 @@
             Gestión
           </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-            <li><a class="dropdown-item" href="prueba.php?p=gestion_equipos_componentes\equipos\gestion_equipos">Equipos y Componentes</a></li>
+            <li><a class="dropdown-item" href="prueba.php?p=gestion_equipos_componentes\equipos\gestion_equipos">Equipos</a></li>
+            <li><a class="dropdown-item" href="prueba.php?p=gestion_equipos_componentes\componentes\gestion_componentes_general">Componentes</a></li>
             <li><a class="dropdown-item" href="prueba.php?p=gestion_mantenciones/gestion_mantenciones">Mantenciones</a></li>
             <li><a class="dropdown-item" href="prueba.php?p=gestion_mantenedores/gestion_mantenedores">Mantenedores</a></li>
             <li><a class="dropdown-item" href="prueba.php?p=gestion_departamentos_edificios/gestion_edificios">Edificios y Departamentos</a></li>
