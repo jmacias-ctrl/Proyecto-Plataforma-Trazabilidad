@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 ?>
 <title> Gestión de Edificios </title>
+
 <body>
     <div class="container-sm align-items-center">
         <h1 class="my-3">Gestión de Edificios</h1>
@@ -62,12 +63,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <span class="input-group-text" id="inputGroup-sizing-default">Tipo Edificio</span>
                                     <input type="text" class="form-control" aria-label="tipo_edificio" name="tipo_edificio" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
-
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Comuna</span>
-                                    <textarea type="number" class="form-control" aria-label="cod_ine_com" name="cod_ine_com" aria-describedby="inputGroup-sizing-default" required></textarea>
-                                </div>
+                                    <span class="input-group-text">Comuna</span>
+                                    <select class="form-select" aria-label="Comunas" name='cod_ine_com' required>
+                                        <option selected disabled>Selecciona una comuna</option>
+                                        <?php
+                                        $qComuna = "SELECT * FROM comunas;";
+                                        $rComuna = mysqli_query($conexion, $qComuna);
 
+                                        while ($rowComuna = mysqli_fetch_assoc($rComuna)) {
+                                            echo "<option value=" . $rowComuna['COD_INE_COM'] . ">" . $rowComuna['NOMBRE'] . "</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
                             </div>
 
                         </div>
@@ -217,10 +226,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         })
     </script>
     <script>
-        $(document).ready(function () {
-            $("#inputFilter").on("keyup", function () {
+        $(document).ready(function() {
+            $("#inputFilter").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
-                $("#infoGestion tr").filter(function () {
+                $("#infoGestion tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });

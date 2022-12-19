@@ -88,8 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <!-- Modal -->
         </div>
-        <div class="modal fade" name="insertarMantenciones" id="insertarMantenciones" data-bs-backdrop="static"
-            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal fade" name="insertarMantenciones" id="insertarMantenciones" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -114,8 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Mantenedor a
                                         Cargo</span>
-                                    <select class="form-select" aria-label="mantenedorACargo" name="mantenedorACargo"
-                                        required>
+                                    <select class="form-select" aria-label="mantenedorACargo" name="mantenedorACargo" required>
                                         <option selected disabled value="">Seleccione un Mantenedor</option>
                                         <?php
                                         $q1 = "SELECT * FROM mantenedores;";
@@ -150,8 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" class="btn btn-primary" name="insertBoton"
-                                id="insertBoton">Ingresar</button>
+                            <button type="submit" class="btn btn-primary" name="insertBoton" id="insertBoton">Ingresar</button>
                         </div>
                     </form>
                 </div>
@@ -173,8 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="deletedata" id="deletedata"
-                                class="btn btn-danger">Eliminar</button>
+                            <button type="submit" name="deletedata" id="deletedata" class="btn btn-danger">Eliminar</button>
                         </div>
                     </form>
                 </div>
@@ -195,8 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="submit" name="confirmTerminacionMantencion" id="confirmTerminacionMantencion"
-                                class="btn btn-success">Confirmar Terminacion</button>
+                            <button type="submit" name="confirmTerminacionMantencion" id="confirmTerminacionMantencion" class="btn btn-success">Confirmar Terminacion</button>
                         </div>
                     </form>
                 </div>
@@ -229,8 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Mantenedor a
                                         Cargo</span>
-                                    <select class="form-select" aria-label="mantenedorACargo" name="mantenedorACargo"
-                                        required>
+                                    <select class="form-select" aria-label="mantenedorACargo" name="mantenedorACargo" required>
                                         <option selected disabled value="">Seleccione un Mantenedor</option>
                                         <?php
                                         $q1 = "SELECT * FROM mantenedores;";
@@ -276,13 +270,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- Tabla -->
         <div class="container-xl d-flex flex-column border border-primary rounded">
             <div class="align-self-center">
-                <h4 class="my-4 ">Listado de Mantenciones Activas</h4>
+                <h4 class="my-4 ">Listado de Mantenciones Activas y Pasadas</h4>
             </div>
             <div class="table-responsive caption-top">
                 <table class="table mb-5" id="infoMantencion1">
                     <thead>
                         <tr>
-                            <th scope="col"></th>
+                            <th scope="col">Terminar Mantencion</th>
                             <th scope="col">ID</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">ID Equipo</th>
@@ -339,31 +333,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <button type="button" id="modify" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modificarMantenciones" data-bs-whatever="' . $id . '"> <span class="material-icons">edit</span> </button>';
                             echo '</tr>';
                         }
-                        ?>
-                    </tbody>
-                </table>
-
-            </div>
-            <div class="align-self-center">
-                <h4 class="mt-5 ">Listado de Mantenciones Pasadas</h4>
-            </div>
-            <div class="table-responsive caption-top">
-                <table class="table" id="infoMantencion2">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">ID Equipo</th>
-                            <th scope="col">Nombre Equipo</th>
-                            <th scope="col">Tipo de Mantención</th>
-                            <th scope="col">Fecha de Mantención</th>
-                            <th scope="col">Nombre Mantenedor a Cargo</th>
-                            <th scope="col">Rut Mantenedor a Cargo</th>
-                            <th scope="col mx-auto">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
+                        echo '<tr><tr/>';
                         $q1 = "SELECT mantenciones.* FROM mantenciones, equipos, edificios, departamentos, organizaciones WHERE mantenciones.id_equipo = equipos.id_equipo AND equipos.id_departamento = departamentos.id_departamento 
                         AND departamentos.id_edificio = edificios.id_edificio AND edificios.id_organizaciones = organizaciones.id AND organizaciones.id = " . $_SESSION['id_organizacion'] . " AND en_marcha = false;";
                         $r1 = mysqli_query($conexion, $q1);
@@ -394,6 +364,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             $nombre_equipo = $rr4["nombre_equipo"];
 
                             echo '<tr>';
+                            echo '<td>  </td>';
                             echo '<td>' . $id . '</td>';
                             echo '<td>' . $nombre . '</td>';
                             echo '<td>' . $id_equipo . '</td>';
@@ -413,19 +384,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
     </div>
     <script src="java.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script type="text/javascript" src="view/partials/jquery.min.js"></script>
     <script>
         var modalDelete = document.getElementById('confirmacionEliminar')
-        modalDelete.addEventListener('show.bs.modal', function (event) {
+        modalDelete.addEventListener('show.bs.modal', function(event) {
             var buttonDelete = event.relatedTarget
             var attributeDelete = buttonDelete.getAttribute('data-bs-whatever')
             var modal_id_delete = modalDelete.querySelector('.deleteForm')
@@ -434,7 +399,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </script>
     <script>
         var modalTermino = document.getElementById('confirmacionMantencionRealizado')
-        modalTermino.addEventListener('show.bs.modal', function (event) {
+        modalTermino.addEventListener('show.bs.modal', function(event) {
             var buttonTermino = event.relatedTarget
             var attributeDelete = buttonTermino.getAttribute('data-bs-whatever')
             var modal_id_termino = modalTermino.querySelector('.terminoForm')
@@ -443,7 +408,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </script>
     <script>
         var modalModify = document.getElementById('modificarMantenciones')
-        modalModify.addEventListener('show.bs.modal', function (event) {
+        modalModify.addEventListener('show.bs.modal', function(event) {
             var modifyButton = event.relatedTarget
             // Extract info from data-bs-* attributes
             var attributeModify = modifyButton.getAttribute('data-bs-whatever')
@@ -460,13 +425,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         })
     </script>
     <script>
-        $(document).ready(function () {
-            $("#inputFilter").on("keyup", function () {
+        $(document).ready(function() {
+            $("#inputFilter").on("keyup", function() {
                 var value = $(this).val().toLowerCase();
-                $("#infoMantencion1 tr").filter(function () {
+                $("#infoMantencion1 tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
-                $("#infoMantencion2 tr").filter(function () {
+                $("#infoMantencion2 tr").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });

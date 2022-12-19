@@ -130,7 +130,7 @@ $row10 = mysqli_fetch_assoc($r10);
                         <tr>
                             <th scope="col">Edificio</th>
                             <th scope="col">Cantidad de Equipos</th>
-                            <th scope="col">Monto Inveritdo</th>
+                            <th scope="col">Monto Invertido</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -145,7 +145,7 @@ $row10 = mysqli_fetch_assoc($r10);
                 </table>
             </div>
             <h5 class="mt-3">>Antiguedad de los Equipos en dias</h5>
-            <div class=" graph_container col-4 d-inline align-self-center">
+            <div class=" graph_container col-6 d-inline align-self-center">
                 <?php
                 $anio_menor_1 = $row8["cantidad_equipos"];
                 $anio_mayor_1 = $row9["cantidad_equipos"];
@@ -191,67 +191,38 @@ if($mail){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>
-    // function generarPDF() {
-    //     setTimeout(() => {
-    //         var element = document.getElementById('lucas');
+     function generarPDF() {
+         setTimeout(() => {
+             var element = document.getElementById('lucas');
 
-    //         var opt = {
-    //             margin: 1,
-    //             filename: 'reporte.pdf',
-    //             image: {
-    //                 type: 'jpeg',
-    //                 quality: 0.98
-    //             },
-    //             html2canvas: {
-    //                 scale: 3
-    //             },
-    //             jsPDF: {
-    //                 unit: 'in',
-    //                 format: 'letter',
-    //                 orientation: 'landscape'
-    //             },
-    //             width: 1920,
-    //             height: 1080
-    //         };
+             var opt = {
+                 margin: 1,
+                 filename: 'reporte.pdf',
+                 image: {
+                     type: 'jpeg',
+                     quality: 0.98
+                 },
+                 html2canvas: {
+                     scale: 3
+                 },
+                 jsPDF: {
+                     unit: 'in',
+                     format: 'letter',
+                     orientation: 'landscape'
+                 },
+                 width: 1920,
+                 height: 1080
+             };
 
-    //         html2pdf(element, opt).set({
-    //             pagebreak: {
-    //                 mode: 'css',
-    //                 before: '#page2el'
-    //             }
-    //         });
+             html2pdf(element, opt).set({
+                 pagebreak: {
+                     mode: 'css',
+                     before: '#page2el'
+                 }
+             });
 
-    //     }, 1000)
-    // }
-
-    function generarPDF() {
-        var element = document.getElementById('lucas');
-
-        var opt = {
-            margin: 1,
-            filename: 'reporte.pdf',
-            image: {
-                type: 'jpeg',
-                quality: 0.98
-            },
-            html2canvas: {
-                scale: 3,
-            },
-            jsPDF: {
-                unit: 'in',
-                format: 'letter',
-                orientation: 'landscape'
-            }
-        };
-
-        html2pdf(element, opt).set({
-            pagebreak: {
-                mode: 'legacy',
-                before: '#lucas'
-
-            }
-        });
-    }
+         }, 1000)
+     }
     // function generarPDF(){
     //     var element = document.getElementById('lucas');
     //     var opt = {

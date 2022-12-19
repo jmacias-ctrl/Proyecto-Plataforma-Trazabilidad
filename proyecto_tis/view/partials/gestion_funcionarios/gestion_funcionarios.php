@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="align-self-center">
                 <h4 class="my-4 ">Listado de Funcionarios</h4>
             </div>
-            <div class="table-responsive caption-top">
+            <div class="table-responsive caption-top overflow-auto">
                 <table class="table" id="infoEquipo">
                     <thead>
                         <tr>
