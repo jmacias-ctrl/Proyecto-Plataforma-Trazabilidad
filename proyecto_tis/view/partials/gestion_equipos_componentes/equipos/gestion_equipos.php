@@ -249,8 +249,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="modal-body" id='div1'>
                         <div id="qrcode" class="createQrCode" style="width:130px; height:130px; margin-top:15px;"></div><br>
-                        <p>Id equipo:</p>
-                        <p>Nombre equipo:</p>
+                        <p style="display: inline-block;">Id equipo:</p> <span id="id_display"></span><br>
+                        <p style="display: inline-block;">Nombre equipo:</p><span id="nombre_display"></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" onclick='download();'>Descargar</button>
@@ -328,7 +328,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             echo '<td> <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmacionEliminar" data-bs-whatever="' . $id . '" ><span class="material-icons">delete</span></button>  
                             <button type="button" id="modify" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modificarEquipo" data-bs-whatever="' . $id . '"> <span class="material-icons">edit</span> </button>
                             <a class="btn btn-outline-info" href="prueba.php?p=gestion_equipos_componentes/componentes/gestion_componentes&id=' . $id . '" role="button"> <span class="material-icons"> computer </span> </a>
-                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#generarQR" data-bs-whatever="' . $id . '" onclick= "crearQR(this)"><span class="material-icons"> qr_code </span></button> </td>';
+                            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#generarQR" data-bs-whatever="' . $id . '" onclick= "crearQR(this); rename('.$id.', \''.$nombre.'\')"><span class="material-icons"> qr_code </span></button> </td>';
                             echo '</tr>';
                         }
                         ?>
@@ -429,6 +429,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             link.download = "my-image.png";
             link.href = image;
             link.click();
+            $('canvas').remove();
       });
      }
     </script>
@@ -441,6 +442,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 });
             });
         });
+    </script>
+    <script type="text/javascript">
+        var id_span = document.getElementById("id_display");
+        var nombre_span = document.getElementById("nombre_display");
+        function rename(id, nombre) {
+            console.log(id);
+            console.log(nombre);
+            id_span.textContent= id;
+            nombre_span.textContent= " "+ nombre;
+     }
     </script>
 </body>
 
