@@ -15,7 +15,6 @@ $id_equipo = $_SESSION['id_equipo'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST["deletedata"])) {
         $idComponente = $_POST["delete_id"];
-        echo $idComponente;
         $query = "DELETE FROM componentes WHERE id_componente=" . $idComponente . ";";
         $resultado = mysqli_query($conexion, $query);
     } else if (isset($_POST["moverdata"])) {
@@ -96,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="col">
                                 <a class="btn btn-borderline-success" href="prueba.php?p=gestion_equipos_componentes/equipos/gestion_equipos" role="button"><span class="material-icons">arrow_back</span></a>
                             </div>
-                            <div class="col-8">
+                            <div class="col">
 
                                 <?php
                                 $q1 = "SELECT nombre_equipo FROM equipos WHERE id_equipo=" . $id_equipo . ";";
@@ -475,6 +474,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Marca</th>
                                     <th scope="col">Modelo</th>
+                                    <th scope="col">Tipo</th>
                                     <th scope="col">Acciones</th>
                                 </tr>
                             </thead>
@@ -487,16 +487,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     $nombre = $row["NOMBRE"];
                                     $marca = $row["MARCA"];
                                     $modelo = $row["MODELO"];
+                                    $tipo = $row["tipo"];
                                     echo '<tr>';
                                     echo '<td><a class="btn btn-outline-info" href="prueba.php?p=gestion_equipos_componentes/componentes/reporte_componente&id=' . $id . '&id_equipo=' . $id_equipo . '" role="button"><span class="material-symbols-outlined">info</span> </a></td>';
                                     echo '<td>' . $id . '</td>';
                                     echo '<td>' . $nombre . '</td>';
                                     echo '<td>' . $marca . '</td>';
                                     echo '<td>' . $modelo . '</td>';
+                                    echo '<td>' . $tipo . '</td>';
                                     echo '<td>
                                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmacionEliminar" data-bs-whatever="' . $id . '" ><span class="material-symbols-outlined"> delete </span> </button>
-                                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#moverBodega" data-bs-whatever="' . $id . '" ><span class="material-symbols-outlined"> inventory_2 </span> </button>
-                                    <button type="button" class="btn btn-outline-primary"><span class="material-icons">edit</span> </button> </td>';
+                                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#moverBodega" data-bs-whatever="' . $id . '" ><span class="material-symbols-outlined"> inventory_2 </span> </button></td>';
                                     echo '</tr>';
                                 }
                                 ?>
@@ -514,7 +515,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script>
         var modal = document.getElementById('confirmacionEliminar')
-        var modalId = modal.querySelector('.deleteForm')
+        var modal_id_delete = modal.querySelector('.deleteForm')
         modal.addEventListener('show.bs.modal', function(event) {
             var buttonDelete = event.relatedTarget
             var attributeDelete = buttonDelete.getAttribute('data-bs-whatever')

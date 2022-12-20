@@ -17,13 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $rutModificado = $_POST["rut_funcionario"];
         $tipo = $_POST["tipo"];
         $nombre = $_POST["nombre_funcionario"];
-        $sql = "UPDATE funcioanrios SET nombre ='" . $nombre . "', rut=" . $rutModificado . ", tipo='" . $tipo . "' WHERE rut_funcionario=" . $rutConsultado . ";";
+        $sql = "UPDATE funcionarios SET nombre_funcionario ='" . $nombre . "', rut_funcionario=" . $rutModificado . ", tipo='" . $tipo . "' WHERE rut_funcionario=" . $rutConsultado . ";";
         $resultado = mysqli_query($conexion, $sql);
     }
 }
 
 ?>
-<title> Gestión de Funcionarios</title>
+<title>Reporte de Componentes</title>
 
 <body>
     <div class="container-sm align-items-center">
@@ -60,15 +60,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="container-sm">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Nombre del Funcionario</span>
-                                    <input type="text" aria-label="nombre_funcionario" name="nombre_funcionario" class="form-control">
+                                    <input type="text" aria-label="nombre_funcionario" name="nombre_funcionario" class="form-control" required> 
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Rut del Funcionario</span>
-                                    <input type="text" aria-label="rut_funcionario" name="rut_funcionario" class="form-control">
+                                    <input type="text" aria-label="rut_funcionario" name="rut_funcionario" class="form-control" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Tipo de Funcionario</span>
-                                    <input type="text" aria-label="tipo" name="tipo" class="form-control">
+                                    <input type="text" aria-label="tipo" name="tipo" class="form-control" required>
                                 </div>
                             </div>
 
@@ -117,15 +117,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="hidden" class="modifyForm" name="modify_id" id="modify_id">
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Nombre del Funcionario</span>
-                                <input type="text" aria-label="nombre_funcionario" name="nombre_funcionario" class="form-control">
+                                <input type="text" aria-label="nombre_funcionario" name="nombre_funcionario" class="form-control" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Rut del Funcionario</span>
-                                <input type="text" aria-label="rut_funcionario" name="rut_funcionario" class="form-control">
+                                <input type="text" aria-label="rut_funcionario" name="rut_funcionario" class="form-control" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text">Tipo de Funcionario</span>
-                                <input type="text" aria-label="tipo" name="tipo" class="form-control">
+                                <input type="text" aria-label="tipo" name="tipo" class="form-control" required>
                             </div>
                         </div>
                         <div class="modal-footer">

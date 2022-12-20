@@ -10,9 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id_equipo = $_POST["idequipo"];
         if ($id_equipo == 'none') {
             $query = "UPDATE componentes SET estado = 'en bodega', id_equipo = null WHERE id_componente = " . $idComponente;
-        } else if($id_equipo == 'mal estado'){
+        } else if ($id_equipo == 'mal estado') {
             $query = "UPDATE componentes SET estado = 'mal estado', id_equipo = null WHERE id_componente = " . $idComponente;
-        }else{
+        } else {
             $query = "UPDATE componentes SET estado = 'en uso', id_equipo = " . $id_equipo . " WHERE id_componente = " . $idComponente;
         }
         $resultado = mysqli_query($conexion, $query);
@@ -89,20 +89,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 ?>
-<title> Gestion de Componentes </title>
+<title> Gestion de Componentes General </title>
 
 <body>
     <div class="container-sm align-items-center">
-        <h1 class="my-3">Gestión de Componentes</h1>
+        <h1 class="my-3">Gestión de Componentes General</h1>
         <div class="container-sm d-flex align-items-center border border-primary-2 rounded py-3">
             <div class="container aling-self-center">
                 <div class="container-sm d-flex align-items-center border border-primary-2 rounded py-3">
                     <div class="container aling-self-center">
-                        <div class="row"></div>
                         <div class="row row-cols-auto d-flex align-items-center">
                             <div class="col">
                                 <div class="dropdown">
-                                    <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="btn btn-primary dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                         Insertar Nuevo Componente
                                     </a>
 
@@ -503,7 +502,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                    <button type="submit" name="revertirBaja" class="btn btn-danger">Eliminar</button>
+                                    <button type="submit" name="revertirBaja" class="btn btn-danger">Revertir</button>
                                 </div>
                             </form>
                         </div>
@@ -581,6 +580,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <th scope="col">Modelo</th>
                                         <th scope="col">Cantidad Usos</th>
                                         <th scope="col">Estado</th>
+                                        <th scope="col">tipo</th>
                                         <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
@@ -596,6 +596,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         $cantidausos = $row["cantidad_usos"];
                                         $modelo = $row["MODELO"];
                                         $estado = $row["estado"];
+                                        $tipo =  $row["tipo"];
                                         echo '<tr>';
                                         echo '<td><a class="btn btn-outline-info" href="prueba.php?p=gestion_equipos_componentes/componentes/reporte_componente&id=' . $id . '&general=1" role="button"><span class="material-symbols-outlined">info</span> </a></td>';
                                         echo '<td>' . $id . '</td>';
@@ -604,12 +605,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         echo '<td>' . $modelo . '</td>';
                                         echo '<td>' . $cantidausos . ' veces</td>';
                                         echo '<td>' . $estado . '</td>';
+                                        echo '<td>' . $tipo . '</td>';
                                         echo '<td> 
                                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmacionEliminarComponente" data-bs-whatever="' . $id . '" ><span class="material-icons">delete</span></button>';
                                         if ($estado == 'mal estado') {
                                             echo '<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#revertirBajaComponente" data-bs-whatever="' . $id . '" ><span class="material-symbols-outlined">undo</span></button>';
                                         } else {
-                                            echo '<button type="button" class="btn btn-outline-primary"><span class="material-icons">edit</span> </button>
+                                            echo '
                                             <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#cambioEquipo" data-bs-whatever="' . $id . '" ><span class="material-symbols-outlined">swap_horiz</span></button></td>';
                                         }
 
@@ -632,14 +634,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <script>
         var modalEliminar = document.getElementById('confirmacionEliminarComponente')
-        var modalId = modalEliminar.querySelector('.deleteComponenteForm')
+        var modalIdDelete = modalEliminar.querySelector('.deleteComponenteForm')
         modalEliminar.addEventListener('show.bs.modal', function(event) {
             // Button that triggered the modal
             var button = event.relatedTarget
             // Extract info from data-bs-* attributes
             var recipient = button.getAttribute('data-bs-whatever')
             // Update the modal's content.
-            modalId.value = recipient
+            modalIdDelete.value = recipient
         })
     </script>
 

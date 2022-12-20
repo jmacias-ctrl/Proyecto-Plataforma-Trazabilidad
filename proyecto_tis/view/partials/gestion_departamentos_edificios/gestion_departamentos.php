@@ -1,6 +1,6 @@
 <?php
 require('conexion.php');
-if(!isset($_SESSION['id_edificio']))
+if(isset($_GET['id']))
 $_SESSION['id_edificio'] = $_GET['id'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['insertBoton'])) {
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <input type="hidden" name="id_edificio" value=<?php print $_SESSION['id_edificio'] ?>>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Nombre Departamento</span>
-                                    <input type="text" aria-label="nombre_departamento" name="nombre_departamento" class="form-control">
+                                    <input type="text" aria-label="nombre_departamento" name="nombre_departamento" class="form-control" required>
                                 </div>
 
                             </div>
@@ -124,7 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <input type="hidden" name="id_edificio" value=<?php print $_SESSION['id_edificio'] ?>>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Nombre Departamento</span>
-                                    <input type="text" aria-label="nombre_departamento" name="nombre_departamento" class="form-control">
+                                    <input type="text" aria-label="nombre_departamento" name="nombre_departamento" class="form-control" required>
                                 </div>
                             </div>
 

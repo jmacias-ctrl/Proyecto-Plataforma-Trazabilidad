@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <head>
-    <title>Gestión de Equipos - Trazabilidad de Equipo</title>
+    <title>Gestión de Equipos</title>
 </head>
 
 <body>
@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container-sm d-flex align-items-center border border-primary-2 rounded py-3">
             <div class="container aling-self-center">
                 <div class="row row-cols-auto d-flex align-items-center">
-                    <div class="col-8">
+                    <div class="col">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                             data-bs-target="#insertarEquipo">
                             Insertar Nuevo Equipo

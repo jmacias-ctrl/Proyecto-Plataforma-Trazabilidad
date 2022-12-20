@@ -58,11 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="container-sm">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Nombre del Mantenedor</span>
-                                    <input type="text" aria-label="nombre_mantenedor" name="nombre_mantenedor" class="form-control">
+                                    <input type="text" aria-label="nombre_mantenedor" name="nombre_mantenedor" class="form-control" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Rut del Mantenedor</span>
-                                    <input type="text" aria-label="rut_mantenedor" name="rut_mantenedor" class="form-control">
+                                    <input type="text" aria-label="rut_mantenedor" name="rut_mantenedor" class="form-control" required>
                                 </div>
                             </div>
 

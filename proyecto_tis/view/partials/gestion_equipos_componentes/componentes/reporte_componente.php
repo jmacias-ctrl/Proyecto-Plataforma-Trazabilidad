@@ -5,7 +5,7 @@ require('conexion.php');
 
 ?>
 
-
+<title>Reporte de Componentes</title>
 <body>
     <br>
     <br>

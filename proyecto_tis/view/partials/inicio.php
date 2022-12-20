@@ -24,6 +24,7 @@ $row3 = mysqli_fetch_assoc($r3);
 $row4 = mysqli_fetch_assoc($r4);
 $row5 = mysqli_fetch_assoc($r5);
 ?>
+<title>Inicio</title>
 <center>
     <div>
         <center>

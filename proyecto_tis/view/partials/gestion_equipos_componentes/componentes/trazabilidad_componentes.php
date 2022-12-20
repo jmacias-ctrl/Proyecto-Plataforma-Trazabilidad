@@ -1,5 +1,5 @@
 <?php
-require('view\partials\gestion_equipos_componentes\conexion.php');
+require('conexion.php');
 $q1 = "SELECT componentes.*, count(componentes.estado) as cantidad_componente FROM componentes LEFT JOIN equipos using(id_equipo) JOIN departamentos using(id_departamento) JOIN edificios using(id_edificio) JOIN organizaciones on(edificios.id_organizaciones=organizaciones.id)  
 WHERE organizaciones.id =" . $_SESSION["id_organizacion"] . "
 AND componentes.estado = 'en uso';";
@@ -50,11 +50,15 @@ $row8 = mysqli_fetch_assoc($r8);
 $row9 = mysqli_fetch_assoc($r9);
 $row10 = mysqli_fetch_assoc($r10);
 ?>
+<title>Trazabilidad de Componentes</title>
 
 <body>
     <div class="container-sm align-items-center">
         <div class="d-flex flex-column shadow container-lg border border-primary rounded my-2 justify-content-center">
             <h4 class="align-self-center my-3">Trazabilidad de Componentes</h4>
+            <form action="view\partials\gestion_equipos_componentes\componentes\generarPDFComponentes.php?id_organizacion=<?php print $_SESSION["id_organizacion"] ?>" method="post">
+                <input type="submit" class="btn btn-danger align-self-end" name="pdfDownload" value="Descargar PDF" />
+            </form>
             <div class="d-flex flex-column container-lg border border-dark rounded my-2 justify-content-center">
                 <h5 class="my-3">>Cantidad de Componentes:</h5>
                 <div class="row">

@@ -60,10 +60,13 @@ $row8 = mysqli_fetch_assoc($r8);
 $row9 = mysqli_fetch_assoc($r9);
 $row10 = mysqli_fetch_assoc($r10);
 ?>
-
-<div id="lucas">
+<title>Trazabilidad de Equipos</title>
+<div>
     <div class="d-flex flex-column shadow container-lg border border-primary rounded my-2 justify-content-center">
         <h4 class="align-self-center my-3">Trazabilidad de Equipos</h4>
+        <form action="view\partials\reportes_equipos/graficos/generarPDFEquipos.php?id_organizacion=<?php print $_SESSION["id_organizacion"] ?>" method="post">
+            <input type="submit" class="btn btn-danger align-self-end" name="pdfDownload" value="Descargar PDF" />
+        </form>
         <div class="d-flex flex-column container-lg border border-dark rounded my-2 justify-content-center">
             <h5 class="my-3">>Informacion general de equipos en la organizacion</h5>
             <div class="row">
@@ -99,6 +102,8 @@ $row10 = mysqli_fetch_assoc($r10);
                 $_SESSION['inactivos'] = $inactivos;
                 require_once "view/partials/reportes_equipos/graficos/chart.php";
                 ?>
+
+
             </div>
             <h5 class="mt-3">>Cantidad de equipos y costos totales por departamento</h5>
             <div class="overflow-auto h-25 d-flex flex-column container-lg border border-dark rounded my-2 justify-content-center">
@@ -162,78 +167,3 @@ $row10 = mysqli_fetch_assoc($r10);
 
     </div>
 </div>
-
-<center class="p-5">
-    <a class="btn btn-outline-danger" onclick="generarPDF()">Descargar PDF</a>
-
-    <!-- <a href="" class="btn btn-outline-danger" >Enviar Correo</a> -->
-</center>
-
-<?php
-
-// the message
-$msg = "First line of text\nSecond line of text";
-
-// use wordwrap() if lines are longer than 70 characters
-$msg = wordwrap($msg,70);
-
-// send email
-$mail = mail("kenderman.8@gmail.com","KenderWebos",$msg);
-
-if($mail){
-    echo "Correo enviado";
-}else{
-    echo "Correo no enviado";
-}
-
-?>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script>
-     function generarPDF() {
-         setTimeout(() => {
-             var element = document.getElementById('lucas');
-
-             var opt = {
-                 margin: 1,
-                 filename: 'reporte.pdf',
-                 image: {
-                     type: 'jpeg',
-                     quality: 0.98
-                 },
-                 html2canvas: {
-                     scale: 3
-                 },
-                 jsPDF: {
-                     unit: 'in',
-                     format: 'letter',
-                     orientation: 'landscape'
-                 },
-                 width: 1920,
-                 height: 1080
-             };
-
-             html2pdf(element, opt).set({
-                 pagebreak: {
-                     mode: 'css',
-                     before: '#page2el'
-                 }
-             });
-
-         }, 1000)
-     }
-    // function generarPDF(){
-    //     var element = document.getElementById('lucas');
-    //     var opt = {
-    //     margin:       1,
-    //     filename:     'myfile.pdf',
-    //     image:        { type: 'jpeg', quality: 0.98 },
-    //     html2canvas:  { scale: 2 },
-    //     jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-    //     };
-
-    //     // New Promise-based usage:
-    //     html2pdf().set(opt).from(element).save();
-    // }
-</script>

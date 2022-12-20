@@ -4,10 +4,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['insertBoton'])) {
         $nombre_recibido = $_POST["nombre_edificio"];
         $tipo_recibido = $_POST["tipo_edificio"];
-        $org_recibida = $_POST["id_organizacion"];
+        $org_recibida = $_SESSION["id_organizacion"];
         $comuna_recibida = $_POST["cod_ine_com"];
 
-        $sql = "INSERT INTO edificios(id_edificio, nombre_edificio, tipo_edificio, id_organizaciones, cod_ine_com) VALUES(2, '$nombre_recibido ',' $tipo_recibido','$org_recibida', '$comuna_recibida')";
+        $sql = "INSERT INTO edificios(id_edificio, nombre_edificio, tipo_edificio, id_organizaciones, cod_ine_com) VALUES(default, '$nombre_recibido ',' $tipo_recibido','$org_recibida', '$comuna_recibida')";
         $resultado = mysqli_query($conexion, $sql);
     } else if (isset($_POST['deletedata'])) {
         $id_consultado = $_POST['delete_id'];
@@ -15,6 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sql = "DELETE FROM edificios WHERE id_edificio='$id_consultado'";
         $resultado = mysqli_query($conexion, $sql);
     } else if (isset($_POST['modificarData'])) {
+        $id = $_POST['modify_id'];
+        $nombre_recibido = $_POST["nombre_edificio"];
+        $tipo_recibido = $_POST["tipo_edificio"];
+        $comuna_recibida = $_POST["cod_ine_com"];
+        $sql = "UPDATE edificios SET nombre_edificio='$nombre_recibido', tipo_edificio='$tipo_recibido', cod_ine_com=$comuna_recibida WHERE id_edificio=$id";
+        $resultado = mysqli_query($conexion, $sql);
     }
 }
 
@@ -57,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <input type="hidden" name="id_organizacion" id="id_organizacion" value=<?php print $_SESSION['id_organizacion'] ?>>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Nombre Edificio</span>
-                                    <input type="text" aria-label="nombre_edificio" name="nombre_edificio" class="form-control">
+                                    <input type="text" aria-label="nombre_edificio" name="nombre_edificio" class="form-control" required>
                                 </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Tipo Edificio</span>
@@ -119,7 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <h5 class="modal-title" id="exampleModalLabel">Modificar Edificio</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                     </div>
-                    <form action="prueba.php?p=gestion_equipos_componentes\equipos\gestion_equipos" method="post">
+                    <form method="post">
                         <div class="modal-body">
                             <input type="hidden" class="modifyForm" name="modify_id" id="modify_id">
                             <div class="container-sm">
@@ -131,14 +137,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <span class="input-group-text" id="inputGroup-sizing-default">Tipo Edificio</span>
                                     <input type="text" class="form-control" aria-label="tipo_edificio" name="tipo_edificio" aria-describedby="inputGroup-sizing-default" required>
                                 </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Organización</span>
-                                    <input type="date" class="form-control" aria-label="id_organizaciones" name="id_organizaciones" aria-describedby="inputGroup-sizing-default" required>
-                                </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Comuna</span>
-                                    <textarea type="number" class="form-control" aria-label="cod_ine_com" name="cod_ine_com" aria-describedby="inputGroup-sizing-default" required></textarea>
-                                </div>
+                                <select class="form-select" aria-label="Comunas" name='cod_ine_com' required>
+                                    <option selected disabled>Selecciona una comuna</option>
+                                    <?php
+                                    $qComuna = "SELECT * FROM comunas;";
+                                    $rComuna = mysqli_query($conexion, $qComuna);
+
+                                    while ($rowComuna = mysqli_fetch_assoc($rComuna)) {
+                                        echo "<option value=" . $rowComuna['COD_INE_COM'] . ">" . $rowComuna['NOMBRE'] . "</option>";
+                                    }
+                                    ?>
+                                </select>
                             </div>
 
                         </div>

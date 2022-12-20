@@ -37,13 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $tMantencion = $_POST["tMantencion"];
         $fMantencion = $_POST["fMantencion"];
         $mantenedorACargo = $_POST["mantenedorACargo"];
-        $equipoAMantencion = $_POST["equipoAMantencion"];
 
         $q3 = "UPDATE mantenciones
-        SET id_equipo=" . $equipoAMantencion . ", id_mantencion=" . $id_mantencion . ", nombre_mantencion='" . $nombre_mantencion . "', tipo_mantencion='" . $tMantencion . "' WHERE id_mantencion=" . $id_mantencion . ";";
-        $q3 = "UPDATE realiza
+        SET id_mantencion=" . $id_mantencion . ", nombre_mantencion='" . $nombre_mantencion . "', tipo_mantencion='" . $tMantencion . "' WHERE id_mantencion=" . $id_mantencion . ";";
+        $q4 = "UPDATE realiza
         SET id_mantencion=" . $id_mantencion . ", rut=" . $mantenedorACargo . ", fecha_mantencion='" . $fMantencion . "' WHERE id_mantencion=" . $id_mantencion . ";";
         $r3 = mysqli_query($conexion, $q3);
+        $r4 = mysqli_query($conexion, $q4);
     } else if (isset($_POST["confirmTerminacionMantencion"])) {
         $id_mantencion = $_POST["modify_id"];
 
@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container-sm d-flex align-items-center border border-primary-2 rounded py-3">
             <div class="container aling-self-center">
                 <div class="row row-cols-auto d-flex align-items-center">
-                    <div class="col-8">
+                    <div class="col">
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#insertarMantenciones">
                             Insertar Nueva Mantención
                         </button>
@@ -238,23 +238,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         ?>
                                     </select>
                                 </div>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="inputGroup-sizing-default">Equipo a realizar mantención</span>
-                                    <select class="form-select" aria-label="equipoAMantencion" name="equipoAMantencion" required>
-                                        <option selected disabled value="">Seleccione un Equipo</option>
-                                        <?php
-                                        $q2 = "SELECT equipos.* FROM equipos, edificios, departamentos, organizaciones WHERE equipos.id_departamento = departamentos.id_departamento 
-                                        AND departamentos.id_edificio = edificios.id_edificio AND edificios.id_organizaciones = organizaciones.id AND organizaciones.id = " . $_SESSION['id_organizacion'] . ";";
-                                        $r2 = mysqli_query($conexion, $q2);
-                                        while ($row2 = mysqli_fetch_assoc($r2)) {
-                                            $id = $row["ID_EQUIPO"];
-                                            $nombre = $row["NOMBRE_EQUIPO"];
-                                            echo '<option value="' . $id . '">' . $nombre . '</option>';
-                                        }
-
-                                        ?>
-                                    </select>
-                                </div>
                             </div>
 
                         </div>
@@ -414,12 +397,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             var attributeModify = modifyButton.getAttribute('data-bs-whatever')
             // Update the modal's content.
             var modalId = modalModify.querySelector('.modifyForm')
-            var modalData1 = modalModify.querySelector('.nombreEquipo')
-            var modalData2 = modalModify.querySelector('.rutFuncionario')
-            var modalData3 = modalModify.querySelector('.fAdquisicion')
-            var modalData4 = modalModify.querySelector('.cAdquisicion')
-            var modalData5 = modalModify.querySelector('.foAdquisicion')
-            var modalData6 = modalModify.querySelector('.tAdquisicion')
 
             modalId.value = attributeModify;
         })
