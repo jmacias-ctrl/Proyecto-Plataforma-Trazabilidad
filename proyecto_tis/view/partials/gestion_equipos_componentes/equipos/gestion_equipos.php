@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $header .= "Reply-To: noreply@example.com" . "\r\n";
         $header .= "X-Mailer: PHP/" . phpversion();
         
-        $mail = mail($correo, "|Control de inventario| Registro de actividad", "Se borro correctamente el equipo ". $id_departamento . ", " . $rut . ", '" . $nombre_equipo ."", $header);
+        $mail = mail($correo, "|Control de inventario| Registro de actividad", "Se borro correctamente el equipo ". $id_equipo, $header);
         //feedback correo FIN
     } else if (isset($_POST['modificarData'])) {
         $nombre_equipo = $_POST["nombre_equipo"];
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $header .= "Reply-To: noreply@example.com" . "\r\n";
         $header .= "X-Mailer: PHP/" . phpversion();
         
-        $mail = mail($correo, "|Control de inventario| Registro de actividad", "Se modifico correctamente el equipo ". $id_departamento . ", " . $rut . ", '" . $nombre_equipo ."", $header);
+        $mail = mail($correo, "|Control de inventario| Registro de actividad", "Se modifico correctamente el equipo ". $id_departamento . ", " . $rut . ", '" . $nombre_equipo ."'", $header);
         //feedback correo FIN
 
     } else if (isset($_POST["cambioEstado"])) {
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $header .= "Reply-To: noreply@example.com" . "\r\n";
         $header .= "X-Mailer: PHP/" . phpversion();
         
-        $mail = mail($correo, "|Control de inventario| Registro de actividad", "Se cambio el estado correctamente el equipo ". $id_departamento . ", " . $rut . ", '" . $nombre_equipo ."", $header);
+        $mail = mail($correo, "|Control de inventario| Registro de actividad", "Se cambio el estado correctamente el equipo ". $id_equipo . ", " . $estado_nuevo, $header);
         //feedback correo FIN
     }
 }
