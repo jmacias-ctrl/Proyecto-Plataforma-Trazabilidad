@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-12-2022 a las 03:52:32
+-- Tiempo de generación: 20-12-2022 a las 06:50:56
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.1
 
@@ -43,14 +43,13 @@ CREATE TABLE `componentes` (
 --
 
 INSERT INTO `componentes` (`ID_COMPONENTE`, `ID_EQUIPO`, `NOMBRE`, `MARCA`, `MODELO`, `estado`, `tipo`, `cantidad_usos`) VALUES
-(11, 14, 'amd', 'amd', 'ryzen 5600', 'en uso', 'procesador', 3),
 (35, 12, 'Kingston', 'marcopolo', '213452atsd', 'en uso', 'disco interno', 2),
 (36, 16, 'Hyper X Fury 8GB', 'Hyper X', 'Fury', 'en uso', 'ram', 1),
-(37, NULL, 'Placa Base 1', 'Marca2', 'Modelo3', 'mal estado', 'placa base', 0),
-(39, NULL, 'Tarjeta sonido XD', 'marcopolo', '213452atsd', 'en bodega', 'otros', 1),
-(40, 12, 'WD Blue 5.5 pulgadas 1TB', 'Western Digital', 'Blue', 'en uso', 'disco interno', 1),
-(41, 12, 'ZADAK MOAB 4gb', 'ZADAK', 'MOAB', 'en uso', 'ram', 1),
-(42, 15, 'Placa Base 2', 'Marca 4', 'Modelo 10', 'en uso', 'placa base', 7);
+(37, NULL, 'Placa Base 1', 'Marca2', 'Modelo3', 'en bodega', 'placa base', 0),
+(39, NULL, 'Tarjeta sonido XD', 'marcopolo', '213452atsd', 'mal estado', 'otros', 1),
+(40, NULL, 'WD Blue 5.5 pulgadas 1TB', 'Western Digital', 'Blue', 'en bodega', 'disco interno', 1),
+(42, 15, 'Placa Base 2', 'Marca 4', 'Modelo 10', 'en uso', 'placa base', 7),
+(43, 16, 'Test Componente', 'Test2', 'Test4', 'en uso', 'otros', 1);
 
 --
 -- Disparadores `componentes`
@@ -101,7 +100,8 @@ INSERT INTO `departamentos` (`ID_DEPARTAMENTO`, `ID_EDIFICIO`, `NOMBRE_DEPARTAME
 (1, 1, 'test'),
 (2, 1, 'Sala Computacion'),
 (3, 1, 'Sala de Computo'),
-(5, 2, 'Sala 5-05');
+(6, 1, 'Sala Computacion'),
+(7, 2, 'js');
 
 -- --------------------------------------------------------
 
@@ -145,8 +145,9 @@ CREATE TABLE `edificios` (
 --
 
 INSERT INTO `edificios` (`ID_EDIFICIO`, `ID`, `COD_INE_COM`, `NOMBRE_EDIFICIO`, `TIPO_EDIFICIO`, `ID_ORGANIZACIONES`) VALUES
-(1, NULL, 8101, 'edifcio2 ', ' Oficina', 13),
-(2, NULL, 8101, 'Edificio 3 ', ' Oficina', 13);
+(1, NULL, 8101, 'edifcio2', 'test', 13),
+(2, NULL, 8101, 'kinoedificio', 'test', 13),
+(3, NULL, 8101, 'gafdgadfg', 'adfgadfg', 13);
 
 -- --------------------------------------------------------
 
@@ -172,12 +173,12 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`ID_EQUIPO`, `ID_DEPARTAMENTO`, `RUT_FUNCIONARIO`, `NOMBRE_EQUIPO`, `FECHA_ADQUISICION`, `COSTO_ADQUISICION`, `CARACTERISTICAS_ADQUISICION`, `FORMA_ADQUISICION`, `estado`, `cantidad_mantenciones`) VALUES
-(12, 1, 20511753, 'test1', '2022-02-09', 2022, 'test', 'test', 'Funcionando', 0),
-(14, 3, 20511753, 'Equipo 4', '2022-09-07', 700000, 'test', 'test', 'Inactivo', 1),
-(15, 3, 20511753, 'Equipo 3', '2022-12-04', 450000, 'Test', 'test', 'Inactivo', 0),
-(16, 2, 20511753, 'Equipo 5', '2020-01-08', 420000, 'test', 'test', 'En mantencion', 1),
-(17, 5, 20511753, 'Equipo 6', '2016-01-02', 470000, 'Test', 'Test', 'Funcionando', 0),
-(18, 3, 20511753, 'Equipo 80', '2015-01-09', 1200000, 'Caracteristicas', 'Online', 'Inactivo', 1);
+(12, 1, 12424213, 'test1', '2022-02-09', 2022, 'test', 'test', 'Funcionando', 0),
+(14, 3, 12424213, 'Equipo 4', '2022-09-07', 700000, 'test', 'test', 'Inactivo', 1),
+(15, 3, 12424213, 'Equipo 3', '2022-12-04', 450000, 'Test', 'test', 'Inactivo', 0),
+(16, 2, 12424213, 'Equipo 5', '2020-01-08', 420000, 'test', 'test', 'Inactivo', 1),
+(17, NULL, 12424213, 'Equipo 6', '2016-01-02', 470000, 'Test', 'Test', 'Funcionando', 0),
+(18, 3, 12424213, 'Equipo 80', '2015-01-09', 1200000, 'Caracteristicas', 'Online', 'En mantencion', 3);
 
 -- --------------------------------------------------------
 
@@ -196,8 +197,8 @@ CREATE TABLE `funcionarios` (
 --
 
 INSERT INTO `funcionarios` (`RUT_FUNCIONARIO`, `NOMBRE_FUNCIONARIO`, `TIPO`) VALUES
-(18583232, 'Alejandro Test', 'Analista'),
-(20511753, 'Jose', 'tipo_1');
+(12424213, 'Joselito', 'Test'),
+(18583232, 'Alejandro Test', 'Analista');
 
 -- --------------------------------------------------------
 
@@ -220,9 +221,11 @@ CREATE TABLE `mantenciones` (
 INSERT INTO `mantenciones` (`ID_MANTENCION`, `ID_EQUIPO`, `NOMBRE_MANTENCION`, `TIPO_MANTENCION`, `en_marcha`) VALUES
 (1, 9, 'Formateado de Computador', 'Formateado', 0),
 (7, 14, 'Arreglo de componentes', 'Arreglo', 0),
-(8, 16, 'Formateo Full del equipo', 'formateo', 1),
+(8, 16, 'Formateo Full del equipo', 'formateo', 0),
 (9, 9, 'Arreglo de almacenamiento', 'Arreglo', 1),
-(10, 18, 'Mantencion Simple', 'Mantenicon', 0);
+(10, 18, 'Mantencion Simple', 'Mantenicon', 0),
+(11, 18, 'Formateo Full del equipo', 'formateo', 0),
+(12, 18, 'Formateo Full del equipo', 'Arreglo', 1);
 
 --
 -- Disparadores `mantenciones`
@@ -269,8 +272,7 @@ CREATE TABLE `memorias_ram` (
 --
 
 INSERT INTO `memorias_ram` (`ID_COMPONENTE`, `VELOCIDAD_FRECUENCIA`, `MEMORIA`, `TECNOLOGIA`) VALUES
-(36, '2600', '8', 'DDR4'),
-(41, '2400', '4', 'DDR4');
+(36, '2600', '8', 'DDR4');
 
 -- --------------------------------------------------------
 
@@ -326,13 +328,6 @@ CREATE TABLE `procesadores` (
   `HILOS` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `procesadores`
---
-
-INSERT INTO `procesadores` (`ID_COMPONENTE`, `NUCLEOS`, `SOCKET`, `RELOJ_BASE`, `HILOS`) VALUES
-(11, '20', 'am4', '11', '30');
-
 -- --------------------------------------------------------
 
 --
@@ -373,7 +368,9 @@ INSERT INTO `realiza` (`ID_MANTENCION`, `RUT`, `FECHA_MANTENCION`) VALUES
 (7, '20323213', '2022-12-05'),
 (8, '204143493', '2022-12-05'),
 (9, '20323213', '2022-05-03'),
-(10, '204143493', '2022-12-16');
+(10, '204143493', '2022-12-16'),
+(11, '204143493', '2022-12-18'),
+(12, '20323213', '2022-12-29');
 
 -- --------------------------------------------------------
 
@@ -595,13 +592,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `componentes`
 --
 ALTER TABLE `componentes`
-  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
-  MODIFY `ID_DEPARTAMENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_DEPARTAMENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `discos_internos`
@@ -613,7 +610,7 @@ ALTER TABLE `discos_internos`
 -- AUTO_INCREMENT de la tabla `edificios`
 --
 ALTER TABLE `edificios`
-  MODIFY `ID_EDIFICIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_EDIFICIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `equipos`
@@ -625,19 +622,19 @@ ALTER TABLE `equipos`
 -- AUTO_INCREMENT de la tabla `mantenciones`
 --
 ALTER TABLE `mantenciones`
-  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `memorias_ram`
 --
 ALTER TABLE `memorias_ram`
-  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `placa_base`
 --
 ALTER TABLE `placa_base`
-  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `ID_COMPONENTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `procesadores`
@@ -649,7 +646,7 @@ ALTER TABLE `procesadores`
 -- AUTO_INCREMENT de la tabla `realiza`
 --
 ALTER TABLE `realiza`
-  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID_MANTENCION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
