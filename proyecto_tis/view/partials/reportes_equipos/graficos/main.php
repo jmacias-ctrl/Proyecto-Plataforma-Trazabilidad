@@ -169,25 +169,6 @@ $row10 = mysqli_fetch_assoc($r10);
     <!-- <a href="" class="btn btn-outline-danger" >Enviar Correo</a> -->
 </center>
 
-<?php
-
-// the message
-$msg = "First line of text\nSecond line of text";
-
-// use wordwrap() if lines are longer than 70 characters
-$msg = wordwrap($msg,70);
-
-// send email
-$mail = mail("kenderman.8@gmail.com","KenderWebos",$msg);
-
-if($mail){
-    echo "Correo enviado";
-}else{
-    echo "Correo no enviado";
-}
-
-?>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script>

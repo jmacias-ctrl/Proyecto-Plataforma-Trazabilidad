@@ -28,7 +28,7 @@ $row5 = mysqli_fetch_assoc($r5);
     <div>
         <center>
             <br>
-            <H1>Bienvenido: <?php echo $_SESSION['nombre_usuario'] ?></H1>
+            <H1>Bienvenido: <?php echo $_SESSION['correo'] ?> <br> <?php echo $_SESSION['nombre_usuario'] ?></H1>
             <h3>Este es un resumen de tus equipamientos electronicos</h3>
         </center>
         <br>
