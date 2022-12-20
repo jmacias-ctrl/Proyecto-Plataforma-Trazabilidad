@@ -20,7 +20,14 @@
 			$conexion->query("insert into usuarios (correo, contrasena, id_organizacion, nombre) values ('$correo', '$mcontrasena', '$id_organizacion','$nombre')");
 			?>
   				<span>Registro exitoso.</span>
-  			<?php 
+  			<?php
+			//feedback correo
+			$header = "From: noreply@example.com" . "\r\n";
+			$header .= "Reply-To: noreply@example.com" . "\r\n";
+			$header .= "X-Mailer: PHP/" . phpversion();
+			
+			$mail = mail($correo, "|Registro de nuevo usuario|", "Se registro correctamente al usuario: '.$nombre.' '.$correo.' ", $header);
+			//feedback correo FIN
 		}
 	}
 ?>
