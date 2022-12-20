@@ -15,6 +15,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (mysqli_num_rows($r0) > 0) {
             $q1 = "INSERT INTO equipos VALUES (DEFAULT," . $id_departamento . ", " . $rut . ", '" . $nombre_equipo . "', '" . $fechaAdquisicion . "', '" . $costoaAdquisicion . "','" . $caracteristicasAdquisicion . "', '" . $formaaAdquisicion . "', 'Inactivo', 0);";
             $r1 = mysqli_query($conexion, $q1);
+
+            //feedback correo
+            $correo = $_SESSION['correo'];
+
+            $header = "From: noreply@example.com" . "\r\n";
+            $header .= "Reply-To: noreply@example.com" . "\r\n";
+            $header .= "X-Mailer: PHP/" . phpversion();
+            
+            $mail = mail($correo, "|Control de inventario| Registro de actividad", "Se registro correctamente el equipo ". $id_departamento . ", " . $rut . ", '" . $nombre_equipo ."", $header);
+            //feedback correo FIN
+
         } else {
             echo "Error: Rut del funcionario no esta presente en la base de datos.";
         }
@@ -22,6 +33,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id_equipo = $_POST["delete_id"];
         $q2 = "DELETE FROM equipos WHERE id_equipo='" . $id_equipo . "';";
         $r2 = mysqli_query($conexion, $q2);
+        //feedback correo
+        $correo = $_SESSION['correo'];
+
+        $header = "From: noreply@example.com" . "\r\n";
+        $header .= "Reply-To: noreply@example.com" . "\r\n";
+        $header .= "X-Mailer: PHP/" . phpversion();
+        
+        $mail = mail($correo, "|Control de inventario| Registro de actividad", "Se borro correctamente el equipo ". $id_departamento . ", " . $rut . ", '" . $nombre_equipo ."", $header);
+        //feedback correo FIN
     } else if (isset($_POST['modificarData'])) {
         $nombre_equipo = $_POST["nombre_equipo"];
         $id_equipo = $_POST["modify_id"];
@@ -36,12 +56,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         SET id_equipo=" . $id_equipo . ", rut_funcionario=" . $rut . ", nombre_equipo='" . $nombre_equipo . "', fecha_adquisicion='" . $fechaAdquisicion . "', costo_adquisicion=" . $costoaAdquisicion . ",caracteristicas_adquisicion='" . $caracteristicasAdquisicion . "', 
         forma_adquisicion='" . $formaaAdquisicion . "', id_departamento=" . $id_departamento . " WHERE id_equipo=" . $id_equipo . ";";
         $r3 = mysqli_query($conexion, $q3);
+
+        //feedback correo
+        $correo = $_SESSION['correo'];
+
+        $header = "From: noreply@example.com" . "\r\n";
+        $header .= "Reply-To: noreply@example.com" . "\r\n";
+        $header .= "X-Mailer: PHP/" . phpversion();
+        
+        $mail = mail($correo, "|Control de inventario| Registro de actividad", "Se modifico correctamente el equipo ". $id_departamento . ", " . $rut . ", '" . $nombre_equipo ."", $header);
+        //feedback correo FIN
+
     } else if (isset($_POST["cambioEstado"])) {
         $id_equipo = $_POST["id_cambio"];
         $estado_nuevo = $_POST["estado_nuevo"];
         $q1 = "UPDATE equipos
         SET estado= '" . $estado_nuevo . "' WHERE id_equipo=" . $id_equipo . ";";
         $r1 = mysqli_query($conexion, $q1);
+
+        //feedback correo
+        $correo = $_SESSION['correo'];
+
+        $header = "From: noreply@example.com" . "\r\n";
+        $header .= "Reply-To: noreply@example.com" . "\r\n";
+        $header .= "X-Mailer: PHP/" . phpversion();
+        
+        $mail = mail($correo, "|Control de inventario| Registro de actividad", "Se cambio el estado correctamente el equipo ". $id_departamento . ", " . $rut . ", '" . $nombre_equipo ."", $header);
+        //feedback correo FIN
     }
 }
 
